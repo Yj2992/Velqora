@@ -4,8 +4,20 @@ import { AppError, checked } from "./errors";
 export async function auth(request?: Request) {
   if (request && request.method !== "GET" && request.method !== "HEAD") {
     const origin = request.headers.get("origin");
-    if (origin && origin !== new URL(request.url).origin)
-      throw new AppError("FORBIDDEN", "This request is not allowed.", 403);
+    if (origin) {
+      const target = new URL(request.url);
+      const expectedHost = request.headers.get("host") || target.host;
+      let allowed = false;
+      try {
+        const source = new URL(origin);
+        allowed =
+          source.host === expectedHost && source.protocol === target.protocol;
+      } catch {
+        /* An invalid Origin must never bypass CSRF checks. */
+      }
+      if (!allowed)
+        throw new AppError("FORBIDDEN", "This request is not allowed.", 403);
+    }
   }
   const supabase = await sessionClient();
   const {

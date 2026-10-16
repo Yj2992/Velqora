@@ -70,3 +70,24 @@ it("uses the atomic shared quota and fails closed", async () => {
     quota(mock.db as never, "user-a", "scan", 5),
   ).rejects.toMatchObject({ code: "DATABASE_FAILED" });
 });
+
+it("accepts a same-origin request when Next canonicalizes the loopback URL", async () => {
+  await expect(
+    auth(
+      new Request("http://localhost:3000/api/consent", {
+        method: "POST",
+        headers: { host: "127.0.0.1:3000", origin: "http://127.0.0.1:3000" },
+      }),
+    ),
+  ).resolves.toMatchObject({ user: { id: "user-a" } });
+});
+it("still rejects an attacker origin with a canonicalized request URL", async () => {
+  await expect(
+    auth(
+      new Request("http://localhost:3000/api/consent", {
+        method: "POST",
+        headers: { host: "127.0.0.1:3000", origin: "http://attacker.test" },
+      }),
+    ),
+  ).rejects.toMatchObject({ code: "FORBIDDEN" });
+});

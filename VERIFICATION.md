@@ -23,3 +23,22 @@ Vercel deployment was not performed. Follow README deployment instructions and t
 The host ran Node 23.11.0; builds and tests succeeded. Use the supported Node 22.12+ LTS or Node 24 LTS runtime for reproducible deployment. Development cache writes briefly ran out of disk space; only this project's generated Next.js cache was cleared, and the production build was rerun successfully. Source and user files were preserved.
 
 The local preview server was used for verification and stopped during teardown. Start it again with `npm run dev`, then open the URL printed by Next.js.
+
+
+## Supabase integration — 16 October 2026
+
+- Connected the existing agriguard project, preserving 21 legacy scan records and its bucket.
+- Applied both migrations atomically; recorded their versions in protected migration history.
+- Verified nine new RLS-protected tables and the private `skin-photos` bucket.
+- Executed the rollback-based two-user database security test successfully.
+- Passed 15 live integration assertions covering signup-token verification, password auth,
+  SSR cookies, per-user visibility, anonymous denial, privileged RPC denial, account API,
+  consent/profile persistence, history, deterministic insights, private storage, expiring URLs,
+  cross-user consent isolation, and the retention gate. Temporary fixtures were removed.
+- Added regression coverage for same-origin requests when Next canonicalizes loopback hosts.
+  The suite now has 36 passing tests across nine files; TypeScript passes.
+- Added both local auth callback origins and verified email confirmation remains enabled.
+- Refreshed the Supabase security advisor: zero errors. Legacy public scan resources and
+  intentional RLS-protected signed-in GraphQL schema visibility remain warnings.
+- No YouCam/LLM credentials were supplied. Paid provider analysis, actual email delivery,
+  scheduled production photo cleanup, and HTTPS deployment remain unverified.

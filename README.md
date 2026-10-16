@@ -20,7 +20,7 @@ The lockfile pins the installed versions. `.npmrc` makes peer resolution reprodu
 
 ## Configure the live application
 
-1. Create a Supabase project. Apply `supabase/migrations/001_dermalens.sql` using the SQL editor, or use Supabase CLI migrations. Apply this migration to a new database before registering users; its trigger creates profiles for new accounts.
+1. Use the configured agriguard project, or create a Supabase project for a separate environment. Apply the files in `supabase/migrations/` in order using the SQL editor, or use Supabase CLI migrations. The second migration hardens permissions for a reused project. Apply this migration to a new database before registering users; its trigger creates profiles for new accounts.
 2. Copy the Supabase project URL, anonymous key, and **server-only** service-role key into `.env.local`. Set the project's Site URL and allow `http://127.0.0.1:3000/auth/callback` and your deployed `/auth/callback` URL as authentication redirect destinations. Email confirmation is supported.
 3. Set `YOUCAM_API_KEY` from your Perfect Corp. account. The v2.1 base URL is prefilled. Check your account's available credits and permitted actions.
 4. Confirm that your applicable YouCam terms permit retaining numerical outputs for history. Only then set `HISTORY_RETENTION_ENABLED=true`. Live scans are explicitly unavailable while this flag is off; no synthetic substitute is generated.
@@ -68,7 +68,7 @@ npm audit
 
 Unit and mocked-handler tests cover parsing, special/missing/duplicate metrics, score matching, state transitions, timeouts, provider failures, consent/retention boundaries, upload validation, experiment validation, authentication, ownership filters, atomic quota failure, and duplicate submissions. These do **not** substitute for live Supabase RLS or paid provider tests.
 
-Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. No Supabase instance or provider credentials were supplied with this project, so live authentication, storage, SQL execution, and real YouCam output remain to be verified.
+Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. Supabase authentication, storage, SQL execution, and isolation were subsequently verified on agriguard (see the connected-project section below). Real YouCam output and email delivery remain to be verified.
 
 Before submission, complete these live checks:
 
@@ -109,4 +109,42 @@ and a production dependency audit on main pushes and pull requests. The workflow
 uses Node 24 and SHA-pinned actions; Dependabot proposes dependency updates weekly.
 CI uses no provider credentials and makes no live skin-analysis requests.
 
-Supabase connection and live deployment were left unchanged at the user's request.
+DermaLens is now connected locally to the existing agriguard Supabase project. Live website deployment is still pending.
+
+
+## Connected Supabase project (16 October 2026)
+
+DermaLens reuses **agriguard**, project ref `bqsmamuarzwkdtmmvmyo`, in `us-east-2`.
+The legacy `public.scan_results` table (21 records) and public `scans` bucket were preserved.
+DermaLens uses its own tables and the separate **private** `skin-photos` bucket.
+
+Both migrations were applied and recorded. Browser roles have read-only access to
+own rows through RLS; writes and server RPCs require authenticated backend handlers.
+The Auth profile trigger runs from a private schema. Project keys are configured only
+in ignored `.env.local`, restricted to the local user. They are not stored in GitHub.
+
+Local callback URLs for both `localhost:3000` and `127.0.0.1:3000` were added to the
+existing Auth allowlist. Email confirmation remains enabled. Before deploying,
+add the deployed HTTPS `/auth/callback` URL and configure the deployment environment
+with the keys from your Supabase project. Do not paste secret keys into source code.
+
+For an optional live smoke test, start `npm run dev` in one terminal and run
+`npm run test:integration` in another. It uses the configured project, generates two
+short-lived QA accounts through no-email signup links, checks auth/RLS/consent/profile
+APIs and private storage, signs out sessions, and deletes only its exact test users
+and object. It sends no emails or YouCam requests and creates no synthetic scan scores.
+Do not run it against a project you are not authorized to test.
+
+The Supabase security advisor reports no errors. Existing legacy scan policies and
+public bucket produce warnings; signed-in GraphQL discovery of DermaLens tables is
+also reported because authenticated users intentionally have RLS-protected SELECT
+access. These are not anonymous access grants. The two-user isolation checks passed.
+
+The CLI's temporary `cli_login_postgres` role encountered a platform permission error
+after initial SQL execution; verification and migration history recording were completed
+through the dashboard. No managed database roles were modified as a workaround.
+
+YouCam credentials and verified numerical-output retention permissions are still
+required before setting `HISTORY_RETENTION_ENABLED=true`. External AI remains off
+until configured and the user opts in. This setup does not claim a paid provider scan
+or website deployment has been verified.
