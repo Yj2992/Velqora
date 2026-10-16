@@ -210,7 +210,7 @@ export default function Results() {
                 <p>Available only within the configured retention period.</p>
               </div>
               {image ? (
-                <img src={image} alt="Original scan photograph" />
+                <img src={image} alt="Prepared scan photograph" />
               ) : (
                 <Button variant="secondary" onClick={() => void showImage()}>
                   View retained photo

@@ -156,3 +156,7 @@ Scan uploads accept JPEG, PNG, HEIC and HEIF files up to 8 MB. HEIC is decoded o
 ### Live YouCam upload verification — 16 October 2026
 
 API authentication and unit-balance checks passed. A real task exposed a provider downloader failure on long Supabase signed URLs. Submission now registers a file with YouCam, uploads the stripped JPEG with the returned PUT instructions, and submits its file ID. A live recovery verified that this upload flow works: YouCam returned a terminal face-angle rejection within the first 10-second status check. No successful scan scores were produced in that check. Null results on running/failed tasks are accepted, terminal errors are shown with safe actionable messages, and polling no longer leaves a spinner running after automatic checks stop. Provider error text is never echoed because it can contain signed links.
+
+### Automatic face framing
+
+Before storage and provider submission, the server corrects orientation, detects a single face locally, and crops excess background to target approximately 68% face width while preserving forehead/chin margins. The bundled detector runs offline; no additional service receives photos. No face boxes are persisted. Already close portraits, undetected/ambiguous faces, and crops below the 256-pixel minimum remain unchanged for provider validation. Cropping never upscales a photo or synthesizes facial detail. A side-facing, obstructed, very distant, or blurry face can still require a new photo. Vendor model files are explicitly included in the Next.js server deployment trace.

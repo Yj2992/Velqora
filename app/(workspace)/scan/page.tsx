@@ -44,7 +44,18 @@ export default function NewScan() {
     setError("");
     if (!f) return;
     if (
-      !(["image/jpeg", "image/png", "image/heic", "image/heif", "image/heic-sequence", "image/heif-sequence"].includes(f.type) || ((f.type === "" || f.type === "application/octet-stream") && /\.hei[cf]$/i.test(f.name))) ||
+      !(
+        [
+          "image/jpeg",
+          "image/png",
+          "image/heic",
+          "image/heif",
+          "image/heic-sequence",
+          "image/heif-sequence",
+        ].includes(f.type) ||
+        ((f.type === "" || f.type === "application/octet-stream") &&
+          /\.hei[cf]$/i.test(f.name))
+      ) ||
       f.size > 8 * 1024 * 1024
     ) {
       setError("Choose a JPEG, PNG or HEIC photograph smaller than 8 MB.");
@@ -125,8 +136,17 @@ export default function NewScan() {
                 <ScanFace size={48} aria-hidden="true" />
                 <h2>HEIC photo selected</h2>
                 <p>{file.name}</p>
-                <p>Ready to upload. This photo will be converted securely on the server.</p>
-                <button className="icon-button" aria-label="Remove photo" onClick={() => setFile(null)}><X /></button>
+                <p>
+                  Ready to upload. This photo will be converted and
+                  automatically framed around your face.
+                </p>
+                <button
+                  className="icon-button"
+                  aria-label="Remove photo"
+                  onClick={() => setFile(null)}
+                >
+                  <X />
+                </button>
               </div>
             ) : (
               <>
@@ -151,7 +171,13 @@ export default function NewScan() {
               <Upload size={17} />
               {file ? "Choose another photo" : "Choose photograph"}
             </Button>
-            <small>JPEG, PNG or HEIC · Up to 8 MB · Minimum 256 × 256 px</small>
+            <small>
+              JPEG, PNG or HEIC · Up to 8 MB · Automatic face framing
+            </small>
+            <p className="subtle">
+              We crop excess background around a single detected face before
+              analysis. Keep your whole face visible and look straight ahead.
+            </p>
             <input
               ref={input}
               type="file"
@@ -177,7 +203,9 @@ export default function NewScan() {
               onChange={(e) => setConsent(e.target.checked)}
             />
             <span>
-              {demo ? 'I understand this creates a synthetic sample and does not analyze my photograph.' : 'I consent to sending this photograph to YouCam for cosmetic skin analysis and retaining its measurements.'}
+              {demo
+                ? "I understand this creates a synthetic sample and does not analyze my photograph."
+                : "I consent to sending this photograph to YouCam for cosmetic skin analysis and retaining its measurements."}
             </span>
           </label>
           {error && (

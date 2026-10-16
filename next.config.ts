@@ -2,7 +2,16 @@ import type { NextConfig } from "next";
 const config: NextConfig = {
   devIndicators: false,
   turbopack: { root: process.cwd() },
-  serverExternalPackages: ["sharp", "heic-decode", "libheif-js"],
+  serverExternalPackages: [
+    "sharp",
+    "heic-decode",
+    "libheif-js",
+    "@tensorflow/tfjs-core",
+    "@tensorflow/tfjs-converter",
+    "@tensorflow/tfjs-backend-cpu",
+    "@tensorflow-models/blazeface",
+  ],
+  outputFileTracingIncludes: { "/api/scans": ["./models/face/**/*"] },
   async headers() {
     return [
       {
