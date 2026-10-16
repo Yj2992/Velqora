@@ -32,6 +32,10 @@ export default function NewScan() {
       setPreview("");
       return;
     }
+    if (/\.hei[cf]$/i.test(file.name) || /image\/hei[cf]/.test(file.type)) {
+      setPreview("");
+      return;
+    }
     const url = URL.createObjectURL(file);
     setPreview(url);
     return () => URL.revokeObjectURL(url);
@@ -40,10 +44,10 @@ export default function NewScan() {
     setError("");
     if (!f) return;
     if (
-      !["image/jpeg", "image/png"].includes(f.type) ||
+      !(["image/jpeg", "image/png", "image/heic", "image/heif", "image/heic-sequence", "image/heif-sequence"].includes(f.type) || ((f.type === "" || f.type === "application/octet-stream") && /\.hei[cf]$/i.test(f.name))) ||
       f.size > 8 * 1024 * 1024
     ) {
-      setError("Choose a JPEG or PNG photograph smaller than 8 MB.");
+      setError("Choose a JPEG, PNG or HEIC photograph smaller than 8 MB.");
       return;
     }
     setFile(f);
@@ -116,6 +120,14 @@ export default function NewScan() {
                   <X />
                 </button>
               </div>
+            ) : file ? (
+              <div>
+                <ScanFace size={48} aria-hidden="true" />
+                <h2>HEIC photo selected</h2>
+                <p>{file.name}</p>
+                <p>Ready to upload. This photo will be converted securely on the server.</p>
+                <button className="icon-button" aria-label="Remove photo" onClick={() => setFile(null)}><X /></button>
+              </div>
             ) : (
               <>
                 <div className="upload-art">
@@ -139,11 +151,11 @@ export default function NewScan() {
               <Upload size={17} />
               {file ? "Choose another photo" : "Choose photograph"}
             </Button>
-            <small>JPEG or PNG · Up to 8 MB · Minimum 256 × 256 px</small>
+            <small>JPEG, PNG or HEIC · Up to 8 MB · Minimum 256 × 256 px</small>
             <input
               ref={input}
               type="file"
-              accept="image/jpeg,image/png"
+              accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif"
               className="sr-only"
               aria-label="Select face photograph"
               onChange={(e) => choose(e.target.files?.[0])}

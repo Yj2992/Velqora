@@ -148,3 +148,7 @@ YouCam credentials and verified numerical-output retention permissions are still
 required before setting `HISTORY_RETENTION_ENABLED=true`. External AI remains off
 until configured and the user opts in. This setup does not claim a paid provider scan
 or website deployment has been verified.
+
+### HEIC uploads
+
+Scan uploads accept JPEG, PNG, HEIC and HEIF files up to 8 MB. HEIC is decoded on the server using libheif WASM, then resized and stripped of metadata before private JPEG storage and YouCam submission. Browsers without HEIC preview support show the selected filename. The server validates container bytes and decoded dimensions (256 px minimum, 25 million pixels maximum); file extensions alone are not trusted. Only the first image of a multi-image container is analyzed.

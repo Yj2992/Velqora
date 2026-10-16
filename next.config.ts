@@ -2,7 +2,7 @@ import type { NextConfig } from "next";
 const config: NextConfig = {
   devIndicators: false,
   turbopack: { root: process.cwd() },
-  serverExternalPackages: ["sharp"],
+  serverExternalPackages: ["sharp", "heic-decode", "libheif-js"],
   async headers() {
     return [
       {

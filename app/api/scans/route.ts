@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import sharp from "sharp";
+import { prepareImage } from "@/lib/server/image";
 import { auth, quota, scanSelect } from "@/lib/server/auth";
 import { AppError, checked, required, fail } from "@/lib/server/errors";
 import { uuid, validateImage } from "@/lib/validation";
@@ -87,7 +87,7 @@ export async function POST(request: Request) {
     if (!(file instanceof File))
       throw new AppError(
         "IMAGE_REQUIRED",
-        "Select a JPEG or PNG face photograph.",
+        "Select a JPEG, PNG or HEIC face photograph.",
       );
     const bytes = new Uint8Array(await file.arrayBuffer());
     try {
@@ -97,20 +97,7 @@ export async function POST(request: Request) {
     }
     let clean: Buffer;
     try {
-      const image = sharp(bytes, { limitInputPixels: 25_000_000 });
-      const meta = await image.metadata();
-      if (!meta.width || !meta.height || meta.width < 256 || meta.height < 256)
-        throw new Error();
-      clean = await image
-        .rotate()
-        .resize({
-          width: 2560,
-          height: 2560,
-          fit: "inside",
-          withoutEnlargement: true,
-        })
-        .jpeg({ quality: 92 })
-        .toBuffer();
+      clean = await prepareImage(bytes);
     } catch {
       throw new AppError(
         "INVALID_IMAGE",
