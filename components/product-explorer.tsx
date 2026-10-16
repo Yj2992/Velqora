@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import { useApp, api } from "./app-provider";
 import { Button } from "./ui/button";
+import { explainMatches } from "@/lib/products/empty-state";
 import { recommend, relativeFocus, scanSkinType } from "@/lib/products/engine";
 import {
   concernRules,
@@ -134,6 +135,10 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     query,
     sort,
   ]);
+  const emptyDetails =
+    !browse && !matches.length
+      ? explainMatches(products, effective, focus)
+      : null;
   useEffect(
     () => setVisible(12),
     [query, brand, category, sort, focus, prefs, browse, avoid, scanId],
@@ -500,27 +505,63 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               <BookOpen size={30} />
               <h2>No verified matches under these choices.</h2>
               <p>
-                {focus.length &&
-                focus.every(
-                  (id) =>
-                    concernRules.find((r) => r.id === id)?.support ===
-                    "not_topical",
-                )
-                  ? "Topical products are not reliable corrections for the selected structural concerns. The guidance above is the appropriate result."
-                  : "Try a wider budget or different filters. We do not substitute products with unknown suitability, expired verification, or incomplete ingredients when you requested an exclusion."}
+                Your scan priorities do not always have a suitable topical
+                product. Here is what is limiting this selection.
               </p>
-              <Button
-                variant="secondary"
-                onClick={() => {
-                  setPrefs(defaultPreferences);
-                  setAvoid("");
-                  setCategory("");
-                  setBrand("");
-                  setQuery("");
-                }}
-              >
-                Reset product filters
-              </Button>
+              {emptyDetails && (
+                <div className="empty-match-details">
+                  {emptyDetails.rows.map((row) => (
+                    <p key={row.id}>
+                      <strong>{row.label}</strong>
+                      <br />
+                      {row.message}
+                    </p>
+                  ))}
+                  {emptyDetails.activeCandidates > 0 && (
+                    <p className="notice">
+                      {emptyDetails.activeCandidates} concern matches would
+                      become eligible with adult confirmation, while keeping
+                      your other preferences. If you are 18+, you can confirm
+                      this in “Make it yours.” Retinoid avoidance remains
+                      applied; age confirmation is not a suitability assessment.
+                    </p>
+                  )}
+                </div>
+              )}
+              <p>
+                We keep ingredient exclusions and suitability checks in place.
+                Basic-care products are a separate browsing option, not a
+                treatment for tear troughs, eye bags or other structural
+                concerns.
+              </p>
+              <div className="empty-match-actions">
+                <Button
+                  variant="secondary"
+                  onClick={() => {
+                    setBrowse(false);
+                    setManual(true);
+                    setFocus([]);
+                    setCategory("");
+                    setBrand("");
+                    setQuery("");
+                  }}
+                >
+                  Browse basic care
+                  {emptyDetails ? ` (${emptyDetails.basicCare})` : ""}
+                </Button>
+                {(brand || category || query) && (
+                  <Button
+                    variant="secondary"
+                    onClick={() => {
+                      setCategory("");
+                      setBrand("");
+                      setQuery("");
+                    }}
+                  >
+                    Clear search, brand & category
+                  </Button>
+                )}
+              </div>
             </div>
           ) : (
             <div className="product-grid">

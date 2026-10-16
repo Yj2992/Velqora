@@ -3877,3 +3877,18 @@ em {
     font-size: 21px;
   }
 }
+
+.empty-match-details {
+  text-align: left;
+  max-width: 620px;
+  margin: 20px auto;
+}
+.empty-match-details p {
+  font-size: 12px;
+}
+.empty-match-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
