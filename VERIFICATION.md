@@ -51,3 +51,7 @@ The local preview server was used for verification and stopped during teardown. 
 - The recovered task returned `error_large_face_angle` at the first status check; its saved status is failed with straight-on photo guidance. No scores were fabricated or saved.
 - Parser regression tests now cover null results in running/error responses and safe failure messages.
 - A successful live analysis still needs a suitable front-facing photo.
+
+## Successful live result recovery — 16 October 2026
+
+A real YouCam v2.1 task completed successfully, returning `error: null` and `url: null` on output entries. The parser now accepts these nullable optional fields without relaxing numeric score validation. The existing task was polled and its real output saved through `complete_scan`, then read back to verify completed status, 15 metric rows, and 3 regional classifications. No new task or photo submission was made for this recovery. Regression data uses synthetic scores and example URLs only.

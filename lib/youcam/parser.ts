@@ -20,7 +20,7 @@ const entry = z
       ])
       .nullish(),
     mask_urls: z.unknown().optional(),
-    url: z.string().optional(),
+    url: z.string().nullish(),
   })
   .passthrough();
 const envelope = z.object({
@@ -35,7 +35,7 @@ const envelope = z.object({
       "failed",
     ]),
     results: z.unknown().optional(),
-    error: z.string().optional(),
+    error: z.string().nullish(),
   }),
 });
 export function parseTask(value: unknown) {
@@ -43,7 +43,7 @@ export function parseTask(value: unknown) {
   if (p.status !== 200)
     throw new Error("Provider returned an unsuccessful response");
   if (p.data.task_status === "error" || p.data.task_status === "failed")
-    return { state: "failed" as const, errorCode: p.data.error };
+    return { state: "failed" as const, errorCode: p.data.error ?? undefined };
   if (p.data.task_status !== "success") return { state: "processing" as const };
   if (!p.data.results)
     throw new Error("Completed provider response has no output");

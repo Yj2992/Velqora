@@ -124,3 +124,63 @@ it("shows safe actionable provider failures without echoing unknown details", ()
     "secret",
   );
 });
+
+it("accepts the live v2.1 success shape with null error and URL fields", () => {
+  // Synthetic values matching the observed wire shape, without personal data or signed URLs.
+  const metrics = [
+    "acne",
+    "dark_circle_v2",
+    "droopy_lower_eyelid",
+    "droopy_upper_eyelid",
+    "eye_bag",
+    "firmness",
+    "moisture",
+    "oiliness",
+    "pore",
+    "radiance",
+    "redness",
+    "age_spot",
+    "texture",
+    "wrinkle",
+    "tear_trough",
+  ];
+  const result = parseTask({
+    status: 200,
+    data: {
+      task_status: "success",
+      error: null,
+      results: {
+        output: [
+          ...metrics.map((type) => ({
+            type,
+            ui_score: 60,
+            raw_score: 0.2,
+            url: null,
+            mask_urls: [],
+          })),
+          ...["whole", "t_zone", "u_zone"].map((region) => ({
+            type: "skin_type",
+            region,
+            skin_type: "Normal",
+            url: null,
+            mask_urls: [],
+          })),
+          { type: "all", score: 65, url: null },
+          { type: "skin_age", score: 30, url: null },
+          {
+            type: "resize_image",
+            url: null,
+            mask_urls: ["https://example.com/temporary.jpg"],
+          },
+        ],
+      },
+    },
+  });
+  expect(result.state).toBe("completed");
+  if (result.state !== "completed") throw Error("Expected completed task");
+  expect(result.metrics).toHaveLength(15);
+  expect(result.skinTypes).toHaveLength(3);
+  expect(result.overall).toBe(65);
+  expect(result.age).toBe(30);
+  expect(result.visuals).toHaveLength(1);
+});

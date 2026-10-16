@@ -160,3 +160,5 @@ API authentication and unit-balance checks passed. A real task exposed a provide
 ### Automatic face framing
 
 Before storage and provider submission, the server corrects orientation, detects a single face locally, and crops excess background to target approximately 68% face width while preserving forehead/chin margins. The bundled detector runs offline; no additional service receives photos. No face boxes are persisted. Already close portraits, undetected/ambiguous faces, and crops below the 256-pixel minimum remain unchanged for provider validation. Cropping never upscales a photo or synthesizes facial detail. A side-facing, obstructed, very distant, or blurry face can still require a new photo. Vendor model files are explicitly included in the Next.js server deployment trace.
+
+A subsequent live scan completed successfully. Its existing YouCam output was recovered after correcting nullable optional `error` and `url` fields; completed status, all 15 measurements and 3 regional classifications were verified in Supabase.
