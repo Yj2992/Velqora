@@ -47,3 +47,29 @@ export function explainMatches(
   const basicCare = recommend(products, prefs, [], now).length;
   return { rows, activeCandidates, basicCare };
 }
+
+// Basic care is a separately labelled browsing result, never a corrective match.
+export function discoverProducts(
+  products: Product[],
+  prefs: Preferences,
+  focus: ConcernId[],
+  now = Date.now(),
+  browse = false,
+  filter: (match: import("./types").Match) => boolean = () => true,
+) {
+  const targeted = recommend(
+    products,
+    prefs,
+    browse ? [] : focus,
+    now,
+    browse,
+  ).filter(filter);
+  const basicCare =
+    !browse && focus.length > 0 && !targeted.length
+      ? recommend(products, prefs, [], now).filter(filter)
+      : [];
+  return {
+    matches: targeted.length ? targeted : basicCare,
+    showingBasicCare: basicCare.length > 0,
+  };
+}

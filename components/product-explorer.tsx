@@ -14,8 +14,8 @@ import {
 } from "lucide-react";
 import { useApp, api } from "./app-provider";
 import { Button } from "./ui/button";
-import { explainMatches } from "@/lib/products/empty-state";
-import { recommend, relativeFocus, scanSkinType } from "@/lib/products/engine";
+import { discoverProducts, explainMatches } from "@/lib/products/empty-state";
+import { relativeFocus, scanSkinType } from "@/lib/products/engine";
 import {
   concernRules,
   scoreInterpretation,
@@ -97,14 +97,13 @@ export function ProductExplorer({ products }: { products: Product[] }) {
       .map((x) => x.trim())
       .filter(Boolean),
   };
-  const matches = useMemo(() => {
-    const found = recommend(
+  const { matches, showingBasicCare } = useMemo(() => {
+    const result = discoverProducts(
       products,
       effective,
-      browse ? [] : focus,
+      focus,
       Date.now(),
       browse,
-    ).filter(
       (m) =>
         (!brand || m.product.brand_slug === brand) &&
         (!category || m.product.category === category) &&
@@ -118,11 +117,12 @@ export function ProductExplorer({ products }: { products: Product[] }) {
             .toLowerCase()
             .includes(query.toLowerCase())),
     );
+    const found = result.matches;
     if (sort === "price-low")
       found.sort((a, b) => a.product.price_inr - b.product.price_inr);
     if (sort === "price-high")
       found.sort((a, b) => b.product.price_inr - a.product.price_inr);
-    return found;
+    return { ...result, matches: found };
   }, [
     products,
     prefs,
@@ -224,7 +224,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               {scans.map((s) => (
                 <option key={s.id} value={s.id}>
                   {new Date(s.created_at).toLocaleDateString("en-IN")} ·{" "}
-                  {s.overall_score ?? "—"}
+                  {s.overall_score == null ? "—" : s.overall_score.toFixed(1)}
                 </option>
               ))}
             </select>
@@ -490,9 +490,40 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               <option value="price-high">Price: high to low</option>
             </select>
           </div>
+          {ready && showingBasicCare && (
+            <section
+              className="card basic-care-intro"
+              aria-label="Basic care alternatives"
+            >
+              <span className="section-label">EVERYDAY CARE</span>
+              <h2>
+                Basic care
+                {effective.skin_type !== "unknown"
+                  ? ` for ${effective.skin_type} skin`
+                  : " to explore"}
+              </h2>
+              <p>
+                No targeted products qualify for the selected concerns and
+                filters. These cleansers, moisturizers and sunscreens meet your
+                current preferences. They are general-care options; they are not
+                presented as corrections for tear troughs, dark circles or
+                pores.
+              </p>
+              <p>
+                Your scan priorities stay selected. Ingredient exclusions,
+                budget and active-ingredient choices remain applied to these
+                options. You can still change concerns above.
+              </p>
+            </section>
+          )}
           <div className="product-count">
             <strong>
-              {matches.length} {browse ? "catalog products" : "matches"}
+              {matches.length}{" "}
+              {showingBasicCare
+                ? "basic-care options · 0 targeted matches"
+                : browse
+                  ? "catalog products"
+                  : "matches"}
             </strong>
             <span>Preferences applied · no sponsored ranking</span>
           </div>

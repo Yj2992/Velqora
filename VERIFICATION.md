@@ -81,3 +81,7 @@ A real YouCam v2.1 task completed successfully, returning `error: null` and `url
 ### Empty-match recovery
 
 The zero-match state now explains each selected concern, distinguishes structural guidance from ingredient/suitability restrictions, and counts products newly eligible with adult confirmation without changing that preference. “Browse basic care” clears only concern/search/category/brand selections; budget, ingredient exclusions, skin type and active-ingredient preferences remain applied. Browser reproduction of pore/dark-circle/tear-trough priorities returned zero targeted matches and successfully recovered 25 eligible basic-care records in the demo profile. Four additional regression tests cover explanations, structural concerns, restricted budgets and accurate age-blocked counts; 71 tests now pass.
+
+### Automatic basic-care alternatives
+
+Reproduced the reported dry-skin selection with tear troughs, dark circles and pores. The page now retains the selected priorities and directly displays 27 eligible basic-care records with an explicit separate label and 0 targeted matches. No age confirmation, retinoid, ingredient, budget or skin-type filter is relaxed. Scan selector scores use one decimal. Two additional regression tests verify automatic basic-care separation and preservation of budget/discovery filters; 73 tests, strict TypeScript and production build pass.

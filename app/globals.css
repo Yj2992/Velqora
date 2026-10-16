@@ -3892,3 +3892,19 @@ em {
   gap: 10px;
   justify-content: center;
 }
+
+.basic-care-intro {
+  padding: 24px;
+  margin: 20px 0;
+  background: #f1f5ed;
+}
+.basic-care-intro h2 {
+  font-size: 23px;
+  margin: 8px 0;
+}
+.basic-care-intro p {
+  font-size: 12px;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-top: 9px;
+}
