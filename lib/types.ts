@@ -62,6 +62,7 @@ export type Experiment = {
   id: string;
   title: string;
   product_name: string;
+  product_id?: string | null;
   target_metric: string;
   baseline_scan_id: string;
   status: "active" | "completed" | "paused";

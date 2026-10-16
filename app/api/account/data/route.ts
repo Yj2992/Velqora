@@ -21,6 +21,9 @@ export async function DELETE(request: Request) {
       checked(
         await db.storage.from("skin-photos").remove(paths.slice(i, i + 100)),
       );
+    checked(
+      await db.from("product_preferences").delete().eq("user_id", user.id),
+    );
     checked(await db.from("ai_insights").delete().eq("user_id", user.id));
     checked(
       await db.from("skincare_experiments").delete().eq("user_id", user.id),

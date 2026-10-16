@@ -1,0 +1,167 @@
+[
+  {
+    "id": "niacinamide",
+    "name": "Niacinamide",
+    "aliases_pattern": "niacinamide|nicotinamide"
+  },
+  {
+    "id": "salicylic_acid",
+    "name": "Salicylic Acid",
+    "aliases_pattern": "(?<!capryloyl )\\bsalicylic\\s+acid\\b"
+  },
+  {
+    "id": "ceramides",
+    "name": "Ceramides",
+    "aliases_pattern": "ceramide"
+  },
+  {
+    "id": "hyaluronic_acid",
+    "name": "Hyaluronic acid / hyaluronates",
+    "aliases_pattern": "hyaluronic|hyaluronate"
+  },
+  {
+    "id": "glycerin",
+    "name": "Glycerin",
+    "aliases_pattern": "glycerin|glycerol"
+  },
+  {
+    "id": "panthenol",
+    "name": "Panthenol",
+    "aliases_pattern": "panthenol|vitamin b5"
+  },
+  {
+    "id": "squalane",
+    "name": "Squalane",
+    "aliases_pattern": "squalane"
+  },
+  {
+    "id": "allantoin",
+    "name": "Allantoin",
+    "aliases_pattern": "allantoin"
+  },
+  {
+    "id": "centella",
+    "name": "Centella / cica",
+    "aliases_pattern": "centella|\\bcica\\b|madecassoside"
+  },
+  {
+    "id": "oat",
+    "name": "Oat extract / colloidal oatmeal",
+    "aliases_pattern": "avena sativa|colloidal oat|\\boats?\\b"
+  },
+  {
+    "id": "retinol",
+    "name": "Retinol",
+    "aliases_pattern": "\\bretinol\\b"
+  },
+  {
+    "id": "retinal",
+    "name": "Retinal",
+    "aliases_pattern": "\\bretinal\\b|retinaldehyde"
+  },
+  {
+    "id": "hpr",
+    "name": "Hydroxypinacolone retinoate",
+    "aliases_pattern": "hydroxypinacolone retinoate|granactive retinoid"
+  },
+  {
+    "id": "vitamin_c",
+    "name": "Vitamin C / derivatives",
+    "aliases_pattern": "vitamin\\s*c\\b|ascorbic|ascorbyl"
+  },
+  {
+    "id": "azelaic_acid",
+    "name": "Azelaic Acid",
+    "aliases_pattern": "azelaic acid"
+  },
+  {
+    "id": "kojic_acid",
+    "name": "Kojic Acid",
+    "aliases_pattern": "kojic acid"
+  },
+  {
+    "id": "alpha_arbutin",
+    "name": "Alpha Arbutin",
+    "aliases_pattern": "alpha.?arbutin"
+  },
+  {
+    "id": "glycolic_acid",
+    "name": "Glycolic Acid",
+    "aliases_pattern": "glycolic acid"
+  },
+  {
+    "id": "lactic_acid",
+    "name": "Lactic Acid",
+    "aliases_pattern": "lactic acid"
+  },
+  {
+    "id": "pha",
+    "name": "Gluconolactone / PHA",
+    "aliases_pattern": "gluconolactone|lactobionic|\\bpha\\b"
+  },
+  {
+    "id": "caffeine",
+    "name": "Caffeine",
+    "aliases_pattern": "caffeine"
+  },
+  {
+    "id": "peptides",
+    "name": "Peptides",
+    "aliases_pattern": "peptide"
+  },
+  {
+    "id": "zinc_pca",
+    "name": "Zinc Pca",
+    "aliases_pattern": "zinc pca"
+  },
+  {
+    "id": "zinc_oxide",
+    "name": "Zinc Oxide",
+    "aliases_pattern": "zinc oxide"
+  },
+  {
+    "id": "uv_filters",
+    "name": "UV filters",
+    "aliases_pattern": "titanium dioxide|diethylamino hydroxybenzoyl hexyl benzoate|ethylhexyl triazone|bis.ethy[l]?hexyloxyphenol methoxyphenyl triazine|avobenzone|butyl methoxydibenzoylmethane|\\bDHHB\\b|\\bBEMT\\b|\\bMBBT\\b|\\bEHT\\b"
+  },
+  {
+    "id": "vitamin_e",
+    "name": "Vitamin E",
+    "aliases_pattern": "tocopher|vitamin e\\b"
+  },
+  {
+    "id": "tranexamic_acid",
+    "name": "Tranexamic Acid",
+    "aliases_pattern": "tranexamic|\\btxa\\b"
+  },
+  {
+    "id": "beta_glucan",
+    "name": "Beta Glucan",
+    "aliases_pattern": "beta.glucan"
+  },
+  {
+    "id": "ectoin",
+    "name": "Ectoin",
+    "aliases_pattern": "ectoin"
+  },
+  {
+    "id": "urea",
+    "name": "Urea",
+    "aliases_pattern": "\\burea\\b"
+  },
+  {
+    "id": "snail_mucin",
+    "name": "Snail Mucin",
+    "aliases_pattern": "snail secretion filtrate|snail mucin"
+  },
+  {
+    "id": "fragrance",
+    "name": "Fragrance",
+    "aliases_pattern": "\\bfragrance\\b|\\bparfum\\b"
+  },
+  {
+    "id": "alcohol_denat",
+    "name": "Alcohol Denat",
+    "aliases_pattern": "alcohol denat|denatured alcohol"
+  }
+]

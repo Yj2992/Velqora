@@ -22,6 +22,23 @@ export async function POST(request: Request) {
   try {
     const { user, db } = await auth(request),
       input = experimentSchema.parse(await request.json());
+    if (input.product_id) {
+      const product = checked(
+        await db
+          .from("catalog_products")
+          .select("name")
+          .eq("id", input.product_id)
+          .eq("active", true)
+          .maybeSingle(),
+      );
+      if (!product)
+        throw new AppError(
+          "NOT_FOUND",
+          "This catalog product is unavailable.",
+          404,
+        );
+      input.product_name = product.name;
+    }
     await quota(db, user.id, "experiment", 30);
     const baseline = await ownedScan(db, user.id, input.baseline_scan_id);
     if (baseline.status !== "completed")

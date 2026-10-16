@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useApp } from "@/components/app-provider";
+import { api, useApp } from "@/components/app-provider";
 import { Button } from "@/components/ui/button";
 import { PageHeader, Empty, date } from "@/components/shared";
 import { metricLabels } from "@/lib/types";
@@ -14,7 +14,29 @@ export default function CreateExperiment() {
     [error, setError] = useState(""),
     [busy, setBusy] = useState(false),
     [baseline, setBaseline] = useState(scans.at(-1)?.id || ""),
-    [metric, setMetric] = useState("moisture");
+    [metric, setMetric] = useState("moisture"),
+    [product, setProduct] = useState<{ id: string; name: string } | null>(null);
+  useEffect(() => {
+    const p = new URLSearchParams(window.location.search);
+    const scan = scans.find((s) => s.id === p.get("scan"));
+    if (scan) {
+      setBaseline(scan.id);
+      const m = scan.skin_scan_metrics.find(
+        (m) =>
+          m.metric_type === p.get("metric") &&
+          m.region === "whole" &&
+          m.ui_score !== null,
+      );
+      if (m) setMetric(m.metric_type);
+    }
+    const id = p.get("product");
+    if (id)
+      void api<{ id: string; name: string }>(
+        "/api/products/" + encodeURIComponent(id),
+      )
+        .then(setProduct)
+        .catch((e) => setError((e as Error).message));
+  }, []);
   const available =
     data.scans
       .find((s) => s.id === baseline)
@@ -29,7 +51,8 @@ export default function CreateExperiment() {
     try {
       const id = await createExperiment({
         title: String(f.get("title")),
-        product_name: String(f.get("product_name")),
+        product_name: product?.name || String(f.get("product_name")),
+        product_id: product?.id || null,
         target_metric: metric,
         baseline_scan_id: baseline,
         started_at: String(f.get("started_at")),
@@ -77,10 +100,25 @@ export default function CreateExperiment() {
                 name="product_name"
                 required
                 minLength={2}
-                maxLength={120}
+                maxLength={240}
+                key={product?.id || "custom"}
+                defaultValue={product?.name || ""}
+                readOnly={Boolean(product)}
                 placeholder="Daily barrier moisturizer"
               />
             </label>
+            {product && (
+              <p className="notice">
+                Linked to the verified product catalog.{" "}
+                <button
+                  type="button"
+                  className="text-link"
+                  onClick={() => setProduct(null)}
+                >
+                  Use a custom product instead
+                </button>
+              </p>
+            )}
             <label className="field">
               Baseline scan
               <select

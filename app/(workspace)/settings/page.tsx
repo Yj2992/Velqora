@@ -165,9 +165,9 @@ export default function Settings() {
       <section className="card danger-zone">
         <h2>Delete your DermaLens data</h2>
         <p>
-          Remove scans, photos, experiments, usage logs, insights, and consent
-          records. Your login account remains; onboarding will be required
-          again.
+          Remove scans, photos, experiments, usage logs, insights, product
+          preferences, and consent records. Your login account remains;
+          onboarding will be required again.
         </p>
         <label className="field">
           Type DELETE to confirm

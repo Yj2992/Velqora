@@ -3,7 +3,8 @@ import { actions } from "./types";
 export const uuid = z.string().uuid();
 export const experimentSchema = z.object({
   title: z.string().trim().min(2).max(120),
-  product_name: z.string().trim().min(2).max(120),
+  product_name: z.string().trim().min(2).max(240),
+  product_id: uuid.nullish(),
   target_metric: z.enum(
     actions.filter((a) => a !== "skin_type") as [string, ...string[]],
   ),

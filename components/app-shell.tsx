@@ -13,6 +13,7 @@ import {
   Menu,
   X,
   LogOut,
+  ShoppingBag,
 } from "lucide-react";
 import { useState } from "react";
 import { Logo } from "./logo";
@@ -23,6 +24,7 @@ const nav = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/scan", label: "New skin scan", icon: ScanFace },
   { href: "/progress", label: "Skin progress", icon: ChartNoAxesCombined },
+  { href: "/products", label: "Find products", icon: ShoppingBag },
   { href: "/experiments", label: "Experiment lab", icon: FlaskConical },
   { href: "/insights", label: "AI insights", icon: Sparkles },
 ];
@@ -188,7 +190,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                     ? "Lab"
                     : href === "/progress"
                       ? "Progress"
-                      : "Insights"}
+                      : href === "/products"
+                        ? "Products"
+                        : "Insights"}
             </span>
           </Link>
         ))}

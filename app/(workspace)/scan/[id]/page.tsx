@@ -200,9 +200,10 @@ export default function Results() {
             </div>
           </div>
           <div className="notice">
-            These are cosmetic appearance measurements. Score direction has not
-            been verified; changes are reported as increases or decreases,
-            without claims of improvement.
+            These are cosmetic appearance measurements. YouCam describes higher
+            scores as more favorable; they are not clinical severity grades.
+            Changes are reported as increases or decreases without attributing
+            them to a product.
           </div>
           {!demo && (
             <section className="card photo-panel">
@@ -219,6 +220,21 @@ export default function Results() {
               )}
             </section>
           )}
+          <section className="card scan-products-callout">
+            <div>
+              <span className="section-label">YOUR NEXT SMALL STEP</span>
+              <h2>Turn observations into considered choices.</h2>
+              <p>
+                Explore source-checked Indian skincare products, matched by
+                ingredients and your preferences. No generative AI.
+              </p>
+            </div>
+            <Button asChild>
+              <Link href={"/products?scan=" + scan.id}>
+                Find Products <ArrowUpRight size={16} />
+              </Link>
+            </Button>
+          </section>
           <MetricCards scan={scan} />
           <FitzpatrickPanel scanId={scan.id} demo={demo} />
           {!demo && (

@@ -27,6 +27,10 @@ export default function Privacy() {
               "Optional external AI receives relevant numerical measurements and experiment information, including usage notes, only when configured and you opt in through Settings. Photos are never sent to the LLM. Without this configuration, summaries are explicitly deterministic.",
             ],
             [
+              "Product discovery",
+              "Product matches use fixed rules without an LLM. Saved skin-type, budget and ingredient preferences are private to your account and are removed by application-data deletion. Product images load from official brand CDNs with referrers disabled; purchase links open the official store. Scan photographs are not sent to retailers for recommendations.",
+            ],
+            [
               "Control and deletion",
               "Delete a scan or all DermaLens application data in Settings. Your login account remains after data deletion. DermaLens deletion does not revoke previously issued short-lived links or guarantee deletion of information processed by third parties; provider retention terms apply.",
             ],

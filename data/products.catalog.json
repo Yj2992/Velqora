@@ -1,0 +1,4176 @@
+[
+  {
+    "id": "a889ca79-363b-5803-9b69-a397ccf21919",
+    "slug": "minimalist-alpha-arbutin-2",
+    "name": "Alpha Arbutin 2% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/alpha-arbutin-2",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/AlphaArNew.png?v=1721397838",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "alpha_arbutin"
+    ],
+    "inci_text": "Water/Aqua, Dimethyl Isosorbide, Alpha Arbutin, Ethoxydiglycol, Pentylene Glycol, PEG-40 Hydrogenated Castor Oil, Ferulic Acid, Sodium Hyaluronate, 4-Butylresorcinol, Hydroxyethylcellulose, Hydrolyzed Hyaluronic Acid, PEG/PPG-17/6 Copolymer, Xanthan Gum, Lecithin, Sclerotium Gum, Pullulan, Phenoxyethanol, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 494.0,
+    "mrp_inr": 549.0,
+    "pack_size": "30ml",
+    "variant_id": "45154758262945",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/alpha-arbutin-2",
+    "source_sha256": "8820802c5e3e9cf000505447dd49b4c1f6fb680975bd79643051def3b7bec15f",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "98f28940-603a-565b-a3f7-cd1cd9e8c590",
+    "slug": "minimalist-aquaporin-booster-05-cleanser",
+    "name": "Aquaporin Booster 5% Cleanser",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "cleanser",
+    "official_url": "https://beminimalist.co/products/aquaporin-booster-05-cleanser",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/AquaporinNew.png?v=1721398128",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "oat",
+      "lactic_acid"
+    ],
+    "inci_text": "Water/Aqua, Glycerin, Methylpropanediol, Sodium Lauroyl Methyl Isethionate, Diglycerin, Glyceryl Glucoside, PEG-150 Pentaerythrityl Tetrastearate, Decyl Glucoside, Betaine, Methyl Gluceth-20, Panthenol, PEG-120 Methyl Glucose Dioleate, Disodium Cocoamphodiacetate, Sodium Cocoamphoacetate, Sodium PCA, Xylitylglucoside, Allantoin, Avena Sativa (Oat) Kernel Extract, Coco-Glucoside, Glyceryl Oleate, Hydrolyzed Wheat Protein, Xylitol, Anhydroxylitol, Sodium Hyaluronate Crosspolymer, Pentylene Glycol, Phenoxyethanol, Lactic Acid, Polyglyceryl-3 Laurate, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 269.0,
+    "mrp_inr": 299.0,
+    "pack_size": "Size not stated",
+    "variant_id": "41870498136225",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/aquaporin-booster-05-cleanser",
+    "source_sha256": "184a64a179d33e69fe4d706c712eebda507b396b6d110b3e7dde0dacfbbd2119",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "391e4932-94be-525a-a45e-a893c1e7ea53",
+    "slug": "minimalist-oat-extract-06-gentle-cleanser",
+    "name": "B12 + Oat Extract 6.5% Gentle Cleanser",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "cleanser",
+    "official_url": "https://beminimalist.co/products/oat-extract-06-gentle-cleanser",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/B12_Oat_Extract_6.5.jpg?v=1783083799",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "oat",
+      "lactic_acid"
+    ],
+    "inci_text": "Water/Aqua, Glycerin, Avena Sativa (Oat) Kernel Extract, Butylene Glycol, Sodium Lauroyl Oat Amino Acid, Cetyl Alcohol, Stearyl Alcohol, Methyl Gluceth-20, Cocoglucoside, Panthenol, Glyceryl Oleate, Sodium Hyaluronate, Cyanocobalamin, Pentylene Glycol, Lactic Acid, Phenoxyethanol, Ethylhexylglycerin, Sodium Cocyl Isethionate, Polyacrylate Crosspolymer-6, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 269.0,
+    "mrp_inr": 299.0,
+    "pack_size": "120ml",
+    "variant_id": "45220519280801",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/oat-extract-06-gentle-cleanser",
+    "source_sha256": "3ce4c2b1906c0fa371f432d7b4d20f329e57634290205f60091d80aa49100ebc",
+    "verification_notes": []
+  },
+  {
+    "id": "a0f6900c-7207-58b5-bf4f-360aedaa964e",
+    "slug": "minimalist-vitamin-b12-repair-complex-5-5-face-moisturizer",
+    "name": "B12 + Repair Complex 5.5% Face Moisturizer",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "moisturizer",
+    "official_url": "https://beminimalist.co/products/vitamin-b12-repair-complex-5-5-face-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/B12ListingImage.jpg?v=1756800848",
+    "ingredient_ids": [
+      "ceramides",
+      "glycerin",
+      "panthenol",
+      "allantoin"
+    ],
+    "inci_text": "Water/Aqua, Cyclopentasiloxane, Glycerin, Panthenol, Hydrogenated Polyisobutene, PEG/PPG-18/18 Dimethicone, Dimethicone Crosspolymer, Betaine, Allantoin, Cetyl PEG/PPG-10/1 Dimethicone, Cyanocobalamin, Ceramide NP, Dipropylene Glycol, Hydrogenated Lecithin, Glyceryl Stearate, Ceramide NS, Ceramide AS, Ceramide AP, Cholesterol, Carbomer, Ceramide EOP, Sucrose Distearate, Phenoxyethanol, Pentylene Glycol, Magnesium Sulphate Heptahydrate, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Ethylhexylglycerin",
+    "inci_complete": true,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 269.0,
+    "mrp_inr": 299.0,
+    "pack_size": "30g",
+    "variant_id": "45880165269665",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-b12-repair-complex-5-5-face-moisturizer",
+    "source_sha256": "4cef4ab37e4217d5d388c44972fdaf954098a829c77799cac0a2102a0ce34d44",
+    "verification_notes": []
+  },
+  {
+    "id": "2432843c-1d4c-536a-bde6-c81028f88d03",
+    "slug": "minimalist-ceramides-0-3-madecassoside",
+    "name": "Ceramides 0.3% + Madecassoside Moisturizer",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "moisturizer",
+    "official_url": "https://beminimalist.co/products/ceramides-0-3-madecassoside",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Ceramide_Madecassoside.png?v=1721398128",
+    "ingredient_ids": [
+      "ceramides",
+      "glycerin",
+      "allantoin",
+      "centella",
+      "oat"
+    ],
+    "inci_text": "Water/Aqua, Dicaprylyl Carbonate, Avena Sativa (Oat) Kernel Extract, Glycerin, Butylene Glycol, Glyceryl Glucoside, Trehalose, Saccharide Isomerate, Ursolic Acid, Aminobutyric Acid, Pentylene Glycol, Allantoin, Cholestrol, Hydrogenated Lecithin, Madecassoside, Polyacrylate-13, Polyisobutene, Polysorbate 20, Glyceryl Stearate, Phenoxyethanol, Ceramide NP, Ceramide EOP, Ceramide NS, Ceramide AS, Ceramide AP, Dipropylene Glycol, Lecithin, Sodium Hydroxide, Ethylhexylglycerin, Citric Acid, Sodium Citrate, Sucrose Distearate, Carbomer, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "Size not stated",
+    "variant_id": "41378422882465",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/ceramides-0-3-madecassoside",
+    "source_sha256": "8f5c9e1e36e0bba6b9e4ed4eab1bf8276440c9a59a3fabc5d62a4f905f21bb67",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "343bfeaf-950a-5b01-a683-f19dfc4eb828",
+    "slug": "minimalist-copper_peptide_pdrn_1-25_face_serum",
+    "name": "Copper Peptide + PDRN 1.25% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/copper_peptide_pdrn_1-25_face_serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/CopyofArtboard1_2.jpg?v=1757069577",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "peptides"
+    ],
+    "inci_text": "Aqua, Niacinamide, Dimethyl Isosorbide, Ethoxydiglycol, Bis (Tripeptide-1) Copper Acetate, Propanediol, Sodium Hyaluronate, Sodium DNA, Hydrolyzed Sodium Hyaluronate, Pentylene Glycol, Phenoxyethanol, Ethylhexylglycerin",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 629.0,
+    "mrp_inr": 699.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45102860959905",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/copper_peptide_pdrn_1-25_face_serum",
+    "source_sha256": "df08d49449962eb4670b99e76979e98c6c05bdffa096ffdba23d01461e8e215b",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "6936bb45-2b4b-5037-a69e-3ebc10288e5a",
+    "slug": "minimalist-retinoid-2",
+    "name": "Granactive Retinoid 2% Face Cream",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "moisturizer",
+    "official_url": "https://beminimalist.co/products/retinoid-2",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/1_c3454d37-fbd5-4972-8e70-65df1c3ec8de.jpg?v=1740461339",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "hpr",
+      "lactic_acid",
+      "vitamin_e"
+    ],
+    "inci_text": "Water/Aqua, Dimethyl Isosorbide, Caprylic/Capric Triglyceride, Ethoxydiglycol, Coco-Caprylate/Caprate, Propanediol, Arachidyl Alcohol, Hydroxyp­inacolone Retinoate, Tocopheryl Acetate, Pentylene Glycol, Behenyl Alcohol, Arachidyl Glucoside, Sodium Hyaluronate, Lysine, Histidine, Arginine, Aspartic Acid, Threonine, Serine, Glutamic Acid, Proline, Glycine, Alanine, Valine, Methionine, Isoleucine, Leucine, Tyrosine, Phenylalanine, Lactic Acid, Cysteine, Phenoxyethanol, Pullulan, Ethylhexylglycerin, Xanthan Gum, Sclerotium Gum, Lecithin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "texture",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 629.0,
+    "mrp_inr": 699.0,
+    "pack_size": "Size not stated",
+    "variant_id": "35105766801569",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/retinoid-2",
+    "source_sha256": "2659ac2f8eb55748773748bdab0720dd5ddedb13ab6234a25526715aa6b69067",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "04980015-9602-5926-888b-377c84992a72",
+    "slug": "minimalist-2-hyaluronic-acid",
+    "name": "Hyaluronic + PGA 2% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/2-hyaluronic-acid",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/products/HAPGA2_1200-1-min.png?v=1646395962",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol"
+    ],
+    "inci_text": "Water/Aqua, Glycerin, Butylene Glycol, Dimethyl Isosorbide, Sodium Hyaluronate Crosspolymer, Ethoxydiglycol, Methyl Gluceth-20, 1,2-Hexanediol, Glyceryl Glucoside, Sodium Polyglutamate, Trehalose, Panthenol, Sodium Hyaluronate, Saccharomyces/Copper Ferment, Hydrolyzed Sodium Hyaluronate, Sodium Acetylated Hyaluronate, Pentylene Glycol, Biosaccharide Gum-1, Phenoxyethanol, Chlorphenesin, Ethylhexylglycerin",
+    "inci_complete": true,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "moisture",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "45879886807201",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/2-hyaluronic-acid",
+    "source_sha256": "b273f72561ba3c189d49c5404d043b3679d573a74e4255c26c045046bc5068c4",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "42070602-f624-5e3f-940b-c21d920207bc",
+    "slug": "minimalist-light-fluid-spf-50-sunscreen",
+    "name": "Light Fluid SPF 50 Sunscreen",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "sunscreen",
+    "official_url": "https://beminimalist.co/products/light-fluid-spf-50-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Artboard_1_1.jpg?v=1783323907",
+    "ingredient_ids": [
+      "glycerin",
+      "uv_filters"
+    ],
+    "inci_text": "Water/Aqua, Ethylhexyl Methoxycinnamate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Dimethicone, Ethoxydiglycol, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol, Propylene Glycol Dicaprylate/Dicaprate, Diisopropyl Sebacate, Diisopropyl Adipate, C12-15 Alkyl Benzoate, Butylene Glycol, Phenoxyethanol, VP/Eicosene Copolymer, Isododecane, Pentylene Glycol, Potassium Cetyl Phosphate, Acrylates/Polytrimethylsiloxymethacrylate Copolymer, Decyl Glucoside, Triethanolamine, Carbomer, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Polyacrylate Crosspolymer-6, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate, Propylene Glycol, Cyclopentasiloxane, Dimethicone Crosspolymer, Caprylyl Methicone, PEG-12 Dimethicone/PPG-20 Crosspolymer, Polymethylsilsesquioxane, Xanthan Gum",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 314.0,
+    "mrp_inr": 349.0,
+    "pack_size": "30ml",
+    "variant_id": "45875483115681",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/light-fluid-spf-50-sunscreen",
+    "source_sha256": "4302bebfe6ef02c6cf5593b93f8583976f48ff43688e9bf5859e524907db52eb",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "22de1cb9-fa98-51f7-91c6-e7bb73afdb3a",
+    "slug": "minimalist-marula-05-moisturizer",
+    "name": "Marula Oil 5% Face Moisturizer",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "moisturizer",
+    "official_url": "https://beminimalist.co/products/marula-05-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Marula_New.png?v=1756803801",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "vitamin_e"
+    ],
+    "inci_text": "Water/ Aqua, Glycerin, Sclerocarya Birrea (Marula) Seed Oil, Methypropanediol, Dicaprylyl Carbonate, Caprylic/Capric Triglyceride, Butylene Glycol, Cetostearyl Alcohol, Glyceryl Stearate, PEG-100 Stearate, Trehalose, Dimethicone, Saccharide Isomerate, Pentylene Glycol, Coco-Caprylate/Caprate, Triheptanoin, C9-12 Alkane, Sodium Hyaluronate, Allantoin, Linoleic Acid, Linolenic Acid, Carbomer, Cetyl Alcohol, Phenoxyethanol, Tocopheryl Acetate, Sodium Hydroxide, Nylon 12, Petrolatum, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Ethylhexylglycerin, Butyrospermum Parkii (Shea) Butter, Polyurethane-100, Trisodium Ethylenediamine Disuccinate, Citric Acid, Sodium Citrate",
+    "inci_complete": true,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 269.0,
+    "mrp_inr": 299.0,
+    "pack_size": "50g",
+    "variant_id": "45880088002721",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/marula-05-moisturizer",
+    "source_sha256": "1ec514fed0e933090a842b74d0517ecfea8ecb0cd3ea820e5da8c3b9890a8a31",
+    "verification_notes": []
+  },
+  {
+    "id": "a0f20db8-8b18-56f3-a598-f6ddc1355d0e",
+    "slug": "minimalist-multi-repair-actives-15-face-serum",
+    "name": "Multi Repair Actives 15% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/multi-repair-actives-15-face-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/MultiRepairListing.jpg?v=1762515398",
+    "ingredient_ids": [
+      "retinal",
+      "vitamin_c",
+      "vitamin_e"
+    ],
+    "inci_text": "Caprylic/Capric Triglyceride, Isododecane, Ascorbyl Tetraisopalmitate, Diisopropyl Sebacate, Dicaprylyl Carbonate, Triheptanoin, Dipentaerythrityl Hexacaprylate/Hexacaprate, Hydrogenated Polyisobutene, Ethoxydiglycol, Pentylene Glycol, Heptyl Undecylenate, Anemarrhenae Asphodeloides (Root) Extract, Tocopheryl Acetate, Linoleic Acid, Linolenic Acid, Retinaldehyde",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 629.0,
+    "mrp_inr": 699.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45320088682657",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/multi-repair-actives-15-face-serum",
+    "source_sha256": "ce6be9607eed5b53c8f898c1e5946c38b971d46b14ccf6800785bc9a7f7c94c7",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "1c76be26-bafe-5a77-9752-19d6db0ae4cc",
+    "slug": "minimalist-multi-peptide-serum-7-matrixyl-3000-3-bio-placenta",
+    "name": "Multi-Peptides 10% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/multi-peptide-serum-7-matrixyl-3000-3-bio-placenta",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/MultiNew.png?v=1721398128",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "peptides"
+    ],
+    "inci_text": "Water/Aqua, Glycerin, Butylene Glycol, Palmitoyl Tripeptide-1, Palmitoyl Tetrapeptide-7, Acetyl Glutamine, sh-Oligopeptide-1, sh-Oligopeptide-2, sh-Polypeptide-1, sh-Polypeptide-9, sh-Polypeptide-11, Pentylene Glycol, Bacillus/Folic Acid Ferment Filtrate Extract, Sodium Hyaluronate, Lecithin, Caprylyl Glycol, Carbomer, Polysorbate 20, Pullulan, Hydroxyethylcellulose, Xanthan Gum, PEG/PPG-17/6 Copolymer, Sclerotium Gum, Phenoxyethanol, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 629.0,
+    "mrp_inr": 699.0,
+    "pack_size": "Size not stated",
+    "variant_id": "36853537013921",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/multi-peptide-serum-7-matrixyl-3000-3-bio-placenta",
+    "source_sha256": "f86fed834f3f6e0c83d3535927f8b9fcbdb244b382cae4df2a91c67429298e91",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "e7b82fa2-70c9-5fb8-97b3-4de5d0355b86",
+    "slug": "minimalist-niacinamide-10-with-matmarine",
+    "name": "Niacinamide 10% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/niacinamide-10-with-matmarine",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Nia10New.png?v=1721398127",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "lactic_acid",
+      "zinc_pca"
+    ],
+    "inci_text": "Water/Aqua, Niacinamide, Dimethyl Isosorbide, Ethoxydiglycol, Propanediol, Zinc PCA, Pentylene Glycol, Glycerin, Pseudoalteromonas Ferment Extract, Zinc Glycinate, Acetyl Glucosamine, Allantoin, Sodium Hyaluronate, Hydroxyethylcellulose, Phenoxyethanol, Xanthan Gum, Lecithin, Sclerotium Gum, Pullulan, Sodium Lactate, PEG/PPG-17/6 copolymer, Ethylhexylglycerin, Lactic Acid",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "44802331148449",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/niacinamide-10-with-matmarine",
+    "source_sha256": "acb9ad211c29d7340f96ef6c5986c9ced0dcdd09582ec0f95e0ed6f4142c09ac",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "b9d71729-9a5b-527d-87aa-54f93d1742a1",
+    "slug": "minimalist-niacinamide-5-face-serum-10ml",
+    "name": "Niacinamide 5% Face Serum 10ml",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/niacinamide-5-face-serum-10ml",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Nia_05_10ml_1_1e27f2ef-09d0-4140-bf9e-05d62459489e.jpg?v=1756982138",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "oat"
+    ],
+    "inci_text": "Water/Aqua, Niacinamide, Dimethyl Isosorbide, Avena Sativa (Oat) Kernel Extract, Ethoxydiglycol, Propanediol, Bifida Ferment Lysate, Sodium Hyaluronate, Phenoxyethanol, Pentylene Glycol, Ethylhexylglycerin, Hydrolyzed Hyaluronic Acid, Pullulan, Xanthan Gum, Sclerotium Gum, Lecithin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "moisture",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 224.0,
+    "mrp_inr": 249.0,
+    "pack_size": "10ml",
+    "variant_id": "45099558338721",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/niacinamide-5-face-serum-10ml",
+    "source_sha256": "e2210712e7f4004bb19ae79d23553e5dd71f7cb02829dc416497059a3ba17e73",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "455e262d-720a-5a98-8064-3b0d97478226",
+    "slug": "minimalist-pha-3-biotic-toner",
+    "name": "Polyhydroxy Acid (PHA) 3% Face Toner",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "toner",
+    "official_url": "https://beminimalist.co/products/pha-3-biotic-toner",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/PHANew.jpg?v=1721379191",
+    "ingredient_ids": [
+      "niacinamide",
+      "salicylic_acid",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "pha"
+    ],
+    "inci_text": "Water/Aqua, Methylpropanediol, Gluconolactone, PEG/PPG-17/6 Copolymer, Ethoxydiglycol, Niacinamide, Dimethyl Isosorbide, Cucumis Sativus (Cucumber) Fruit Extract, Inulin, Lactococcus Ferment Lysate, Xylitylglucoside, Anhydroxylitol, Xylitol, Salicylic Acid, Sodium Hydroxide, Allantoin, Sodium Polyglutamate, Sodium Hyaluronate, Panthenol, Pentylene Glycol, Lysine, Histidine, Arginine, Aspartic Acid, Threonine, Serine, Glutamic Acid, Proline, Glycine, Alanine, Valine, Methionine, Isoleucine, Leucine, Tyrosine, Phenylalanine, Cysteine, Phenoxyethanol, Ethylhexylglycerin, Citric Acid, Propylene Glycol, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 359.0,
+    "mrp_inr": 399.0,
+    "pack_size": "Size not stated",
+    "variant_id": "37451276484769",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/pha-3-biotic-toner",
+    "source_sha256": "923f4789cddea88c2778ad1b684c700d68bc31c4eacb349ce1ef9d04107e6d95",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "eec86866-f339-5368-ba2b-5e7e6391257a",
+    "slug": "minimalist-retinal-0-1-face-serum",
+    "name": "Retinal 0.1% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/retinal-0-1-face-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/DomesticMain.png?v=1729750815",
+    "ingredient_ids": [
+      "squalane",
+      "retinal",
+      "vitamin_e"
+    ],
+    "inci_text": "Caprylic/Capric Triglyceride, Isododecane, Squalane, Coco-Caprylate/Caprate, Triheptanoin, Tocopheryl Acetate, Oleyl Adapalenate, Bakuchiol, Retinal",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot",
+      "texture",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 719.0,
+    "mrp_inr": 799.0,
+    "pack_size": "Size not stated",
+    "variant_id": "44680834646177",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/retinal-0-1-face-serum",
+    "source_sha256": "172f0ab527ffa74a5f52ea960c195edb1bf302a4b2f5baf11702b942d281940f",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "a296d3dd-679d-5b54-a798-8ad7575f4847",
+    "slug": "minimalist-retinol-0-3-q10",
+    "name": "Retinol 0.3% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/retinol-0-3-q10",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Reti3New.png?v=1721398129",
+    "ingredient_ids": [
+      "squalane",
+      "retinol",
+      "vitamin_e"
+    ],
+    "inci_text": "Caprylic/Capric Triglyceride, Isododecane, Squalane, Coco-Caprylate/Caprate, Triheptanoin, Tocopheryl Acetate, Bakuchiol, Retinol, Polysorbate 20, Ubiquinone (Coenzyme Q10), BHT",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "45154872230049",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/retinol-0-3-q10",
+    "source_sha256": "320aaf19700ab043a1a0b88698337d1c6aa2bdc77c628e4385c88527d901f7fa",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "eab8ac13-3349-57ce-85a9-56777fb88da6",
+    "slug": "minimalist-retinol-0-6",
+    "name": "Retinol 0.6% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/retinol-0-6",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Retinol_06_New.png?v=1721398129",
+    "ingredient_ids": [
+      "squalane",
+      "retinol",
+      "vitamin_e"
+    ],
+    "inci_text": "Caprylic/Capric Triglyceride, Isododecane, Squalane, Coco-Caprylate/Caprate, Triheptanoin, Tocopheryl Acetate, Bakuchiol, Retinol, Polysorbate 20, Rosa Canina (Rosehip) Seed oil, Ubiquinone (Coenzyme Q10)",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 584.0,
+    "mrp_inr": 649.0,
+    "pack_size": "Size not stated",
+    "variant_id": "42262911975585",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/retinol-0-6",
+    "source_sha256": "8523090546b5b1f5258f7d0468a09d29c707970e653bca302f9b0f1b1d30dacd",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "803a3673-d907-5824-8b7b-337d104e5364",
+    "slug": "minimalist-multi-vitamin-spf-50",
+    "name": "SPF 50 Sunscreen",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "sunscreen",
+    "official_url": "https://beminimalist.co/products/multi-vitamin-spf-50",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/SPF50New.jpg?v=1756795782",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Water/Aqua, Octocrylene, Butyl Methoxydibenzoylmethane, Isododecane, Niacinamide, Caprylic/Capric Triglyceride, Arachidyl Alcohol, Titanium Dioxide, Propylene Glycol Dicaprylate/Dicaprate, Diisopropyl Sebacate, Ethylhexyl Triazone, Diisopropyl Adipate, C12-15 Alkyl Benzoate, Butylene Glycol, Allantoin, Panthenol, Sodium Hyaluronate, Linoleic Acid, Linolenic Acid, Behenyl Alcohol, Arachidyl Glucoside, Phenoxyethanol, Glyceryl Stearate, PEG-100 Stearate, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Tocopheryl acetate, Acacia Senegal Gum, Xanthan Gum, Ethylhexylglycerin, Silica, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 359.0,
+    "mrp_inr": 399.0,
+    "pack_size": "50g",
+    "variant_id": "44802368405665",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/multi-vitamin-spf-50",
+    "source_sha256": "f19724db21749c5d917bd6c79bd16b5d9e5388c189697cf61b231aaab7beb8e3",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "bf33e94a-2f80-5085-88b3-5c39fe00509c",
+    "slug": "minimalist-spf-60-silymarin",
+    "name": "SPF 60 Sunscreen",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "sunscreen",
+    "official_url": "https://beminimalist.co/products/spf-60-silymarin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/products/SPF601200-2-min.png?v=1646571969",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Water/Aqua, Isododecane, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Ethylhexyl Triazone, Arachidyl Alcohol, Propylene Glycol Dicaprylate/Dicaprate, Diisopropyl Sebacate, Titanium Dioxide (nano), Caprylic/Capric Triglyceride, Nylon-12, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Butylene Glycol, Diisopropyl Adipate, C12-15 Alkyl Benzoate, PEG 100-Stearate, Glyceryl Stearate, Behenyl Alcohol, Silybum Marianum Extract, Sodium Hyaluronate, Tocopheryl Acetate, Arachidyl Glucoside, Xanthan Gum, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Polyacrylate Crosspolymer-6, Acacia Senegal Gum, Allantoin, Phenoxyethanol, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "Size not stated",
+    "variant_id": "40946129305761",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/spf-60-silymarin",
+    "source_sha256": "2f3af8ceefa6452e28635cad672b2f618a93b0b2f265850f8461a986a9976246",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "5ca6a4b9-ad70-54d7-9e58-ed31e655d3cf",
+    "slug": "reequil-retinol-night-cream-0-5",
+    "name": "0.5% Retinol Night Cream",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "moisturizer",
+    "official_url": "https://www.reequil.com/products/retinol-night-cream-0-5",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/0.5_Retinol_night_cream_32g_Front_14654da2-4be2-4b39-a3bb-5a396e438513.webp?v=1788197321",
+    "ingredient_ids": [
+      "glycerin",
+      "panthenol",
+      "squalane",
+      "retinol",
+      "vitamin_c",
+      "vitamin_e"
+    ],
+    "inci_text": "AQUA, C15-19 ALKANE, GLYCERIN, BUTYLENE GLYCOL, ETHYLHEXYL METHOXY- CRYLENE, HYDROGENATED RAPESEED OIL, NEOPENTYL GLYCOL DIHEPTANOATE, OCTYL- DODECANOL, MACADAMIA INTEGRIFOLIA SEED OIL, CAPRYLIC/CAPRIC TRIGLYCERIDE, STEARYL ALCOHOL, BEHENYL ALCOHOL, GLYCERYL STEARATE, PANTHENOL, PENTAERYTHRITYL DISTEARATE, SQUALANE, PROPANEDIOL, METHYL GLUCOSE SESQUISTERATE, PENTYLENE GLYCOL, RETINOL, GLYCERYL DIBEHENATE, HYDROXY-ACETOPHENONE, SODIUM POLYACRYLOYLDI-METHYL TAURATE, ASCORBYL PALMITATE, POLYSORBATE 20, GLYCERYL CAPRYLATE, SODIUM STEAROYL GLUTAMATE, BIDENS PILOSA EXTRACT, OXOTHIAZOLIDINE (OTZ-10), PHYSALIS ANGULATA EXTRACT, PEG-32 STEARATE, POLYGLYCERYL-6 DISTEARATE, HYDROXYETHYL ACRYLATE/SODIUM ACRYLOYLDIMETHYL TAURATE COPOLYMER, ETHYLHEXYLGLYCERIN, ARACHIDYL ALCOHOL, BHT, GLYCERYL POLYACRYLATE, 4-T-BUTYL-CYCLOHEXANOL, CAPRYLHYDROXAMIC ACID, BHA, POLYSORBATE 60, SORBITAN ISOSTEARATE, TRISODIUM ETHYLENEDIAMINE DISUCCINATE, LIGNOCERYL ALCOHOL, TOCOPHEROL, SODIUM BENZOATE, HYDROXYMETHOXYPHENYL DECANONE, CITRIC ACID",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "radiance",
+      "pore",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 652.5,
+    "mrp_inr": 725.0,
+    "pack_size": "32g",
+    "variant_id": "43107609804986",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products/retinol-night-cream-0-5",
+    "source_sha256": "84af92721f48cf9641bbaf1f2f64e5d58b0f90ceb4f510f8122822af06c163fa",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "3824156c-9cd1-5f02-9fa6-28131309548d",
+    "slug": "reequil-fruit-aha-face-wash-for-hyperpigmentation-skin-brightening",
+    "name": "Fruit AHA Face Wash",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "cleanser",
+    "official_url": "https://www.reequil.com/products/fruit-aha-face-wash-for-hyperpigmentation-skin-brightening",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Fruit_AHA_face_wash_174e1593-b0b7-4577-8e3e-49e1a5a381fa.webp?v=1788198031",
+    "ingredient_ids": [
+      "glycerin",
+      "fragrance"
+    ],
+    "inci_text": "AQUA, SODIUM LAUROYL METHYL ISETHIONATE, COCAMIDOPROPYL BETAINE, GLYCERIN, DECYL GLUCOSIDE, BETAINE, COCAMIDOPROPYL PG-DIMONIUM CHLORIDE PHOSPHATE, CITRUS AURANTIUM DULCIS FRUIT EXTRACT, CITRUS LIMON FRUIT EXTRACT, ACER SACCHARUM EXTRACT, PEG-7 GLYCERYL COCOATE, PEG-150 PENTA-ERYTHRITYL TETRASTEARATE, VACCINIUM MYRTILLUS FRUIT/LEAF EXTRACT, SACCHARUM OFFICINARUM EXTRACT, PHENOXYETHANOL, SODIUM HYDROXIDE, CELLULOSE, CELLULOSE GUM, SODIUM BENZOATE, DISODIUM EDTA, ETHYLHEXYLLYCERIN, CI 19140, ACID RED 52, FRAGRANCE",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "texture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 310.5,
+    "mrp_inr": 345.0,
+    "pack_size": "Single",
+    "variant_id": "45577926967482",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products/fruit-aha-face-wash-for-hyperpigmentation-skin-brightening",
+    "source_sha256": "3f0192a741e27b67e145ba39951b11f995ad3dc9aaee2d42949397f9bf25a38b",
+    "verification_notes": []
+  },
+  {
+    "id": "ab577522-a541-5228-b349-360903f290d1",
+    "slug": "reequil-retinol-night-cream",
+    "name": "0.1% Retinol Night Cream",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "moisturizer",
+    "official_url": "https://www.reequil.com/products/retinol-night-cream",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/0.1_Retinol_night_cream_5a35c98d-520f-4f31-b428-0067f1e90a55.webp?v=1788196344",
+    "ingredient_ids": [
+      "retinol"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "pore",
+      "texture",
+      "wrinkle"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 472.5,
+    "mrp_inr": 525.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45173983248570",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "4c757ae7063173d1ef3b124e7932c01db79fe3eedebecea9751b3533fff23737",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "1771176d-f3a2-500f-860d-243ca3e084b2",
+    "slug": "reequil-retinol-night-cream-0-3",
+    "name": "0.3% Retinol Night Cream",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "moisturizer",
+    "official_url": "https://www.reequil.com/products/retinol-night-cream-0-3",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/0.3_Retinol_night_cream_32g_Front_b7c8a796-cdfc-4f6a-94bf-611cdc4394c9.webp?v=1788197483",
+    "ingredient_ids": [
+      "retinol"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "pore",
+      "texture",
+      "wrinkle"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 562.5,
+    "mrp_inr": 625.0,
+    "pack_size": "32g",
+    "variant_id": "43101421306042",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "91f1be0d0413011e43bbcab81ebf79e992cfce4b352ac8b1a4532a9dc6fff1ea",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "c9329bbd-439f-5793-95f0-d2e251841acf",
+    "slug": "reequil-calming-purifying-gentle-cleanser",
+    "name": "Calming & Purifying Gentle Cleanser",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "cleanser",
+    "official_url": "https://www.reequil.com/products/calming-purifying-gentle-cleanser",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Calming_Cleanser_150ml_e6642e9e-252b-4e08-a5da-83bbfbfe29d6.webp?v=1786369277",
+    "ingredient_ids": [
+      "zinc_pca"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "oiliness"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 382.5,
+    "mrp_inr": 425.0,
+    "pack_size": "Size not stated",
+    "variant_id": "46135949066426",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "e6b97e2f3718c214d25dd52457e72d5fda45229c6bb28ebc60fe7209a8ae4af7",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "5caf1edd-e960-57e6-aa0f-cd3af051509e",
+    "slug": "reequil-ceramide-hyaluronic-acid-moisturiser-for-normal-to-dry-skin",
+    "name": "Ceramide & Hyaluronic Acid Moisturiser",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "moisturizer",
+    "official_url": "https://www.reequil.com/products/ceramide-hyaluronic-acid-moisturiser-for-normal-to-dry-skin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Ceramide_moisturiser_a928c330-56e3-489a-8cea-24ead6e065c2.webp?v=1788196389",
+    "ingredient_ids": [
+      "ceramides",
+      "hyaluronic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 265.5,
+    "mrp_inr": 295.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45323271372986",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "b4e949a133cddaf40ff8058ab576e947074e0bd78c1273cb5e95f216c2ee98da",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "447885fb-5e57-587f-862e-e83eb83da1ba",
+    "slug": "reequil-hydrating-soothing-gentle-cleanser",
+    "name": "Hydrating & Soothing Gentle Cleanser",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "cleanser",
+    "official_url": "https://www.reequil.com/products/hydrating-soothing-gentle-cleanser",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Hydrating_Cleanser_150ml_3c6b60d2-3602-4e98-a133-de7fbd34c70b.webp?v=1786369278",
+    "ingredient_ids": [
+      "zinc_pca"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "moisture",
+      "oiliness"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 382.5,
+    "mrp_inr": 425.0,
+    "pack_size": "Size not stated",
+    "variant_id": "46135861280954",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "bc4884249c44696ba91da9543b75502db7e5bc365ec7234b14feb9bcc1c98b92",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "4e0c2a5e-849c-538c-b602-4b14edcc61e1",
+    "slug": "reequil-oil-control-anti-acne-face-wash",
+    "name": "Oil Control Face Wash",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "cleanser",
+    "official_url": "https://www.reequil.com/products/oil-control-anti-acne-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Oil_control_face_wash_e5d17dbe-d4fd-4300-ade7-8d64d13754f7.webp?v=1788198541",
+    "ingredient_ids": [
+      "zinc_pca"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "oiliness"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 310.5,
+    "mrp_inr": 345.0,
+    "pack_size": "Single - 150ml",
+    "variant_id": "45697656127674",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "ffff24b8f7022dd125020209ca742b965407e6457c49522298c21007184fb30b",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "989079b7-af99-5819-8572-9a1a417a5701",
+    "slug": "reequil-ultra-matte-dry-touch-sunscreen-gel-spf-50-pa",
+    "name": "Ultra Matte Dry Touch Sunscreen",
+    "brand_slug": "reequil",
+    "brand": "Re’equil",
+    "category": "sunscreen",
+    "official_url": "https://www.reequil.com/products/ultra-matte-dry-touch-sunscreen-gel-spf-50-pa",
+    "image_url": "https://cdn.shopify.com/s/files/1/0306/6262/3364/files/Ultra_matte_6278aa7e-da43-4cf5-8456-daf2aaa6b6e5.webp?v=1788196293",
+    "ingredient_ids": [
+      "zinc_oxide",
+      "uv_filters"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "radiance",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 580.5,
+    "mrp_inr": 645.0,
+    "pack_size": "Size not stated",
+    "variant_id": "42539904008378",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.reequil.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.reequil.com/products.json?limit=250",
+    "source_sha256": "e83d87c4b001417243eba197e3771c9f611e4e22048797c733e4bff7c40299b4",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "e7b0fca9-6679-5f35-b104-240afeea9222",
+    "slug": "deconstruct-2-in-1-formula-moisturizer-with-spf-50-pa",
+    "name": "2 in 1 Moisturizer & Sunscreen | SPF 50 PA++++",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/2-in-1-formula-moisturizer-with-spf-50-pa",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/hf_20260519_113254_e59476fd-1b5e-47c6-aa96-ba030e76f116.webp?v=1784634499",
+    "ingredient_ids": [
+      "panthenol"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "oily"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 374.0,
+    "mrp_inr": 499.0,
+    "pack_size": "50gm",
+    "variant_id": "52374527475993",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "0576b0ca09802825604a95c8157823b9a6dc1cad8ff55083431180650080cb16",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "3fe5e0e0-62d0-5979-9127-5a5d7c57a409",
+    "slug": "deconstruct-vitamin-c-sunscreen-30gm",
+    "name": "5% Vitamin C Gel Sunscreen for Oily Skin - SPF 50 PA++++ | In-Vivo Tested 30gm",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/vitamin-c-sunscreen-30gm",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/VitCGelSunscreen30gm01.webp?v=1785915765",
+    "ingredient_ids": [
+      "vitamin_c",
+      "uv_filters"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 149.0,
+    "mrp_inr": 299.0,
+    "pack_size": "30gm",
+    "variant_id": "52942029521177",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "df9fe2df8d625f67b8552d49eb8ac065ded7ec13fa381824b7e47d1eeff72a1d",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "1ed9b670-64b5-57bd-865a-128c4fe43285",
+    "slug": "deconstruct-acne-control-moisturizer",
+    "name": "Acne Control Moisturizer with Ectoin & Ceramides",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/acne-control-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Acne_Control_Moisturizer_with_Ectoin_Ceramides.webp?v=1782482331",
+    "ingredient_ids": [
+      "ceramides",
+      "panthenol",
+      "ectoin"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "moisture",
+      "oiliness",
+      "pore"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 299.0,
+    "mrp_inr": 399.0,
+    "pack_size": "Size not stated",
+    "variant_id": "51711845859609",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "7464e10ff5431b31a3f064d7c2e92cffa72d64b4a00e166377f88178b4e01dc9",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "f70ecc90-4390-56ae-af5d-069d08f4d4f7",
+    "slug": "deconstruct-niacinamide-and-alpha-arbutin-brightening-serum",
+    "name": "Brightening Niacinamide Serum - 10% Niacinamide + 0.3% Alpha Arbutin",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "serum",
+    "official_url": "https://thedeconstruct.in/products/niacinamide-and-alpha-arbutin-brightening-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/final-resized-imagesArtboard-5.webp?v=1779360865",
+    "ingredient_ids": [
+      "niacinamide",
+      "alpha_arbutin"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 524.0,
+    "mrp_inr": 699.0,
+    "pack_size": "30ml",
+    "variant_id": "44632936218905",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "bc3ae8c8fde2cfd30abfc0bea3f0f37815b054818aa0bdb26d65dc25f1ee0954",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "17e1938e-c804-573a-bdf0-93bd9f1de195",
+    "slug": "deconstruct-ceramide-moisturizer",
+    "name": "Ceramide Barrier Repair Moisturizer – 3% Niacinamide + 0.5% Ceramide Complex",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/ceramide-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/LifestyleimageBarrierRepair.jpg?v=1789624339",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "panthenol"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 262.0,
+    "mrp_inr": 349.0,
+    "pack_size": "Size not stated",
+    "variant_id": "53199373599001",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "f59a9e4a4b06b024f35c3d2813b4aa0a9451a055250622e1e7c208724df65418",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "b42d262a-3c3c-5f6a-98f9-60411ed32081",
+    "slug": "deconstruct-exfoliating-glycolic-acid-toner",
+    "name": "Exfoliating 7% Glycolic Acid Toner with Niacinamide",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "toner",
+    "official_url": "https://thedeconstruct.in/products/exfoliating-glycolic-acid-toner",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Exfoliating_7__Glycolic_Acid_Toner.webp?v=1782482331",
+    "ingredient_ids": [
+      "niacinamide",
+      "panthenol",
+      "glycolic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "redness",
+      "radiance",
+      "moisture",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 337.0,
+    "mrp_inr": 449.0,
+    "pack_size": "120ml",
+    "variant_id": "51956624490777",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "10f967f3d290b6b0ea51839ecc8b1d1dd702ec03424cd014de6fc89d4139c6b8",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "7ea5dc32-74be-5bd4-868d-9a7b38ed5b5f",
+    "slug": "deconstruct-fluid-brightening-sunscreen-with-spf50",
+    "name": "Fluid Brightening Sunscreen SPF 50 PA++++ | 5% Niacinamide | In Vivo Tested | All Skin Types",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/fluid-brightening-sunscreen-with-spf50",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Fluid_Brightening_Sunscreen_SPF_50_PA_5__Niacinamide_In_Vivo_Tested_All_Skin_Types.webp?v=1782482332",
+    "ingredient_ids": [
+      "niacinamide",
+      "allantoin",
+      "uv_filters"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 299.0,
+    "mrp_inr": 399.0,
+    "pack_size": "50gm",
+    "variant_id": "53225759047961",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "a5c5529a6a783d2f504c4aca7d655233247ff318890d5ee9b100894fc6329f09",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "fbebc76f-0376-5562-8e97-b228d460fb78",
+    "slug": "deconstruct-gel-sunscreen-for-oily-skin-30gm",
+    "name": "Gel Sunscreen for Oily Skin - SPF 50 PA++++(30gm) | In-Vivo Tested",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/gel-sunscreen-for-oily-skin-30gm",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/01_b5122d5a-447b-428f-8dab-2a52aa67f20b.jpg?v=1791545928",
+    "ingredient_ids": [
+      "uv_filters"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 199.0,
+    "mrp_inr": 279.0,
+    "pack_size": "30g",
+    "variant_id": "67736913051929",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "8a3d5e2553cd2963931af2333eb2d02bae3019a728a8b931445a33bb4dd28e21",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "6fd3bbdb-4358-5cfd-a843-2bb31acbba1d",
+    "slug": "deconstruct-hyaluronic-acid-squalane-moisturizer",
+    "name": "Hyaluronic Acid & Squalane Moisturizer - 0.2% Hyaluronic acid 1% Squalane",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/hyaluronic-acid-squalane-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/final-resized-imagesArtboard-9.webp?v=1779364533",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "squalane"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture",
+      "firmness"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 292.0,
+    "mrp_inr": 389.0,
+    "pack_size": "50gm",
+    "variant_id": "46165225701657",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "86b051af6107cb570c140269654d98a20f92c3b9695282c492cbd5bb2fc88e25",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "afc71c88-0bb9-5677-8878-06c15f339759",
+    "slug": "deconstruct-hyaluronic-acid-hydrating-face-wash",
+    "name": "Hyaluronic Acid Hydrating Face Wash - 0.5% Amino Acids + 0.1% Hyaluronic acid",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "cleanser",
+    "official_url": "https://thedeconstruct.in/products/hyaluronic-acid-hydrating-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/final-resized-imagesArtboard-10.webp?v=1779362110",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 224.0,
+    "mrp_inr": 299.0,
+    "pack_size": "100ml",
+    "variant_id": "46165227897113",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "55e228c69cfa74ed229cda931eb76e3eb1fb89c5580fe02bc9a2c7be6c1d3727",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "e082b98c-bfba-59c4-8810-c2574d40e1e8",
+    "slug": "deconstruct-oat-ceramide-gel-sunscreen",
+    "name": "Oats & Ceramide Gel Sunscreen SPF 50 PA++++ for Sensitive Skin | In-Vivo Tested",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/oat-ceramide-gel-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/FIRST_IMAGE_TEMPOats_Ceramide_SS_50G_02_1.webp?v=1788255841",
+    "ingredient_ids": [
+      "ceramides",
+      "oat",
+      "uv_filters",
+      "ectoin"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 337.0,
+    "mrp_inr": 449.0,
+    "pack_size": "50 gm",
+    "variant_id": "51835549319449",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "c6d8796335b115841cc252b87ff6e04f30d7b8d0274c0cfb1bfe0e5434919227",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "68bcf351-7d6e-533e-b78a-1c0acd880612",
+    "slug": "deconstruct-retinol-and-peptide-serum",
+    "name": "Retinol & Peptide Serum for Anti-aging - 0.2% Retinol + 1% Peptide",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "serum",
+    "official_url": "https://thedeconstruct.in/products/retinol-and-peptide-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Untitled-1RETINOL_SERUM_30ML_02.webp?v=1779360786",
+    "ingredient_ids": [
+      "retinol",
+      "peptides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "moisture",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 799.0,
+    "pack_size": "30ml",
+    "variant_id": "46165241561369",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "ffaaa1fbd1e66d4a0770c9d574428689520023527ba35ae37f69bedb5bfb446e",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "a3d1e4b6-73aa-5da7-ba60-deda3bee4a2c",
+    "slug": "deconstruct-retinol-cream",
+    "name": "Retinol night cream - 0.1% Retinol + 1% Beta-Glucan Complex",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/retinol-cream",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Retinol_cream_0889a824-4d5e-4041-8bbd-92615ea40f28.jpg?v=1769875874",
+    "ingredient_ids": [
+      "retinol",
+      "beta_glucan"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 374.0,
+    "mrp_inr": 499.0,
+    "pack_size": "50gm",
+    "variant_id": "46165247361305",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "5990c6c5dc13c4d195f45e42f19560a516c44bf0261e4fd1e19f0937b9ddf261",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "b99b4346-2a28-53d5-a05f-ab9f6801d481",
+    "slug": "deconstruct-salicylic-acid-gel-sunscreen",
+    "name": "Salicylic Acid Gel Sunscreen",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/salicylic-acid-gel-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/lifestyle_salicy_ic_sunscreen_1.webp?v=1784633205",
+    "ingredient_ids": [
+      "salicylic_acid",
+      "uv_filters",
+      "ectoin"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "moisture",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 337.0,
+    "mrp_inr": 449.0,
+    "pack_size": "50gm",
+    "variant_id": "52589440008473",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "6e734632820bb74cc0c1b71405488a843132b36f7e9ce623bbe4fae2687253d0",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "fb3b48eb-07d5-5692-a82e-ff056d564cd0",
+    "slug": "deconstruct-salicylic-acid-face-wash",
+    "name": "Salicylic Acid Oil Control Face Wash | 2% Salicylic acid + 1.5% Niacinamide",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "cleanser",
+    "official_url": "https://thedeconstruct.in/products/salicylic-acid-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/final-resized-imagesArtboard-22.webp?v=1779361975",
+    "ingredient_ids": [
+      "niacinamide",
+      "salicylic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "oily",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 224.0,
+    "mrp_inr": 299.0,
+    "pack_size": "100 g",
+    "variant_id": "51183609315609",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "79040d598dcb08d854568ff0ea872a5f0c0c8e5c2f7c5c104d89f9f6ed0698a3",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "f77c83e4-40ea-5b6b-83c6-dd1586c99606",
+    "slug": "deconstruct-skin-soothe-moisturizer",
+    "name": "Skin Soothe Moisturizer - 1% Ceramide + 0.2% Bisabolol",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/skin-soothe-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Skin_Soothe_Moisturizer_-_1__Ceramide_0.2__Bisabolol.webp?v=1782482332",
+    "ingredient_ids": [
+      "ceramides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 379.0,
+    "pack_size": "50gm",
+    "variant_id": "46165252735257",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "79051fe502082097c13c072d6278ac59508ad6cb887458c4b46c70ce102d9f6b",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "797f29dd-b9cc-5632-9587-c80008e7067d",
+    "slug": "deconstruct-soothing-cleansing-balm",
+    "name": "Soothing Cleansing Balm with 0.1% Bisabolol & 1% Avena Sativa (Oats) Oil - Moisturizing makeup remover",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "cleanser",
+    "official_url": "https://thedeconstruct.in/products/soothing-cleansing-balm",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/SCB_Pro_NEW_02_14-10.webp?v=1791966980",
+    "ingredient_ids": [
+      "oat"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 262.0,
+    "mrp_inr": 349.0,
+    "pack_size": "50gm",
+    "variant_id": "46165307392281",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "937e07f1cc517baa015e457ba21385c573fb32b850f7b8a00f20a76f17cd73b3",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "11b1b3e9-a9be-5e7e-9236-6ddf3b1a5ac7",
+    "slug": "deconstruct-sunscreen-spray-spf-50",
+    "name": "Sunscreen Spray SPF 50",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "sunscreen",
+    "official_url": "https://thedeconstruct.in/products/sunscreen-spray-spf-50",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/Sunscreen_Spray_SPF_50.webp?v=1782482394",
+    "ingredient_ids": [
+      "niacinamide",
+      "centella"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 249.0,
+    "mrp_inr": 399.0,
+    "pack_size": "50 ml",
+    "variant_id": "51796444053785",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "c56ef1e5d5a0e2a925027b65bba1d44f7c6917c4caf5c2535fb7344ff3e3a04a",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "3961385c-c2a1-53fa-8466-97ffdad8649f",
+    "slug": "deconstruct-vitamin-c-brightening-face-wash",
+    "name": "Vitamin C Brightening Face Wash | Brightens Dull Skin & Reduce dark spots",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "cleanser",
+    "official_url": "https://thedeconstruct.in/products/vitamin-c-brightening-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/final-resized-imagesArtboard-2.webp?v=1779362558",
+    "ingredient_ids": [
+      "niacinamide",
+      "salicylic_acid",
+      "vitamin_c"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 224.0,
+    "mrp_inr": 299.0,
+    "pack_size": "100 g",
+    "variant_id": "51207715586329",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "5e45797a8eb8e6a72daa86e30b8104dc355db98b5e8806412101e120b47234b0",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "4edc16a4-d6fb-5a13-9317-7f300611b66d",
+    "slug": "deconstruct-brightening-moisturizer-5-niacinamide-1-kojic-acid",
+    "name": "Vitamin C Brightening Moisturizer – 2% Vitamin C and 0.5% Tri-Ceramide Complex",
+    "brand_slug": "deconstruct",
+    "brand": "Deconstruct",
+    "category": "moisturizer",
+    "official_url": "https://thedeconstruct.in/products/brightening-moisturizer-5-niacinamide-1-kojic-acid",
+    "image_url": "https://cdn.shopify.com/s/files/1/0712/5621/1737/files/01_50ce3349-985d-4a9e-bcb7-68ada99ecb88.jpg?v=1791980347",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "panthenol",
+      "vitamin_c"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 299.0,
+    "mrp_inr": 399.0,
+    "pack_size": "50ml",
+    "variant_id": "46165102821657",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "ingredient_source_url": "https://thedeconstruct.in/products.json?limit=250",
+    "source_sha256": "b4cd9547fa36286c896d3dbf044da3fc56323bc651bce16322df29591d2ba6c1",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "8c3c1e0f-52db-55fc-9a55-8307eeda7a89",
+    "slug": "dot-key-barrier-repair-serum",
+    "name": "12% Barrier Boost Serum (Hyaluronic + Ceramides)",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "serum",
+    "official_url": "https://www.dotandkey.com/products/barrier-repair-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1-30ml.jpg?v=1784205186",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "squalane",
+      "allantoin",
+      "alpha_arbutin",
+      "lactic_acid",
+      "peptides",
+      "vitamin_e",
+      "ectoin"
+    ],
+    "inci_text": "Aqua, Niacinamide, Glycerine, 1,3-Butylene Glycol, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Cetyl Ethylhexanoate, Ethoxydiglycol, Propanediol, Phenyl Trimethicone, Cyclopentasiloxane (and) Dimethicone (and) Aqua (and) Polysilicone-11 (and) Butylene Glycol (and) Decyl Glucoside, Helianthus annuus (Sunflower) Seed Oil, Methylsilanol Mannuronate, Squalane, Cetearyl Olivate (and) Sorbitan Olivate, Polyacrylate Crosspolymer-6, Betaine (and) Sodium PCA (and) Sodium Lactate (and) PCA (and) Serine (and) Alanine (and) Glycine (and) Glutamic Acid (and) Lysine HCl (and) Threonine (and) Arginine (and) Proline (and) Water, Alpha Arbutin, Phytosteryl/Octyldodecyl Lauroyl Glutamate, Xanthan Gum, Allantoin, Ceramide EOP (and) Ceramide NP (and) Ceramide AP (and) Behenic Acid (and) Polyglyceryl-10 Stearate (and) Polyglyceryl-6 Behenate (and) Glycerin (and) Lactic Acid, Ectoin, Panthenol, Disodium EDTA, Sodium Hyaluronate, Tocopheryl Acetate, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Lactococcus Ferment Lysate, Vaccinium Corymbosum (Blueberry) Extract, Aqua (and) Oryza Sativa (Rice) Extract (and) Saccharomyces ferment lysate filtrate (and) Citric acid (and) Sodium Benzoate (and) Potassium sorbate, Phenoxyethanol (and) Ethylhexylglycerin, Gardenia Blue & Maltodextrin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "44335782068389",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/barrier-repair-serum",
+    "source_sha256": "3352557cbd293f44fe591f61243e20f430d1626ccd2d819f997887380447379e",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "e789cc9d-26f0-5259-9426-35f0feede715",
+    "slug": "dot-key-barrier-repair-intense-moisturizer",
+    "name": "Barrier Repair Intense Moisturizer With Ceramides",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/barrier-repair-intense-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_b8ecdb5f-bb1b-41b0-9e38-fa3859a5bd6a.jpg?v=1770964873",
+    "ingredient_ids": [
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "squalane",
+      "allantoin",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Caprylic/Capric Triglyceride, Glycerin, Dimethicone, Cetearyl Alcohol, Propylene Glycol, Cyclopentasiloxane, Butyrospermum Parkii (Shea) Butter, Butylene Glycol, Cyclopentasiloxane (and) Dimethicone Crosspolymer, Cetyl Alcohol, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1, 2,3,4,6II (and) Cholesterol (and) 1,2-hexanediol, Sodium Hyaluronate, Squalane, Glycerin (and) Aqua (and) Vaccinium Angustifolium (Blueberry) Fruit Extract, Lactococcus Ferment Lysate, Aqua (and) Oryza Sativa (Rice) Extract (and) Saccharomyces ferment lysate filtrate (and) Citric acid (and) Sodium Benzoate (and) Potassium sorbate, Allantoin, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Panthenol, Ceteareth 20, Tocopheryl Acetate, Stearic Acid, C14-22 Alcohols (and) C12-20 Alkyl Glucoside, Carbomer, Polyacrylamide (and) C13-14 Isoparaffin (and) Laureth-7, Aluminium Starch Octenylsuccinate, Bis-Diglyceryl Polyacyladipate-2, Sodium Hydroxide, BHT, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 399.0,
+    "mrp_inr": 399.0,
+    "pack_size": "100g",
+    "variant_id": "45793670758565",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/barrier-repair-intense-moisturizer",
+    "source_sha256": "ef94ba9e48efc9c99fec6fbe205f1e9976f26e9f7bd5c897602b769e22657c9c",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "d7b174d9-caef-5699-bffa-fb60d10d6903",
+    "slug": "dot-key-blueberry-hydrate-barrier-repair-milky-toner-essence",
+    "name": "Blueberry Hydrate Barrier Repair Milk Face Toner",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "toner",
+    "official_url": "https://www.dotandkey.com/products/blueberry-hydrate-barrier-repair-milky-toner-essence",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_e060a681-2eb5-422f-a25e-ff0d1fd55b1d.jpg?v=1751367041",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "centella"
+    ],
+    "inci_text": "Aqua, Propylene Glycol, Propanediol, Glycerin (and) Limnanthes Alba (Meadowfoam) Seed Oil (and) Canola Oil (and) Helianthus Annuus (Sunflower) Seed Oil (and) Argania Spinosa Kernel Oil (and) Polyglyceryl-10 Stearate, Sodium Hyaluronate, Allantoin, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2- Hexanediol, Glycerin (and) Aqua (and) Vaccinium Angustifolium (Blueberry) Fruit Extract, Sodium PCA, Panthenol, Niacinamide, Butylene Glycol, Acetamidoethoxyethanol, Arginine, Aloe Barbadensis (Aloevera) Leaf Juice, Centella Asiatica (Cica) Extract, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Lactococcus Ferment Lysate, Aqua (and) Oryza Sativa (Rice) Extract (and) Saccharomyces Ferment Lysate Filtrate (and) Citric acid (and) Sodium Benzoate (and) Potassium Sorbate, Butylene Glycol (and) Water (and) Geranium Robertianum Extract, Aqua (and) Phragmites Communis Extract (and) Poria Cocos Extract, Betaine (and) Sodium PCA (and) Sodium Lactate (and) PCA (and) Serine (and) Alanine (and) Glycine (and) Glutamic Acid (and) Lysine HCl (and) Threonine (and) Arginine (and) Proline (and) Water, Xanthan Gum, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Sodium Gluconate, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 399.0,
+    "mrp_inr": 399.0,
+    "pack_size": "150ml",
+    "variant_id": "45660366831781",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/blueberry-hydrate-barrier-repair-milky-toner-essence",
+    "source_sha256": "142ea2e8f85738d9ba9f36e117680f5a746f9cd5f3004c5ccaf5488ec8fae660",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "910c2334-f81e-52c7-a57f-1e9441182af5",
+    "slug": "dot-key-cica-calming-mattifying-sunscreen-spf-50-pa",
+    "name": "Cica + Niacinamide Sunscreen, In-Vivo Tested SPF 50+ PA++++",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/cica-calming-mattifying-sunscreen-spf-50-pa",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1CicaSunscreenListing1-50g.jpg?v=1778925569",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "centella",
+      "peptides",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Water (and) Butyl Methoxydibenzoylmethane (and) Ethylhexyl Methoxycinnamate (and) Octocrylene (and) Propylene Glycol (and) Phosphate Ester (and) Phenoxyethanol (and) Ethylhexylglycerin, Methylpropanediol, Glycerin, Titanium Dioxide (and) Silica (and) Dimethicone, Sodium Acrylates Copolymer (and) Lecithin, Caprylic/Capric Triglyceride, Cyclopentasiloxane, Butyloctyl Salicylate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Terephthalylidene Dicamphor Sulfonic Acid, Ethylhexyl Triazone, C12-15 Alkyl Benzoate, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Sorbitan Stearate (and) Sucrose Cocoate, Cetearyl Alcohol, Sorbitan Stearate, Sodium Acrylate/Sodium Acryloyldimethyl Taurate Copolymer (and) Dimethicone (and) Trideceth-6 (and) PEG/PPG-18/18 Dimethicone, Allantoin, Dimethicone, Tocopheryl Acetate, Lactococcus Ferment Lysate, Glycerin (and) Aqua (and) Vaccinium Angustifolium (Blueberry) Fruit Extract, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1, 2,3,4,6II (and) Cholesterol (and) 1,2-hexanediol, Sodium Hyaluronate, Aqua (and) Oryza Sativa (Rice) Extract (and) Saccharomyces ferment lysate filtrate (and) Citric acid (and) Sodium Benzoate (and) Potassium sorbate, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Sodium Gluconate, Disodium EDTA, Sodium Hydroxide, Phenoxyethanol (and) Ethylhexylglycerin",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 595.0,
+    "mrp_inr": 595.0,
+    "pack_size": "80g",
+    "variant_id": "44028832120997",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/cica-calming-mattifying-sunscreen-spf-50-pa",
+    "source_sha256": "af195ac70f71bca5ab4a28445d5944e4f62b4223f3f9deb57570a510e182a38c",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "bcc60d54-7f0b-5531-a62f-a3d15fbcf6d6",
+    "slug": "dot-key-dot-key-dragon-fruit-bounce-sunscreen-in-vivo-tested-spf-50-pa-50g",
+    "name": "Dragon Fruit Bounce Gel Sunscreen SPF 50+ PA++++, With New-Age UV Filters",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/dot-key-dragon-fruit-bounce-sunscreen-in-vivo-tested-spf-50-pa-50g",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/80_1.jpg?v=1791893781",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "peptides",
+      "uv_filters",
+      "vitamin_e",
+      "ectoin"
+    ],
+    "inci_text": "Aqua, C12-15 Alkyl Benzoate (and) Diethylamino Hydroxybenzoyl Hexyl Benzoate (and) Ethylhexyl Triazone (and) Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (and) Propanediol (and) Lecithin (and) Phenoxyethanol (and) Hydroxyacetophenone, Terephthalylidene Dicamphor Sulfonic Acid, Phenylbenzimidazole Sulfonic Acid, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (and) Aqua (and) Decyl Glucoside (and) Propylene Glycol (and) Xanthan Gum, Dimethicone, Triethanolamine, Butylene Glycol, Propylene Glycol, Isododecane, Hylocereus Undatus Fruit Extract(and) Propylene Glycol (and) Sodium Benzoate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Aqua, Propanediol, Ectoin, Silanetriol (and) Hyaluronic Acid (and) Methylpropanediol (and) Citric Acid (and) Water (Aqua), Sodium Hyaluronate Crosspolymer, Sodium Hyaluronate, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2-Hexanediol, Niacinamide, Panthenol, Tocopheryl Acetate, Ammonium Acryloyldimethyltaurate/VP Copolymer, Polyacrylate Crosspolymer-6, Xanthan Gum, Sodium Stearoyl Glutamate, Dimethicone/Vinyl Dimethicone Crosspolymer (and) Silica, Allantoin, Disodium EDTA, Sodium Gluconate, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 595.0,
+    "mrp_inr": 595.0,
+    "pack_size": "80g",
+    "variant_id": "50647253516453",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/dot-key-dragon-fruit-bounce-sunscreen-in-vivo-tested-spf-50-pa-50g",
+    "source_sha256": "fd1a971cf3be2c97e4153ad9bcb97c2722b9821976b0986d1c85e77ae7a28e95",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "20f89269-e321-5c96-9611-8b601e598d27",
+    "slug": "dot-key-dragon-fruit-bounce-jelly-moisturizer",
+    "name": "Dragon Fruit Bounce Jelly Moisturizer With Plant PDRN",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/dragon-fruit-bounce-jelly-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_8a617397-7c07-403d-9ac0-7cb7fa9850be.jpg?v=1787991751",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "peptides",
+      "beta_glucan",
+      "ectoin"
+    ],
+    "inci_text": "Aqua, Dimethicone, Propylene Glycol, Propanediol, Niacinamide, Dimethicone (and) Dimethicone/Vinyl Dimethicone Crosspolymer, Water (and) 1,2-Hexanediol (and) Ethylhexylglycerin (and) Rosa Damascena Flower Extract (and) Sodium DNA, Glycerin (and) Glyceryl Glucoside, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Acetyl Glucosamine, Water (and) Pentylene Glycol (and) Beta-Glucan (and) Caprylyl Glycol, Sodium Hyaluronate Crosspolymer, Silanetriol (and) Hyaluronic Acid (and) Methylpropanediol (and) Citric Acid (and) Water (Aqua), Sodium Hyaluronate, Ectoin, Betaine, Hylocereus Undatus Fruit Extract (and) Propylene Glycol (and) Sodium Benzoate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Aqua, Cyanocobalamin, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2-Hexanediol, Betaine (and) Threonine (and) Arginine (and) Proline (and) Water (and) Sodium PCA (and) Sodium Lactate (and) PCA (and) Serine (and) Alanine (and) Glycine (and) Glutamic Acid (and) Lysine HCl, Caprylyl Methicone (and) PEG-12 Dimethicone/PPG-20 Crosspolymer, Aqua (and) Phragmites Karka Extract (and) Poria Cocos Extract, Sodium PCA, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Ammonium Acryloyldimethyltaurate/VP Copolymer, Polyacrylate Crosspolymer-6, Allantoin, Disodium EDTA, Sodium Hydroxide, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 499.0,
+    "mrp_inr": 499.0,
+    "pack_size": "60ml",
+    "variant_id": "48190888214693",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/dragon-fruit-bounce-jelly-moisturizer",
+    "source_sha256": "662c54b3949deb667e5a6d052a782bd38df47fbb444ae21e427aa74417afa77e",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "ff7084ec-839a-5904-9c21-e0c22179e6a5",
+    "slug": "dot-key-hydrating-hyaluronic-face-serum",
+    "name": "Hyaluronic & Ceramides Hydrating Face Serum",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "serum",
+    "official_url": "https://www.dotandkey.com/products/hydrating-hyaluronic-face-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1c_feeeecf5-a597-40aa-94f2-fc367e5df797.jpg?v=1727355174",
+    "ingredient_ids": [
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "vitamin_c",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Ethoxydiglycol, Propanediol, 1,3 Butylene Glycol, Citric Acid, Laminaria Digitata Extract (and) Cetyl - PG Hydroxyethyl Palmitamide (and) Ceramide 1 (and) Ceramide 2 (and) Ceramide 3 (and) Ceramide 4 (and) Ceramide 6 II, Xanthan Gum, Sodium hyaluronate, Hydroxyethyl Cellulose, Tocopheryl Acetate, Disodium EDTA, D-Panthenol, Sodium Ascorbyl Phosphate, Euterpe Oleracea (Acai Berry) Fruit Extract, Rosa Damascena (Rose) Flower Extract, Lactobacillus (and) Maltodextrin, Oryza Sativa (Rice) Bran Water Extract, Benzyl Alcohol (and) Ethylhexylglycerin (and) Tocopherol.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 665.0,
+    "mrp_inr": 665.0,
+    "pack_size": "30ml",
+    "variant_id": "40325864751269",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/hydrating-hyaluronic-face-serum",
+    "source_sha256": "680d37675161d72d329bcef68aab94d83c2ee06be4b507609fb22450c520cc5d",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "a827cf25-78d0-54f9-b095-c20302715796",
+    "slug": "dot-key-mango-face-wash",
+    "name": "Mango Detan Gel Face Wash",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "cleanser",
+    "official_url": "https://www.dotandkey.com/products/mango-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_c05b99e0-c177-4e08-bf58-269833e70161.jpg?v=1754041030",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "glycolic_acid",
+      "lactic_acid",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Cocamidopropyl Betaine, Decyl Glucoside, Disodium Cocoyl Glutamate, Glycerine, Sodium Lactate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, PEG-40 Hydrogenated Castor Oil, Xanthan Gum, Lactic Acid, Sodium PCA (and) Aqua, Sodium Hydroxide, Glycolic Acid, Niacinamide, Disodium EDTA, Menthyl Lactate, Panthenol, Mangifera Indica (Mango) Fruit Extract, Sodium Hyaluronate, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*, CI 15985 . * IFRA Certified.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 249.0,
+    "mrp_inr": 249.0,
+    "pack_size": "100ml",
+    "variant_id": "43955688669349",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/mango-face-wash",
+    "source_sha256": "244f833246d559b5857e733515e9a64f592cdef6a75839f998b86e84cff3c94a",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "ae29336f-7378-5865-8f8c-bd407ab63d99",
+    "slug": "dot-key-mango-detan-gel-sunscreen-spf-50",
+    "name": "Mango Detan Gel Sunscreen, In-Vivo Tested SPF 50+ PA++++",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/mango-detan-gel-sunscreen-spf-50",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1-80g_c85ff2fc-4467-46a0-9d5f-8e00af53a082.jpg?v=1783423825",
+    "ingredient_ids": [
+      "niacinamide",
+      "glycerin",
+      "panthenol",
+      "alpha_arbutin",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Diethylamino Hydroxybenzoyl Hexyl Benzoate (and) Butylene Glycol (and) Ethylhexyl Triazone (and) C12-15 Alkyl Benzoate (and) Dibutyl Adipate (and) Propylene Glycol Dicaprylate/Dicaprate (and) Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (and) Lecithin (and) Polyglyceryl-3 Polyricinoleate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Trisodium Ethylenediamine Disuccinate, Niacinamide, Dimethicone, Glycerin, Methylpropanediol, Titanium Dioxide (and) Silica (and) Dimethicone, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (and) Aqua (and) Decyl Glucoside (and) Propylene Glycol (and) Xanthan Gum, Mangifera Indica (Mango) Fruit Extract, Alpha Arbutin, Panthenol, Bisabolol, Tocopheryl Acetate, Dibutyl Adipate, C12-15 Alkyl Benzoate, Caprylic/Capric Triglyceride, Hydrogenated Polyisobutene, Sodium Lactate, Butyloctyl Salicylate, Zea Mays (Corn) Starch, Sorbitan Stearate (and) Sucrose Cocoate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, C14-22 Alcohols (and) C12-20 Alkyl Glucoside, Sodium Hydroxide, Sodium Gluconate, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 595.0,
+    "mrp_inr": 595.0,
+    "pack_size": "80g",
+    "variant_id": "45056549159077",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/mango-detan-gel-sunscreen-spf-50",
+    "source_sha256": "119ff71f9a1cb322fd1c41a8682649889be201f544367b91b939ea684cdc3cc9",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "5e5c0ae8-0ab3-5cd0-840e-b4ed2436a75d",
+    "slug": "dot-key-0-2-retinol-complex-face-serum",
+    "name": "Pomegranate Youth 0.2% Retinol Complex Face Serum",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "serum",
+    "official_url": "https://www.dotandkey.com/products/0-2-retinol-complex-face-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1-1_1.jpg?v=1761888868",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "squalane",
+      "allantoin",
+      "retinol",
+      "peptides",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Propanediol, Squalane, Cetyl Palmitate, Lauryl Glucoside (and) Myristyl Glucoside(and) Polyglyceryl-6 Laurate, Niacinamide, Retinol (and) Undecane (and) Tridecane (and) Tocopherol, Water (and) Poloxamer 235 (and) Retinol (and) Polysorbate20 (and) Sodium Ascorbate (and) Epigallocatechin Gallate (and) BHT (and)Disodium EDTA (and) Phenoxyethanol (and) BHA, Sodium hyaluronate, Punica Granatum (Pomegranate) Extract, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Aqua (and) Phragmites Communis Extract (and) Poria Cocos Extract, Coco-Caprylate/Caprate, Cetearyl Olivate (and) Sorbitan Olivate, Allantoin, Phenyl Trimethicone,Tocopheryl Acetate ,Sodium gluconate,Disodium EDTA,Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Glyceryl Stearate (and) PEG-75 Stearate, PEG-6 Stearate (and)Glycol Stearate (and) PEG-32 Stearate, Ethylhexyl Methoxycrylene , Xanthan gum,Sodium hydroxide, Phenoxyethanol (and)Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "moisture",
+      "pore",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "44630629187749",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/0-2-retinol-complex-face-serum",
+    "source_sha256": "3441c3ab7872bd0115e2326e22bab7c048beba0c529214654e84796927c1ce08",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "3734b057-a05d-5fe7-8953-90a40014c26d",
+    "slug": "dot-key-retinol-ceramide-age-defense-night-cream",
+    "name": "Retinol Night Repair Cream with Ceramides",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/retinol-ceramide-age-defense-night-cream",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/Artboard1_4e07de26-042d-4740-9234-d5e603068f7d.jpg?v=1789728010",
+    "ingredient_ids": [
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "retinol",
+      "vitamin_e",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Glycerin, Polyacrylamide (and) C13-14 Isoparaffin (and) Laureth-7, Silanetriol (and) Alginic Acid (and) Propanediol (and) Water (Aqua), Dicaprylyl Ether, Dimethicone (and) Dimethicone Crosspolymer, Water (and) Poloxamer 235 (and) Retinol (and) Polysorbate 20 (and) Sodium Ascorbate (and) Epigallocatechin Gallate (and) BHT (and) Disodium EDTA (and) Phenoxyethanol (and) BHA, Aqua (and) Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2-Hexanediol, Silanetriol (and) Hyaluronic Acid (and) Methylpropanediol (and) Citric Acid (and) Water (Aqua), Hibiscus Sabdariffa Flower Extract, Punica Granatum (Pomegranate) Seed Oil, Oenothera Biennis (Evening Primrose) Oil, Panthenol, Tocopheryl Acetate, Dimethicone, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Allantoin, Disodium EDTA, Sodium Hydroxide, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*, CI 16185, CI 15985, CI 42090. *IFRA Certified.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "pore",
+      "texture",
+      "firmness",
+      "wrinkle"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "60ml",
+    "variant_id": "40422575571109",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/retinol-ceramide-age-defense-night-cream",
+    "source_sha256": "254e379c4ea3762700a5d44bfb102c65e1ab05731fd34e3ada52a4ccfe6bb6ba",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "4fed66d3-5ce0-5567-85ef-57ebc49b0ea1",
+    "slug": "dot-key-strawberry-moisturizer",
+    "name": "Strawberry + Niacinamide Moisturizer",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/strawberry-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_copy_3.jpg?v=1765285317",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "peptides",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Cyclopentasiloxane, Glycerine, Caprylic/Capric Triglyceride, Dimethicone, Isohexadecane, Cetyl Alcohol, Glyceryl Stearate (and) PEG-100 Stearate, Butyrospermum Parkii (Shea) Butter, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Niacinamide, Glycerin (and) Aqua (and) Butylene Glycol (and) Carbomer (and) Polysorbate 20 (and) Palmitoyl Tripeptide-1 (and) Palmitoyl Tetrapeptide-7, Fragaria Ananassa (Strawberry) Fruit Extract, Sodium Hyaluronate, Rubus Chamaemorus (Cloudberry) Seed Oil, Panthenol, Cetearyl Alcohol, Polymethylsilsesquioxane, Polysorbate 80, Ammonium Acryloyldimethyltaurate/VP Copolymer, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Allantoin, Disodium EDTA, Tocopheryl Acetate, Sodium hydroxide, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 399.0,
+    "mrp_inr": 399.0,
+    "pack_size": "80g",
+    "variant_id": "44219192017061",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-moisturizer",
+    "source_sha256": "3c8358cc19b432f5ee214a7711301223a35b7650ae2854b73f87878c2f07fca2",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "ca6647b4-a4dc-5af8-a620-8cfa744cd7c8",
+    "slug": "dot-key-10-niacinamide-strawberry-brightening-face-serum",
+    "name": "Strawberry Bright 10% Niacinamide Face Serum",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "serum",
+    "official_url": "https://www.dotandkey.com/products/10-niacinamide-strawberry-brightening-face-serum",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/Artboard_1_f94f4456-d328-4271-ab7e-94bde8c9bbd3.jpg?v=1745323515",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Niacinamide, Propanediol, Phenyl Trimethicone, Isohexadecane, Hamamelis Virginiana (Witch Hazel) Leaf Extract (and) Propylene Glycol (and) Sodium Benzoate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Sorbitol (and) Aqua, Dimethicone, Fragaria Ananassa (Strawberry) Fruit Extract, Cyanocobalamin, Sodium Hyaluronate, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Trehalose, Tocopheryl Acetate, Aqua (and) Phragmites Communis Extract (and) Poria Cocos Extract, Betaine (and) Sodium PCA (and) Sodium Lactate (and) PCA (and) Serine (and) Alanine (and) Glycine (and) Glutamic Acid (and) Lysine HCl (and) Threonine (and) Arginine (and) Proline (and) Water, Allantoin, Cetearyl Olivate (and) Sorbitan Olivate, Polymethyl Methacrylate, Polyacrylate Crosspolymer-6, Polymethylsilsesquioxane, Xanthan Gum, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture",
+      "pore",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "30ml",
+    "variant_id": "45351439696037",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/10-niacinamide-strawberry-brightening-face-serum",
+    "source_sha256": "3e1eeccf4120b4b5839bea1fd0a1b9e2bd6bcd41f87a95d44073c100da71c25b",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "209dffe2-3df6-580c-a4a3-f335ca9f1c22",
+    "slug": "dot-key-strawberry-bright-niacinamide-gel-face-wash",
+    "name": "Strawberry Bright Niacinamide Gel Face Wash",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "cleanser",
+    "official_url": "https://www.dotandkey.com/products/strawberry-bright-niacinamide-gel-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1copy3.jpg?v=1772454016",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Cocamidopropyl Betaine, Glycerin, Decyl Glucoside, Disodium Cocoyl Glutamate (and) Water, Sodium Cocoyl Glycinate, Niacinamide, Triethanolamine, Fragaria Ananassa (Strawberry) Fruit Extract, Aloe Barbadensis (Aloe vera) Leaf Juice, Sodium Hyaluronate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Xanthan Gum, PEG-40 Hydrogenated Castor Oil, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2-Hexanediol, Panthenol, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*,CI 16255. *IFRA Certified",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 249.0,
+    "mrp_inr": 249.0,
+    "pack_size": "100ml",
+    "variant_id": "47540735410341",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-bright-niacinamide-gel-face-wash",
+    "source_sha256": "d0efb161c6603d7bb96fa2644cab3a3c36be125b0b97635d7278f0f332c75e0e",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "a67b4130-6e3d-5101-8f0c-dc06336d15b4",
+    "slug": "dot-key-strawberry-micellar-facewash",
+    "name": "Strawberry Dew Micellar Face Wash",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "cleanser",
+    "official_url": "https://www.dotandkey.com/products/strawberry-micellar-facewash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_ea8d3318-c257-4ad9-ac6e-35558008eb8d.jpg?v=1779882491",
+    "ingredient_ids": [
+      "niacinamide",
+      "glycerin",
+      "panthenol",
+      "urea",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Cocamidopropyl Betaine, Sodium Methyl Cocoyl Taurate, Glycerin, Sodium Cocoamphoacetate, Polyacrylate-33, Decyl Glucoside, Potassium Laureth Phosphate, PEG-7 Glyceryl Cocoate, Sodium Lauroyl Sarcosinate, Sodium PCA, Sodium Cocoyl Glycinate, Sodium Lactate, Fragaria Ananassa (Strawberry) Fruit Extract, Panthenol, Niacinamide, Aloe Barbadensis (Aloe Vera) Leaf Juice, Hydroxyethyl Urea, Xanthan Gum, Citric Acid, Disodium EDTA, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*, CI 42090, CI 16255. *IFRA Certified.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture",
+      "oiliness"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 329.0,
+    "mrp_inr": 329.0,
+    "pack_size": "120ml",
+    "variant_id": "47856791421093",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-micellar-facewash",
+    "source_sha256": "12fa7484bd5d052e9dfc1d8c00c35afe7bf1a6c1bfc41855d8754f4848d5ca14",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "476b13c8-33d2-5333-abcf-d7cfa395b71a",
+    "slug": "dot-key-strawberry-dew-tinted-sunscreen-spf-50-pa",
+    "name": "Strawberry Dew Tinted Sunscreen SPF 50+ PA++++ With New-Age UV Filters",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/strawberry-dew-tinted-sunscreen-spf-50-pa",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_68456143-ee8a-40e9-85a3-5768a6233bb6.jpg?v=1786079947",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Diethylamino Hydroxybenzoyl Hexyl Benzoate (and) Butylene Glycol (and) Ethylhexyl Triazone (and) C12-15 Alkyl Benzoate (and) Dibutyl Adipate (and) Propylene Glycol Dicaprylate/Dicaprate (and) Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (and) Lecithin (and) Polyglyceryl-3 Polyricinoleate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Trisodium Ethylenediamine Disuccinate, Isododecane, Glycerin, Dimethicone, Phenyl Trimethicone, Glyceryl Citrate/Lactate/Linoleate/Oleate, Titanium Dioxide (and) Triethoxycaprylylsilane (and) Polyhydroxystearic Acid, Titanium Dioxide (and) Silica (and) Dimethicone, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (and) Aqua (and) Decyl Glucoside (and) Propylene Glycol (and) Xanthan Gum, Isononyl Isononanoate, Propanediol, Caprylic/Capric Triglyceride, Dicaprylyl Carbonate, Fragaria Ananassa (Strawberry) Fruit Extract, Tocopheryl Acetate, Niacinamide, Panthenol, Sodium Hyaluronate, Polyglyceryl-3 Polyricinoleate, Xanthan Gum, Polyacrylate Crosspolymer-6, Zea Mays (Corn) Starch, Polyacrylate-13 (and) Polyisobutene (and) Polysorbate 20, Sodium Gluconate, Phenoxyethanol (and) Ethylhexylglycerin, Disodium EDTA, CI 77491 (and) Triethoxycaprylylsilane (and) Polyhydroxystearic Acid, CI 77492 (and) Triethoxycaprylylsilane (and) Polyhydroxystearic Acid.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 549.0,
+    "mrp_inr": 549.0,
+    "pack_size": "Peony - 00 Very Light with Cool Undertone",
+    "variant_id": "47534435336357",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-dew-tinted-sunscreen-spf-50-pa",
+    "source_sha256": "77282171b6ed3e415e615724ba732a9f37c7ea0ed39a6325cd0f1ada2e29aa47",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "369c6c7e-44e6-50ee-a5f9-f84123fef7bc",
+    "slug": "dot-key-strawberry-dew-sunscreen-mist-spf-50",
+    "name": "Strawberry Sunscreen Face Mist In-Vivo Tested SPF 50+ PA+++",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/strawberry-dew-sunscreen-mist-spf-50",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1copy_da9956a7-7de6-4cdb-b8d2-1a7dcfda7c56.jpg?v=1746425402",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Aloe Barbadensis (Aloe Vera) Leaf Water, Ethylhexyl Methoxycinnamate (and) Butyl Methoxydibenzoylmethane (and) Benzophenone-3 (and) Phospholipids (and) Butylene Glycol, Terephthalylidene Dicamphor Sulfonic Acid, Ethylhexyl Methoxycinnamate, Disiloxane, Polysorbate 20, Propanediol, Niacinamide, Sodium Hyaluronate, Fragaria Ananassa (Strawberry) fruit extract, Glycerine, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (and) Aqua (and) Decyl Glucoside (and) Propylene Glycol (and) Xanthan Gum, Tocopheryl Acetate, Acrylates Crosspolymer-4, Glyceryl Citrate/Lactate/Linoleate/Oleate, Sodium Hydroxide, Disodium EDTA, Citric Acid, Phenoxyethanol (and) Ethylhexylglycerin.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "80ml",
+    "variant_id": "44755237470373",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-dew-sunscreen-mist-spf-50",
+    "source_sha256": "bbfa1f9082b10902e0ea8a616207fade62f250273abede30e135a1710419f57b",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "a1066951-3208-5085-a992-af4765d19d43",
+    "slug": "dot-key-strawberry-sunstick",
+    "name": "Strawberry Sunscreen Stick, In-Vivo Tested SPF 50+ PA++++",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/strawberry-sunstick",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1d_2.jpg?v=1767963095",
+    "ingredient_ids": [
+      "ceramides",
+      "hyaluronic_acid",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Dimethicone, Isohexadecane, Synthetic Wax, Silica, Isoamyl Laurate, Ethylhexyl Methoxycinnamate, Dibutyl Adipate, Diethylamino Hydroxybenzoyl Hexyl Benzoate, Ozokerite, Dimethicone/Vinyl Dimethicone Crosspolymer (and) Silica, Diisostearyl Malate, Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine, Sorbitan Olivate, Dicaprylyl Carbonate, Octocrylene, Theobroma Cacao (Cocoa) Seed Butter, Butyrospermum Parkii (Shea) Butter, Fragaria Vesca (Strawberry) Fruit Extract, Euphorbia Cerifera Cera, Copernicia Cerifera Cera, Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II, Cholesterol, 1,2-Hexanediol, Sodium Hyaluronate, PEG-40 Hydrogenated Castor Oil, Tocopheryl Acetate, Pentaerythrityl Tetra Di-t-butyl Hydroxyhydrocinnamate, Phenoxyethanol, C.I. 45410:2/77491/77492/77499/42090:1.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 595.0,
+    "mrp_inr": 595.0,
+    "pack_size": "20g",
+    "variant_id": "42480699506853",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strawberry-sunstick",
+    "source_sha256": "5a60b77c3259469767c16efec212f7a34a719b3c05300821a45dd0ed4e3401bf",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "63150807-6749-550c-8b66-432f12330ee5",
+    "slug": "dot-key-strobe-creams-highlighter-moisturizer",
+    "name": "Strobe Cream (Moisturizer + Highlighter)",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/strobe-creams-highlighter-moisturizer",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1_99c3d207-fea8-4ace-bb02-ebdbffa42aae.jpg?v=1744370583",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "vitamin_c",
+      "uv_filters",
+      "vitamin_e",
+      "fragrance"
+    ],
+    "inci_text": "Watermelon Strobe Cream: \"Aqua, Dimethicone, Butylene glycol, Phenyl Trimethicone, Synthetic Fluorphlogopite (and) TiO2 (CI 77891) (and) Tin Oxide (CI 77861), Caprylic/Capric Triglyceride, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer (and) Isohexadecane (and) Polysorbate 60, Cyclopentasiloxane (and) Cetearyl Dimethicone/Vinyl Dimethicone Crosspolymer, Cetyl Alcohol, Cetearyl Alcohol, Ceteareth 20 , Citrullus Lanatus (Watermelon) Fruit Extract, Sodium Hyaluronate, Niacinamide, Panthenol, Argania Spinosa (Argan) Kernel Oil, Tocopheryl Acetate, Hydrogenated Castor oil, Glyceryl Stearate (and) PEG-100 Stearate, Talc (and) Titanium Dioxide (and) Cyclopentasiloxane (and) Dimethicone, Glycol Distearate, Glyceryl Stearate, Xanthan gum, Disodium EDTA, BHT, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*.\" Vitamin C Strobe Cream - Sunlit Gold: Aqua, Dimethicone, Synthetic Fluorphlogopite (and) TiO2 (CI 77891) (and) Tin Oxide (CI 77861), Butylene glycol, Phenyl Trimethicone, Caprylic/Capric Triglyceride, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer (and) Isohexadecane (and) Polysorbate 60, Cyclopentasiloxane (and) Cetearyl Dimethicone/Vinyl Dimethicone Crosspolymer, Cetyl Alcohol, Cetearyl Alcohol, Ceteareth 20,Fragaria Vesca (Strawberry) Fruit Extract, Lactobacillus/Papaya Fruit Ferment Extract, Niacinamide, Panthenol, Argania Spinosa (Argan) Kernel Oil, Tocopheryl Acetate, Hydrogenated Castor oil, Glyceryl Stearate (and) PEG-100 Stearate, Talc (and) Titanium Dioxide (and) Cyclopentasiloxane (and) Dimethicone, Glycol Distearate, Glyceryl Stearate, Xanthan gum, Disodium EDTA, BHT, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*. Strawberry Dew Strobe Cream for Instant Glow: Aqua, Dimethicone, Synthetic Fluorphlogopite (and) TiO2 (CI 77891) (and) Tin Oxide (CI 77861), Butylene glycol, Phenyl Trimethicone, Caprylic/Capric Triglyceride, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer (and) Isohexadecane (and) Polysorbate 60, Cyclopentasiloxane (and) Cetearyl Dimethicone/Vinyl Dimethicone Crosspolymer, Cetyl Alcohol, Cetearyl Alcohol, Ceteareth 20,Fragaria Vesca (Strawberry) Fruit Extract, Lactobacillus/Papaya Fruit Ferment Extract, Niacinamide, Panthenol, Argania Spinosa (Argan) Kernel Oil, Tocopheryl Acetate, Hydrogenated Castor oil, Glyceryl Stearate (and) PEG-100 Stearate, Talc (and) Titanium Dioxide (and) Cyclopentasiloxane (and) Dimethicone, Glycol Distearate, Glyceryl Stearate, Xanthan gum, Disodium EDTA, BHT, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*.",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 345.0,
+    "mrp_inr": 345.0,
+    "pack_size": "Strawberry - Pearl Pink",
+    "variant_id": "44161285783717",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/strobe-creams-highlighter-moisturizer",
+    "source_sha256": "49d478c5c7104c57b6e4df45f3c8a931b880f79ae86efdaefa7fc9fc0fc21998",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "b2bd7005-0ca6-580d-8a62-242b8151fa34",
+    "slug": "dot-key-vitamin-c-e-mineral-sunscreen",
+    "name": "Vitamin C + E 100% Mineral Sunscreen IN-VIVO tested SPF 50+, PA++++",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/vitamin-c-e-mineral-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1a_055631d9-8489-46d1-bddf-bd21e2b6e9aa.jpg?v=1771219495",
+    "ingredient_ids": [
+      "niacinamide",
+      "glycerin",
+      "vitamin_c",
+      "zinc_oxide",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Zinc Oxide (and) C12-15 Alkyl Benzoate (and) Isostearic Acid (and) Polyhydroxystearic Acid, Dimethicone, Isododecane, C12-15 Alkyl Benzoate, Cyclopentasiloxane, Cyclopentasiloxane (and) PEG/PPG-18/18 Dimethicone, Titanium Dioxide (and) Silica (and) Dimethicone, Cyclopentasiloxane (and) Dimethicone Crosspolymer, Cyclopentasiloxane (and) Cetearyl Dimethicone/Vinyl Dimethicone Crosspolymer, Glycerin, Propylene Glycol, C13-15 Alkane (and) Disteardimonium Hectorite (and) Polyglyceryl-3 Polyricinoleate, Sodium Chloride, Lauryl PEG-10 Tris(trimethylsiloxy)silylethyl Dimethicone, Peg -9 Dimethicone, Polyglyceryl-3 Polyricinoleate (and) Sorbitan Isostearate, Ascorbyl Glucoside, Glycerin (and) Water (and) Terminalia Ferdinandiana Fruit Extract, Citrus Sinensis (Blood Orange) Fruit Extract, Disodium EDTA, Fructooligosaccharides (and) Beta Vulgaris (Beet) Root Extract (and) Water, Niacinamide, Sodium Gluconate, Xanthan Gum, Tocopheryl Acetate, Phenoxyethanol (and) Ethylhexylglycerin .",
+    "inci_complete": true,
+    "skin_types": [
+      "dry",
+      "normal",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 649.0,
+    "mrp_inr": 649.0,
+    "pack_size": "50g",
+    "variant_id": "47393331740837",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/vitamin-c-e-mineral-sunscreen",
+    "source_sha256": "fe46216e76d7ab6b049828a61580de83d0e3ad23d2f8c01f0ed7bf488ec477a9",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "6ce306ff-a9f5-5bec-b0da-734513dc5079",
+    "slug": "plum-1-salicylic-acid-clearly-gentle-gel-face-wash-for-acne-prone-skin",
+    "name": "1% Salicylic Acid Clearly Gentle Gel Face Wash For Acne-Prone Skin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "cleanser",
+    "official_url": "https://plumgoodness.com/products/1-salicylic-acid-clearly-gentle-gel-face-wash-for-acne-prone-skin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_SA_Gel_FW_1001x1001_px.webp?v=1776937553",
+    "ingredient_ids": [
+      "salicylic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "oily"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "oiliness",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": true,
+    "price_inr": 276.0,
+    "mrp_inr": 325.0,
+    "pack_size": "Size not stated",
+    "variant_id": "46140563587132",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "89547e02ebeebf1409d80125168e4d23031ed8b2267bf3d3dc7b12bb13ba6f2d",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "4d649931-8233-57b4-8cd2-03f66ef48328",
+    "slug": "plum-10-niacinamide-rice-water-brightening-face-serum-for-clear-bright-skin",
+    "name": "10% Niacinamide & Rice Water Brightening Face Serum For Clear & Bright Skin**",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/10-niacinamide-rice-water-brightening-face-serum-for-clear-bright-skin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/NiaSerum10ml01.webp?v=1778225339",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 199.0,
+    "mrp_inr": 249.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45725530783804",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "9eb49cdbec0ffc0f885e0d67790cb0c60a8362dad6496b4d10f82dbffcaa5ffc",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "52fb7236-388a-5da8-8761-938d48af210a",
+    "slug": "plum-plum-calendula-10-vitamin-c-barrier-boosting-glow-serum-10ml-full-size",
+    "name": "10% Vitamin C & Calendula Barrier Boosting + Glow Serum",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/plum-calendula-10-vitamin-c-barrier-boosting-glow-serum-10ml-full-size",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Vit-C-Serum-10ml-Mini-Listing-01_30d3fe7a-0070-4721-b03c-b262b810915d.jpg?v=1790146770",
+    "ingredient_ids": [
+      "vitamin_c"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 299.0,
+    "pack_size": "Size not stated",
+    "variant_id": "43226596442172",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "8213590fcb880e14048d23156c2c22fea6fc649eb404fcae0f39a7cea5ea1b03",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "8c28091b-1fe6-5795-9203-c6e3ca0d3515",
+    "slug": "plum-15-vitamin-c-face-serum-with-mandarin-10ml-copy",
+    "name": "15% Vitamin C & Mandarin Serum For Glowing Skin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/15-vitamin-c-face-serum-with-mandarin-10ml-copy",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Vit_C_15_Serum_10ml_1001x1001_px.webp?v=1777978657",
+    "ingredient_ids": [
+      "vitamin_c"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 299.0,
+    "pack_size": "Size not stated",
+    "variant_id": "43617974026300",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "af850bc0f56bf1b418f7b187a8b12ba6ec5f98fa115ed687bfc94771840fb7a4",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "11b72094-6e27-5084-8f90-4f668c83e76a",
+    "slug": "plum-2-alpha-arbutin-hyaluronic-acid-tan-fading-face-serum-for-all-skin-types-copy",
+    "name": "2% Alpha Arbutin & Hyaluronic Acid Tan Fading Face Serum",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/2-alpha-arbutin-hyaluronic-acid-tan-fading-face-serum-for-all-skin-types-copy",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Alpha_Serum_30ml_1001x1001_px.webp?v=1776772274",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "alpha_arbutin"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 599.0,
+    "mrp_inr": 599.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45926853967932",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "b82d531d02fa9832767ed76a9bc655fd78713faa7be41205c0cb6a396365bd1c",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "aa8a1268-2b30-5b0f-ab4c-0a4fb74fb0b8",
+    "slug": "plum-2-encapsulated-salicylic-acid-face-serum-10-ml",
+    "name": "2% Encapsulated Salicylic Acid Face Serum For Acne-Prone Skin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/2-encapsulated-salicylic-acid-face-serum-10-ml",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/01-Moodshot_140e9db9-54e6-4e3e-abde-46186777bfed.webp?v=1789727379",
+    "ingredient_ids": [
+      "salicylic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 213.0,
+    "mrp_inr": 225.0,
+    "pack_size": "Size not stated",
+    "variant_id": "44622894727228",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "cc83db42d401e2e4cb24094d291d8fc222d9d46de7735fe32afd782948f3a03b",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "bcc0a5dd-9b6d-5f14-8b3b-8440ad668eec",
+    "slug": "plum-2-niacinamide-rice-water-brightening-gel-moisturizer-25-g",
+    "name": "2% Niacinamide & Rice Water Brightening Gel Moisturizer For Clear & Bright Skin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "moisturizer",
+    "official_url": "https://plumgoodness.com/products/2-niacinamide-rice-water-brightening-gel-moisturizer-25-g",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/01_e67b0c13-ae33-4025-8f06-7a8097bf408f.jpg?v=1791877998",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "radiance",
+      "moisture",
+      "oiliness",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 331.0,
+    "mrp_inr": 349.0,
+    "pack_size": "Size not stated",
+    "variant_id": "43936392642620",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "a32877048e1c244936f9d88054c2649064671d81ac9625dcea3502445be51af1",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "0ead16d1-f015-5ca4-8705-7d52e08599f3",
+    "slug": "plum-2-niacinamide-rice-water-face-wash-for-clear-bright-skin-50-ml-copy",
+    "name": "2% Niacinamide & Rice Water Face Wash For Clear & Bright Skin | 50 ml",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "cleanser",
+    "official_url": "https://plumgoodness.com/products/2-niacinamide-rice-water-face-wash-for-clear-bright-skin-50-ml-copy",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Nia_FW_50ml_1001x1001_px_b375a320-f571-4191-9f3d-affcd08b4025.webp?v=1777965755",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "radiance",
+      "oiliness",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 199.0,
+    "mrp_inr": 199.0,
+    "pack_size": "50 ml",
+    "variant_id": "45725568696380",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "0f747b503448a520303bb9764259110104c87760dcc0b5daef3755a61f4a9038",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "6aa242cb-e4aa-540e-affe-221e247ba2a0",
+    "slug": "plum-2-niacinamide-sunscreen-rice-water-spf-50-pa-30g-sunscreen",
+    "name": "2% Niacinamide & Rice Water SPF 50 PA++++ Hybrid Sunscreen",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "sunscreen",
+    "official_url": "https://plumgoodness.com/products/2-niacinamide-sunscreen-rice-water-spf-50-pa-30g-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Nia_SPF_30g_1001x1001_px_84558acc-5751-4050-a640-df0c00dfcfe3.webp?v=1777965468",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [],
+    "fragrance_free": null,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 299.0,
+    "pack_size": "30 g",
+    "variant_id": "45550122467388",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "a7d5d68eeaa9a58a7ac3b5a0d624e895eb9ef22bcac38a6d65f9c9548bf7c5b7",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "1d0fb100-e436-51fe-b85d-afdbf6d78d57",
+    "slug": "plum-3-niacinamide-rice-water-spf-50-sheer-tinted-sunscreen-50-g",
+    "name": "3% Niacinamide & Rice Water SPF 50 Sheer-Tinted Sunscreen - 50 g",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "sunscreen",
+    "official_url": "https://plumgoodness.com/products/3-niacinamide-rice-water-spf-50-sheer-tinted-sunscreen-50-g",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing1stTileNiaTintedSPF1001x1001px_7b958aa5-6b9b-4109-a25b-8b8f7b0a7f92.webp?v=1777968512",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 499.0,
+    "mrp_inr": 499.0,
+    "pack_size": "50 g",
+    "variant_id": "43525413929020",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "84db3a53f44e74c1560adff55d9e10f4bf7a0e42bb0a18b606fb96b310f0e508",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "66b8f75d-7adb-5801-9e04-21c83309d8f7",
+    "slug": "plum-3-niacinamide-rice-water-toner-for-bright-skin80ml",
+    "name": "3% Niacinamide & Rice Water Toner for Bright Skin | 80 ml",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "toner",
+    "official_url": "https://plumgoodness.com/products/3-niacinamide-rice-water-toner-for-bright-skin80ml",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/NiaToner80ml01.webp?v=1791880526",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "radiance",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 299.0,
+    "pack_size": "80 ml",
+    "variant_id": "44562804539452",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "f939cbb678dfd9fd07724e5684699381f641c6619002e62bfb438730a5d861f3",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "2009ad4f-77bb-5c66-bc03-507628e88830",
+    "slug": "plum-vitamin-c-eye-cream-with-mandarin",
+    "name": "3% Vitamin C, 3% Peptide & 3% Caffeine Under Eye Cream with Mandarin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "eye_care",
+    "official_url": "https://plumgoodness.com/products/vitamin-c-eye-cream-with-mandarin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Vit_C_Under_Eye_Cream_1001x1001_px.webp?v=1776938914",
+    "ingredient_ids": [
+      "vitamin_c",
+      "caffeine",
+      "peptides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "texture",
+      "firmness",
+      "dark_circle_v2",
+      "eye_bag",
+      "wrinkle"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 403.0,
+    "mrp_inr": 475.0,
+    "pack_size": "Size not stated",
+    "variant_id": "39827474710588",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "56be7e9e7da779ea88ee7f976f6bc262cf43dc9ff8cad33ca44ccd159ebf3820",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "e66217e2-3336-59a2-a2d9-e6ffefce1190",
+    "slug": "plum-black-rice-10-niacinamide-txa-night-clarity-jelly-serum-pack-of-2",
+    "name": "Black Rice & 10% Niacinamide-TXA Night Clarity Jelly Serum",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "serum",
+    "official_url": "https://plumgoodness.com/products/black-rice-10-niacinamide-txa-night-clarity-jelly-serum-pack-of-2",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/01-TXA-Jelly-Serum-Moodshot_Text_2cea2de4-f10d-47c9-afe0-072b07694a92.webp?v=1785948847",
+    "ingredient_ids": [
+      "niacinamide",
+      "tranexamic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "age_spot",
+      "moisture",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 551.0,
+    "mrp_inr": 649.0,
+    "pack_size": "25 ml",
+    "variant_id": "67662509703228",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "b305dc23954215ce037d0892fe34011a7effe72bdd17f7de31227be4dc90f83f",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "07387014-ca5f-5703-bf78-d5a94b061e3a",
+    "slug": "plum-cerasense-barrier-care-face-wash-with-acai-1-nmf-copy",
+    "name": "CeraSense™ Barrier Care Face Wash with Acai & 1% NMF | 50 ml",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "cleanser",
+    "official_url": "https://plumgoodness.com/products/cerasense-barrier-care-face-wash-with-acai-1-nmf-copy",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Cera_FW_50ml_1001x1001_px.webp?v=1782219087",
+    "ingredient_ids": [
+      "ceramides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 225.0,
+    "mrp_inr": 225.0,
+    "pack_size": "50 ml",
+    "variant_id": "45766581518396",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "7de214b20934b9b7b0b2445b52ff61bff5632efe6898a302a39fa827da248c25",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "a4dccf54-dfc7-5564-be91-70e3219f913e",
+    "slug": "plum-cerasense-moisturizing-cream-with-ceramides-peptides-25-g",
+    "name": "CeraSense™ Moisturizing Crème For Dry Skin",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "moisturizer",
+    "official_url": "https://plumgoodness.com/products/cerasense-moisturizing-cream-with-ceramides-peptides-25-g",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Cera_Gel_25g_1001x1001_px.webp?v=1776939848",
+    "ingredient_ids": [
+      "ceramides",
+      "peptides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "dry"
+    ],
+    "manufacturer_concerns": [
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 284.0,
+    "mrp_inr": 299.0,
+    "pack_size": "Size not stated",
+    "variant_id": "43933983703100",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "1f906e2d96f597757d7bcd35a8f2b8aed654b58f19cd41870ccab27bf10a2668",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "b039687f-7269-567c-824d-c82a07a6d1d6",
+    "slug": "plum-green-tea-pore-cleansing-face-wash-50-ml",
+    "name": "Green Tea Pore Cleansing Face Wash | 50 ml",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "cleanser",
+    "official_url": "https://plumgoodness.com/products/green-tea-pore-cleansing-face-wash-50-ml",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/01_f60f71fa-20f4-48c7-aaa7-5aee9de73791.jpg?v=1771582656",
+    "ingredient_ids": [
+      "glycolic_acid"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "radiance",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 199.0,
+    "mrp_inr": 199.0,
+    "pack_size": "50 ml",
+    "variant_id": "45557199536188",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "88861f073476c58728e75416d7b92f71b32f69fd57a6dff7f4ab3f792d531f70",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "87b95c0c-09b2-5845-9e01-b6db8d59a79f",
+    "slug": "plum-plum-rice-water-2-niacinamide-simply-bright-face-wash-15-ml-100-off",
+    "name": "Rice Water & 2% Niacinamide Simply Bright Face Wash |15 ml",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "cleanser",
+    "official_url": "https://plumgoodness.com/products/plum-rice-water-2-niacinamide-simply-bright-face-wash-15-ml-100-off",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/02-WBG_Texure_Copy.jpg?v=1791877728",
+    "ingredient_ids": [
+      "niacinamide"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 95.0,
+    "mrp_inr": 95.0,
+    "pack_size": "15 ml",
+    "variant_id": "42699886526524",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "70373cea66eaebc10b5e6c264a15d819a29ebc3acd713ebf2a6b85eab3e222e0",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use.",
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "b2aad269-d08b-57bf-b876-1370c2e606e1",
+    "slug": "plum-rice-water-niacinamide-3-under-eye-creme-with-peptides-ceramides-caffeine",
+    "name": "Rice Water & Niacinamide 3% Under-Eye Crème with Peptides, Ceramides & Caffeine",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "eye_care",
+    "official_url": "https://plumgoodness.com/products/rice-water-niacinamide-3-under-eye-creme-with-peptides-ceramides-caffeine",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/NiaUnderEyeCremeListing01_688dac8b-214b-455e-8350-b3073346ce0e.webp?v=1785509148",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "vitamin_c",
+      "caffeine",
+      "peptides"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "texture",
+      "dark_circle_v2",
+      "eye_bag",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 424.0,
+    "mrp_inr": 499.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45751933075516",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "34e61bdc1678659c464169fb83e8900c8e929aecd4ad88097b30beed5076b425",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "4799e0ed-b6db-5bee-81db-a0db2dfc5bb6",
+    "slug": "plum-squalane-vitamin-e-spf-50-pa-dewy-bright-sunscreen",
+    "name": "Squalane & Vitamin E Dewy-Bright Sunscreen SPF 50 PA+++",
+    "brand_slug": "plum",
+    "brand": "Plum",
+    "category": "sunscreen",
+    "official_url": "https://plumgoodness.com/products/squalane-vitamin-e-spf-50-pa-dewy-bright-sunscreen",
+    "image_url": "https://cdn.shopify.com/s/files/1/0390/2985/files/Listing_1st_Tile_Squalane_SPF_1001x1001_px.webp?v=1776939054",
+    "ingredient_ids": [
+      "squalane",
+      "vitamin_e"
+    ],
+    "inci_text": null,
+    "inci_complete": false,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "radiance",
+      "moisture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 424.0,
+    "mrp_inr": 499.0,
+    "pack_size": "50 g",
+    "variant_id": "43532618006588",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://plumgoodness.com/products.json?limit=250",
+    "ingredient_source_url": "https://plumgoodness.com/products.json?limit=250",
+    "source_sha256": "b7d77e1bf71c80c78938290acc5efa7ea735418bb2e45b20ce29b35a2db00a19",
+    "verification_notes": [
+      "Only manufacturer-named key ingredients verified; complete INCI was not available in the captured source. Check the pack before use."
+    ]
+  },
+  {
+    "id": "4c780b49-003d-541d-b64d-9e3eb731a1c3",
+    "slug": "minimalist-salicylic-lha-2-cleanser",
+    "name": "Salicylic Acid + LHA 2% Cleanser",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "cleanser",
+    "official_url": "https://beminimalist.co/products/salicylic-lha-2-cleanser",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/SalicylicCleanserNew.jpg?v=1756796206",
+    "ingredient_ids": [
+      "salicylic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin",
+      "oat",
+      "lactic_acid",
+      "zinc_pca"
+    ],
+    "inci_text": "Water/Aqua, Glycerin, Propanediol, Cocamidopropyl Betaine, Sodium Lauroyl Methyl Isethionate, Decyl Glucoside, Salicylic Acid, PEG-150 Pentaerythrityl Tetrastearate, Xylitylglucoside, PEG-120 Methyl Glucose Dioleate, Panthenol, Betaine, Sodium PCA, PEG-6 Caprylic/Capric Glycerides, Anhydroxylitol, Xylitol, Pentylene Glycol, Avena Sativa (Oat) Kernel Extract, Sodium Hydroxide, Sodium Lactate, Phenoxyethanol, Ethylhexylglycerin, Coco-Glucoside, Glyceryl Oleate, Saccharide Isomerate, Polyglyceryl-3 Laurate, Zinc PCA, Lactic Acid, Capryloyl Salicylic Acid, Allantoin, Citric Acid, Sodium Citrate, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "pore"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 269.0,
+    "mrp_inr": 299.0,
+    "pack_size": "100ml",
+    "variant_id": "44802351136929",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/salicylic-lha-2-cleanser",
+    "source_sha256": "45479ea798364278cf630a21dab385c7925c1ee55c9fed2ae449ae316b7eca64",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "a6e373c1-b05e-5b24-a7ce-ebfc495b7f11",
+    "slug": "minimalist-salicylic-acid-2",
+    "name": "Salicylic Acid 2% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/salicylic-acid-2",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/products/SalicylicAcid2_1200-1-min.png?v=1646458899",
+    "ingredient_ids": [
+      "salicylic_acid",
+      "hyaluronic_acid",
+      "glycerin",
+      "glycolic_acid",
+      "lactic_acid",
+      "peptides"
+    ],
+    "inci_text": "Water/Aqua, Methylpropanediol, Propylene Glycol, Dimethyl Isosorbide, Glycolic Acid, Ethoxydiglycol, Salicylic Acid, Glycerin, Sodium Hydroxide, Pentylene Glycol, Marrubium Vulgare Extract, Polylysine, Sodium Hyaluronate, Epigallocatechin Gallatyl Glucoside, Polysorbate 20, Hydroxyethylcellulose, Xanthan Gum, Lecithin, Sclerotium Gum, Pullulan, Phenoxyethanol, Lactic Acid, Oligopeptide-10, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "acne",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 494.0,
+    "mrp_inr": 549.0,
+    "pack_size": "30ml",
+    "variant_id": "44802356805793",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/salicylic-acid-2",
+    "source_sha256": "6c2eeecad413561fd267b3ece0d4d1f5f1237899ec67126730f020804660a885",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "2d5d09db-c278-52fc-bce1-b1e84bd227f0",
+    "slug": "minimalist-tranexamic-3-hpa",
+    "name": "Tranexamic 3% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/tranexamic-3-hpa",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/TranNew.png?v=1721398127",
+    "ingredient_ids": [
+      "niacinamide",
+      "salicylic_acid",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "oat",
+      "alpha_arbutin",
+      "tranexamic_acid"
+    ],
+    "inci_text": "Water/Aqua, Avena Sativa (Oat) Kernel Extract, Methylpropanediol, Mandelic Acid, Tranexamic Acid, Ethoxydiglycol, Alpha Arbutin, Acetyl Glucosamine, Dimethyl Isosorbide, Niacinamide, Hydroxyphenoxy Propionic Acid, Pentylene Glycol, Sodium Hyaluronate, Salicylic Acid, Allantoin, Curcuma Longa (Tumeric) Root Extract, Sodium Hydroxide, Xanthan Gum, Lecithin, Phenoxyethanol, Sclerotium Gum, Pullulan, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 584.0,
+    "mrp_inr": 649.0,
+    "pack_size": "Size not stated",
+    "variant_id": "37671264059553",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/tranexamic-3-hpa",
+    "source_sha256": "b127c8b3f3a201b9a4fdaed114062bed1106bbc7d96ad23c140103ea9dd7b633",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "e146ce7c-be84-51f2-8674-a601664a9a5a",
+    "slug": "minimalist-vitamin-b12-nmf-03-face-toner",
+    "name": "Vitamin B12 + NMF 03% Face Toner",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "toner",
+    "official_url": "https://beminimalist.co/products/vitamin-b12-nmf-03-face-toner",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/ListingImageMilkyToner_a8ab36fc-8692-4454-85e2-363dbdb3b21d.jpg?v=1764930471",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin"
+    ],
+    "inci_text": "Aqua, Butylene Glycol, Betaine, Triheptanoin, Panthenol, Trehalose, Sodium PCA, Serine, Sodium Lactate, Proline, Alanine, PCA, Glycine, Sodium Hyaluronate, Cynacobalamin, Glutamic Acid, Lysine HCL, Ethylhexylglycerin, Caprylyl/Capryl Glucoside, Phenoxyethanol, Threonine, Pentylene Glycol, Sodium Hydroxide, Sodium Polyacrylate-Starch, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Arginine, Allantoin, Ocytldodecyl Myristate, Trisodium Ethylenediamine Disuccinate, Bis-PEG-18 Methyl Ether Dimethyl Silane, Soya Lecithin, Oleyl Alcohol, Sorbitan Oleate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "redness",
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 359.0,
+    "mrp_inr": 399.0,
+    "pack_size": "Size not stated",
+    "variant_id": "45504359170209",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-b12-nmf-03-face-toner",
+    "source_sha256": "c81fa615de0ea154747947a7ce547380ae71f01a66aa413573436aa932eb9817",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "e3e9722e-32e7-5721-9423-257ff10d6be5",
+    "slug": "minimalist-vitamin-b5-10-moisturizer-30g",
+    "name": "Vitamin B5 10% Moisturizer (30g)",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "moisturizer",
+    "official_url": "https://beminimalist.co/products/vitamin-b5-10-moisturizer-30g",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Website_c4c5ba7b-c744-41ed-9e40-0277fd9bf6cc.jpg?v=1741586721",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "allantoin"
+    ],
+    "inci_text": "Water/Aqua, Panthenol, Cyclopentasiloxane, Dimethicone Crosspolymer, Glycerin, Xylitylglucoside, Anhydroxylitol, Xylitol, PEG/PPG-18/18 Dimethicone, Hydrogenated Polyisobutene, Magnesium Aspartate, Zinc Gluconate, Copper Gluconate, Sodium Hyaluronate, Betaine, Phenoxyethanol, Pentylene Glycol, Allantoin, Ethylhexylglycerin, Carbomer, Magnesium Sulfate Heptahydrate, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "moisture"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 199.0,
+    "mrp_inr": 199.0,
+    "pack_size": "30g",
+    "variant_id": "44869796069537",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-b5-10-moisturizer-30g",
+    "source_sha256": "8f7b1bff33f49a0b809b4383cf0c3c7e462e871cf986ab662168331f0b96f827",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "424f2fe4-3c48-5357-b510-192fbaa41f48",
+    "slug": "minimalist-vitamin-c-e-ferulic-16",
+    "name": "Vitamin C + E + Ferulic 16% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/vitamin-c-e-ferulic-16",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/Vit16New.png?v=1721398127",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "panthenol",
+      "vitamin_c",
+      "vitamin_e"
+    ],
+    "inci_text": "Water/Aqua, 3-O-Ethyl Ascorbic Acid, Propanediol, Ethoxydiglycol, 1,2-Hexanediol, Butylene Glycol, Dimethyl Isosorbide, Argan Oil Glycereth-8 Esters, Sodium Hyaluronate, Panthenol, Ferulic Acid, Phenoxyethanol, Sodium Gluconate, Fullerenes, Tocopheryl Acetate, Pentylene Glycol, Citric Acid, Sodium Citrate, Ethylhexylglycerin, PVP, Trisodium Ethylenediamine Disuccinate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 539.0,
+    "mrp_inr": 599.0,
+    "pack_size": "20ml",
+    "variant_id": "45880084791457",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-c-e-ferulic-16",
+    "source_sha256": "e492aef28e7a3a65aca089539f11de60f46229252b3cebe9046c6030e10a4840",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "53cd5180-2149-5331-ad98-323413dd2ddb",
+    "slug": "dot-key-dot-key-vitamin-c-e-spf-50-pa-face-sunscreen-for-glowing-skin-uv-protection-for-dull-skin",
+    "name": "Vitamin C + E Sunscreen SPF 50+ PA++++ With New-Age UV Filters",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "sunscreen",
+    "official_url": "https://www.dotandkey.com/products/dot-key-vitamin-c-e-spf-50-pa-face-sunscreen-for-glowing-skin-uv-protection-for-dull-skin",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/VitaminCSunscreenListing1_24ade7b6-5667-43a8-8cbf-a750fae616a4.jpg?v=1784638633",
+    "ingredient_ids": [
+      "niacinamide",
+      "glycerin",
+      "vitamin_c",
+      "uv_filters",
+      "vitamin_e"
+    ],
+    "inci_text": "Aqua, Diethylamino Hydroxybenzoyl Hexyl Benzoate (and) Butylene Glycol (and) Ethylhexyl Triazone (and) C12-15 Alkyl Benzoate (and) Dibutyl Adipate (and) Propylene Glycol Dicaprylate/Dicaprate (and) Bis-Ethylhexyloxyphenol Methoxyphenyl Triazine (and) Lecithin (and) Polyglyceryl-3 Polyricinoleate (and) Phenoxyethanol (and) Ethylhexylglycerin (and) Trisodium Ethylenediamine Disuccinate, Isododecane, Caprylic/Capric Triglyceride, Dicaprylyl Carbonate, Glycerin, Titanium Dioxide (and) Silica (and) Dimethicone, Methylene Bis-Benzotriazolyl Tetramethylbutylphenol (and) Aqua (and) Decyl Glucoside (and) Propylene Glycol (and) Xanthan Gum, Glyceryl Citrate/Lactate/Linoleate/Oleate, Propanediol, Ascorbyl Glucoside, Citrus Sinensis (Blood Orange) Fruit Extract, Glycerin (and) Water (and) Terminalia Ferdinandiana Fruit Extract, Niacinamide, Zea Mays (Corn) Starch, Polyacrylate-13 (and) Polyisobutene (and) Polysorbate 20, Polyacrylate Crosspolymer-6, Sodium Gluconate, Xanthan Gum, Disodium EDTA, Tocopheryl Acetate, Phenoxyethanol (and) Ethylhexylglycerin",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": true,
+    "non_comedogenic": true,
+    "vegan": null,
+    "price_inr": 595.0,
+    "mrp_inr": 595.0,
+    "pack_size": "80g",
+    "variant_id": "44016920395941",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/dot-key-vitamin-c-e-spf-50-pa-face-sunscreen-for-glowing-skin-uv-protection-for-dull-skin",
+    "source_sha256": "99c63baa841bd68d09a62de4d3aa14585510ccf682c39478b1cdeaf590b5b521",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "072ae372-5633-59f3-a9e2-53edf5ed6779",
+    "slug": "minimalist-vitamin-c-ethyl-ascorbic-acid-10-acetyl-glucosamine-1",
+    "name": "Vitamin C 10% Face Serum",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "serum",
+    "official_url": "https://beminimalist.co/products/vitamin-c-ethyl-ascorbic-acid-10-acetyl-glucosamine-1",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/products/VitaminC10_1200-1-min.png?v=1646543848",
+    "ingredient_ids": [
+      "hyaluronic_acid",
+      "glycerin",
+      "centella",
+      "vitamin_c",
+      "pha"
+    ],
+    "inci_text": "Centella Asiatica Leaf Extract, 3-O-Ethyl Ascorbic Acid, Dimethyl Isosorbide, Ethoxydiglycol, Glycerin, Sodium Gluconate, Acetyl Glucosamine, Gluconolactone, Citric Acid, Pentylene Glycol, Sodium Hyaluronate, Pullulan, Hydroxyethylcellulose, Hydrolyzed Sodium Hyaluronate, Xanthan Gum, Sclerotium Gum, Phenoxyethanol, Ethylhexylglycerin, Lecithin, PEG/PPG-17/6 Copolymer, Trisodium Ethylenediamine Disuccinate, Sodium Citrate",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 285.0,
+    "mrp_inr": 299.0,
+    "pack_size": "10ml",
+    "variant_id": "45154750103713",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-c-ethyl-ascorbic-acid-10-acetyl-glucosamine-1",
+    "source_sha256": "0123a0f82b8ed72e71012ccf7ecc8bb73f1479510150bffb1a9cd36f710eef85",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "017f210f-2275-5dba-acbf-d2edc491e2c5",
+    "slug": "dot-key-vitamin-c-super-bright-foaming-face-wash",
+    "name": "Vitamin C Foaming Face Wash",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "cleanser",
+    "official_url": "https://www.dotandkey.com/products/vitamin-c-super-bright-foaming-face-wash",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1-Vit-C-Foaming-FW.jpg?v=1738833219",
+    "ingredient_ids": [
+      "niacinamide",
+      "glycerin",
+      "panthenol",
+      "vitamin_c",
+      "vitamin_e",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Cocamidopropyl Betaine, Decyl Glucoside, Glycerine, Disodium Cocoyl Glutamate, Triethanolamine, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Xanthan Gum, PEG-40 Hydrogenated Castor Oil, Niacinamide, Citric Acid, Disodium EDTA, Menthol, Sodium Ascorbyl Phosphate, Mentha Piperita (Peppermint) Oil, Panthenol, Glycerin (and) Water (and) Terminalia Ferdinandiana Fruit Extract, Citrus Sinensis (Blood Orange) Fruit Extract, Tocopheryl Acetate, Benzyl Alcohol (and) Ethylhexylglycerin (and) Tocopherol, Fragrance, CI 15985, CI 19140.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture",
+      "firmness"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 295.0,
+    "mrp_inr": 295.0,
+    "pack_size": "80ml",
+    "variant_id": "41763965796517",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/vitamin-c-super-bright-foaming-face-wash",
+    "source_sha256": "e57d2197e27b87194526846bf98cee0f783cb446aa511e0829a4ec000d1fb5aa",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "6746ee28-49e8-53b2-b87e-61df48362a03",
+    "slug": "minimalist-vitamin-k-retinal-01-eye-cream",
+    "name": "Vitamin K + Retinal 1% Eye Cream",
+    "brand_slug": "minimalist",
+    "brand": "Minimalist",
+    "category": "eye_care",
+    "official_url": "https://beminimalist.co/products/vitamin-k-retinal-01-eye-cream",
+    "image_url": "https://cdn.shopify.com/s/files/1/0410/9608/5665/files/KRetinalNew.png?v=1721632054",
+    "ingredient_ids": [
+      "niacinamide",
+      "hyaluronic_acid",
+      "glycerin",
+      "retinal",
+      "caffeine",
+      "peptides"
+    ],
+    "inci_text": "Water/Aqua, Caprylic/Capric Triglyceride, Niacinamide, Propanediol, Glycerin, Caffeine, Dimethicone, Brassica Glycerides, Diisopropyl Sebacate, Maltodextrin, Glyceryl Glucoside, Butylene Glycol, Glyceryl Stearate SE, Phytonadione Epoxide, Prunus Amygdalus Dulcis (Sweet Almond) Oil, Sodium Hyaluronate, Caprylyl Methicone, Behenyl Alcohol, Pentylene Glycol, PEG-12 Dimethicone/PPG-20 Crosspolymer, Hydrolyzed Sodium Hyaluronate, Carbomer, Phenoxyethanol, Hydroxyethylcellulose, Polyacrylate Crosspolymer-6, Xanthan Gum, Hesperidin Methyl Chalcone, Ethylhexylglycerin, Trisodium Ethylenediamine Disuccinate, Sodium Hydroxide, Retinal, N-Hydroxysuccinimide, Dipeptide-2, Palmitoyl Tetrapeptide-7, Zerumbone, Steareth-20, Chrysin, Palmitoyl Tripeptide-1",
+    "inci_complete": true,
+    "skin_types": [],
+    "manufacturer_concerns": [
+      "dark_circle_v2",
+      "eye_bag",
+      "wrinkle"
+    ],
+    "fragrance_free": null,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 449.0,
+    "mrp_inr": 499.0,
+    "pack_size": "Size not stated",
+    "variant_id": "43332855267489",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://beminimalist.co/products.json?limit=250",
+    "ingredient_source_url": "https://beminimalist.co/products/vitamin-k-retinal-01-eye-cream",
+    "source_sha256": "121bdcd5123d51bedf705995410b4359e7cd887a7aea5838674fcd43723f447c",
+    "verification_notes": [
+      "Skin-type suitability was not explicitly established in the captured source."
+    ]
+  },
+  {
+    "id": "dee357fe-0def-58ba-a004-f5c08f7da33a",
+    "slug": "dot-key-watermelon-vitamin-c-face-wash-gel-1",
+    "name": "Watermelon Gel Face Wash",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "cleanser",
+    "official_url": "https://www.dotandkey.com/products/watermelon-vitamin-c-face-wash-gel-1",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/1-2.jpg?v=1773549636",
+    "ingredient_ids": [
+      "glycerin",
+      "panthenol",
+      "vitamin_c",
+      "vitamin_e",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Cocamidopropyl Betaine, Decyl Glucoside, Disodium Cocoyl Glutamate, Glycerine, Triethanolamine, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Xanthan Gum, PEG-40 Hydrogenated Castor Oil, Citric Acid, Disodium EDTA, Menthol, Sodium Ascorbyl Phosphate, Mentha Piperita (Peppermint) Oil, Panthenol, Citrullus Lanatus (Watermelon) Fruit Extract, Aloe Barbadensis (Aloe Vera) Leaf Juice, Cucumis Sativus (Cucumber) Fruit Extract, Tocopheryl Acetate, Benzyl Alcohol (and) Ethylhexylglycerin (and) Tocopherol, Fragrance*, CI 16185. * IFRA Certified.",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "dry",
+      "oily",
+      "combination",
+      "sensitive"
+    ],
+    "manufacturer_concerns": [
+      "acne",
+      "redness",
+      "age_spot",
+      "radiance",
+      "moisture",
+      "oiliness",
+      "pore",
+      "texture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 375.0,
+    "mrp_inr": 375.0,
+    "pack_size": "175ml",
+    "variant_id": "47608852152485",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/watermelon-vitamin-c-face-wash-gel-1",
+    "source_sha256": "01817f915e3f2d5274da013fadab1213ce6e3a05c59885febb4ead4dea8b1dfb",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  },
+  {
+    "id": "955c77b7-0ce7-5580-81a7-88c478b24f2d",
+    "slug": "dot-key-watermelon-moisturizer-icy-gel",
+    "name": "Watermelon Gel Moisturizer With Hyaluronic",
+    "brand_slug": "dot-key",
+    "brand": "Dot & Key",
+    "category": "moisturizer",
+    "official_url": "https://www.dotandkey.com/products/watermelon-moisturizer-icy-gel",
+    "image_url": "https://cdn.shopify.com/s/files/1/0361/8553/8692/files/Artboard1_c215309c-b9fa-49e9-9eb2-4956861020b3.jpg?v=1791895443",
+    "ingredient_ids": [
+      "niacinamide",
+      "ceramides",
+      "hyaluronic_acid",
+      "glycerin",
+      "allantoin",
+      "vitamin_e",
+      "fragrance"
+    ],
+    "inci_text": "Aqua, Glycerin, Caprylyl Methicone (and) PEG-12 Dimethicone/PPG-20 Crosspolymer, Cyclopentasiloxane, Niacinamide, Cyclopentasiloxane (and) Dimethicone Crosspolymer, Silanetriol (and) Hyaluronic Acid, Citrullus Lanatus (Watermelon) Fruit Extract, Butylene Glycol (and) Menthyl PCA (and) Ethyl Menthane Carboxamide, Aqua (and) Laminaria Digitata Extract (and) Hydrogenated Lecithin (and) Cetyl-PG Hydroxyethyl Palmitamide (and) Ceramide 1,2,3,4,6II (and) Cholesterol (and) 1,2-Hexanediol, Aloe Barbadensis (Aloevera) Leaf Juice, Xylitylglucoside (and) Anhydroxylitol (and) Xylitol, Tocopheryl Acetate, Mentha Piperita (Peppermint) Oil, Allantoin, Polyacrylate Crosspolymer-11, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Hydroxyethyl Acrylate/Sodium Acryloyldimethyl Taurate Copolymer, Dimethicone, Disodium EDTA, Sodium Hydroxide, Phenoxyethanol (and) Ethylhexylglycerin, Fragrance*. *IFRA Certified",
+    "inci_complete": true,
+    "skin_types": [
+      "normal",
+      "oily",
+      "combination"
+    ],
+    "manufacturer_concerns": [
+      "age_spot",
+      "radiance",
+      "moisture",
+      "texture"
+    ],
+    "fragrance_free": false,
+    "non_comedogenic": null,
+    "vegan": null,
+    "price_inr": 495.0,
+    "mrp_inr": 495.0,
+    "pack_size": "60g",
+    "variant_id": "44953711739045",
+    "available": true,
+    "verified_at": "2026-10-16T15:38:05.667860+00:00",
+    "source_url": "https://www.dotandkey.com/products.json?limit=250",
+    "ingredient_source_url": "https://www.dotandkey.com/products/watermelon-moisturizer-icy-gel",
+    "source_sha256": "43645274f817ceda89f1832758b681ad8d6cadab21caf9e8614d386ee29321d6",
+    "verification_notes": [
+      "Manufacturer page refers to formulation changes; check the received pack."
+    ]
+  }
+]
