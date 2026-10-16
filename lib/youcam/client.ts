@@ -3,7 +3,7 @@ import { z } from "zod";
 import { actions } from "../types";
 import { AppError } from "../server/errors";
 import { taskCreated, parseTask } from "./parser";
-async function provider(path: string, init: RequestInit = {}) {
+export async function provider(path: string, init: RequestInit = {}) {
   if (!process.env.YOUCAM_API_KEY)
     throw new AppError(
       "PROVIDER_NOT_CONFIGURED",

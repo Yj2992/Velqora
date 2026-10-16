@@ -55,3 +55,12 @@ The local preview server was used for verification and stopped during teardown. 
 ## Successful live result recovery — 16 October 2026
 
 A real YouCam v2.1 task completed successfully, returning `error: null` and `url: null` on output entries. The parser now accepts these nullable optional fields without relaxing numeric score validation. The existing task was polled and its real output saved through `complete_scan`, then read back to verify completed status, 15 metric rows, and 3 regional classifications. No new task or photo submission was made for this recovery. Regression data uses synthetic scores and example URLs only.
+
+## Optional Fitzpatrick integration — 16 October 2026
+
+- 54 tests passed; typecheck and production build passed; production dependency audit found zero vulnerabilities.
+- New parser fixtures cover I–VI, nullable fields, missing/invalid classifications, pending/failure states, and multi-face detection.
+- Route tests cover ownership, explicit consent, previous-task reuse without provider calls, and expired-photo rejection.
+- Migration applied through authenticated Supabase tools. Rolled-back live database checks verified owner_visible=1, other_user_visible=0; anon SELECT, authenticated INSERT, and authenticated provider task ID reads were denied.
+- Demo panel rendered and visually verified without inventing a classification.
+- No new real photo was transmitted and no paid Fitzpatrick task was submitted during implementation. Provider results/face-preprocess shape are based on official OpenAPI documentation and still require one live consented test.

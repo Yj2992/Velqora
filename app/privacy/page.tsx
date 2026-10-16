@@ -20,7 +20,7 @@ export default function Privacy() {
             ],
             [
               "Retention",
-              "Your administrator configures photo retention, default 24 hours. Daily cleanup may remove files up to 24 hours after expiry; expired photos cannot be accessed through the application. Numerical history is enabled only after verifying provider storage terms. Provider masks are not retained.",
+              "Your administrator configures photo retention, default 24 hours. Daily cleanup may remove files up to 24 hours after expiry; expired photos cannot be accessed through the application. Numerical history is enabled only after verifying provider storage terms. Provider masks are not retained. Optional Fitzpatrick estimates require additional consent, reuse a retained photo, and are deleted with the associated scan.",
             ],
             [
               "AI explanations",

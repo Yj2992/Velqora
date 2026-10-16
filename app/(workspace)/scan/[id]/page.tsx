@@ -7,6 +7,7 @@ import { useApp, api } from "@/components/app-provider";
 import { Button } from "@/components/ui/button";
 import { PageHeader, MetricCards, date, score } from "@/components/shared";
 import type { Scan } from "@/lib/types";
+import { FitzpatrickPanel } from "@/components/fitzpatrick-panel";
 export default function Results() {
   const { id } = useParams<{ id: string }>(),
     { data, demo, refresh } = useApp(),
@@ -219,6 +220,7 @@ export default function Results() {
             </section>
           )}
           <MetricCards scan={scan} />
+          <FitzpatrickPanel scanId={scan.id} demo={demo} />
           {!demo && (
             <section className="card" style={{ marginTop: 24 }}>
               <div className="card-heading">
