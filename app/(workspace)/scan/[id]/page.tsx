@@ -15,6 +15,7 @@ export default function Results() {
     ),
     [error, setError] = useState(""),
     [checking, setChecking] = useState(false),
+    [attempt, setAttempt] = useState(0),
     [pause, setPause] = useState(false),
     [image, setImage] = useState("");
   useEffect(() => {
@@ -25,26 +26,35 @@ export default function Results() {
     let stopped = false;
     let timer: ReturnType<typeof setTimeout>;
     const start = Date.now();
+    let failures = 0;
+    setPause(false);
     async function check() {
+      setChecking(true);
       try {
         const s = await api<Scan>("/api/scans/" + id);
         if (stopped) return;
         setScan(s);
+        failures = 0;
         setError("");
         if (s.status === "completed") {
           void refresh();
         } else if (
-          s.status === "processing" &&
-          Date.now() - start < 180000 &&
-          !pause
+          ["pending", "processing", "timed_out"].includes(s.status) &&
+          Date.now() - start < 180000
         )
           timer = setTimeout(check, 10000);
-        else if (s.status === "processing") setPause(true);
+        else if (["pending", "processing", "timed_out"].includes(s.status))
+          setPause(true);
       } catch (e) {
         if (!stopped) {
           setError((e as Error).message);
-          setPause(true);
+          failures += 1;
+          if (failures < 3 && Date.now() - start < 180000)
+            timer = setTimeout(check, 10000);
+          else setPause(true);
         }
+      } finally {
+        if (!stopped) setChecking(false);
       }
     }
     void check();
@@ -52,19 +62,11 @@ export default function Results() {
       stopped = true;
       clearTimeout(timer);
     };
-  }, [id, demo, pause, refresh]);
-  async function resume() {
-    setChecking(true);
+  }, [id, demo, attempt, refresh]);
+  function resume() {
     setError("");
-    try {
-      const s = await api<Scan>("/api/scans/" + id);
-      setScan(s);
-      setPause(s.status === "timed_out");
-    } catch (e) {
-      setError((e as Error).message);
-    } finally {
-      setChecking(false);
-    }
+    setPause(false);
+    setAttempt((value) => value + 1);
   }
   async function visuals() {
     try {
@@ -130,7 +132,7 @@ export default function Results() {
       {scan.status !== "completed" ? (
         <section className="card empty-state">
           <div className="empty-icon">
-            {scan.status === "failed" ? (
+            {scan.status === "failed" || pause ? (
               <ScanFace />
             ) : (
               <div className="loader" />
@@ -145,14 +147,17 @@ export default function Results() {
           </h2>
           <p>
             {scan.error_message ||
-              "Your task is saved securely. This page checks for a result every 10 seconds."}
+              (pause
+                ? "Automatic checks are paused. Resume checking the saved task, or return to your dashboard."
+                : "Your task is saved securely. This page checks every 10 seconds; you can leave and return without starting another scan.")}
           </p>
-          {["timed_out", "processing"].includes(scan.status) && (
-            <Button onClick={() => void resume()} disabled={checking}>
-              <RefreshCw size={16} />
-              {checking ? "Checking…" : "Resume checking"}
-            </Button>
-          )}
+          {pause &&
+            ["pending", "timed_out", "processing"].includes(scan.status) && (
+              <Button onClick={() => void resume()} disabled={checking}>
+                <RefreshCw size={16} />
+                {checking ? "Checking…" : "Resume checking"}
+              </Button>
+            )}
           {scan.status === "failed" && (
             <Button asChild>
               <Link href="/scan">Try a new photograph</Link>

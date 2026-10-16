@@ -1,4 +1,5 @@
 import "server-only";
+import { z } from "zod";
 import { actions } from "../types";
 import { AppError } from "../server/errors";
 import { taskCreated, parseTask } from "./parser";
@@ -57,7 +58,80 @@ async function provider(path: string, init: RequestInit = {}) {
     );
   }
 }
-export async function submit(imageUrl: string) {
+const fileResponse = z.object({
+  status: z.literal(200),
+  data: z.object({
+    files: z
+      .array(
+        z.object({
+          file_id: z.string().min(1),
+          requests: z
+            .array(
+              z.object({
+                url: z.url().startsWith("https://"),
+                method: z.literal("PUT"),
+                headers: z.record(
+                  z.string(),
+                  z.union([z.string(), z.number()]),
+                ),
+              }),
+            )
+            .min(1),
+        }),
+      )
+      .length(1),
+  }),
+});
+export async function uploadPhoto(bytes: Uint8Array): Promise<string> {
+  const raw = await provider("/s2s/v2.0/file", {
+    method: "POST",
+    body: JSON.stringify({
+      files: [
+        {
+          content_type: "image/jpeg",
+          file_name: "selfie.jpg",
+          file_size: bytes.byteLength,
+        },
+      ],
+    }),
+  });
+  const parsed = fileResponse.safeParse(raw);
+  if (!parsed.success)
+    throw new AppError(
+      "PROVIDER_INVALID",
+      "The provider did not return valid photo upload instructions.",
+      502,
+    );
+  const file = parsed.data.data.files[0];
+  for (const request of file.requests) {
+    let response: Response;
+    try {
+      response = await fetch(request.url, {
+        method: request.method,
+        headers: Object.fromEntries(
+          Object.entries(request.headers).map(([k, v]) => [k, String(v)]),
+        ),
+        body: new Uint8Array(bytes),
+        signal: AbortSignal.timeout(20000),
+        redirect: "error",
+      });
+    } catch {
+      throw new AppError(
+        "PROVIDER_UPLOAD_FAILED",
+        "The photo could not be transferred to the analysis provider. Try again shortly.",
+        502,
+      );
+    }
+    if (!response.ok)
+      throw new AppError(
+        "PROVIDER_UPLOAD_FAILED",
+        "The analysis provider could not receive the photo.",
+        502,
+      );
+  }
+  return file.file_id;
+}
+export async function submit(fileId: string) {
   const raw = await provider("/s2s/v2.1/task/skin-analysis", {
     method: "POST",
     body: JSON.stringify({
@@ -65,7 +139,7 @@ export async function submit(imageUrl: string) {
       miniserver_args: { enable_mask_overlay: false },
       format: "json",
       pf_camera_kit: false,
-      src_file_url: imageUrl,
+      src_file_id: fileId,
     }),
   });
   try {

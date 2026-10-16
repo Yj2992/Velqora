@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth, ownedScan, quota, scanSelect } from "@/lib/server/auth";
 import { checked, fail } from "@/lib/server/errors";
 import { poll } from "@/lib/youcam/client";
+import { failureMessage } from "@/lib/youcam/parser";
 import { uuid } from "@/lib/validation";
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -65,8 +66,7 @@ export async function GET(request: Request, ctx: Context) {
               .from("skin_scans")
               .update({
                 status: "failed",
-                error_message:
-                  "The provider could not analyze this photo. Try a clear, front-facing photograph.",
+                error_message: failureMessage(result.errorCode),
               })
               .eq("id", id)
               .eq("user_id", user.id)

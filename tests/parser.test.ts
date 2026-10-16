@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { parseTask, taskCreated } from "../lib/youcam/parser";
+import { parseTask, taskCreated, failureMessage } from "../lib/youcam/parser";
 const response = (output: unknown[]) => ({
   status: 200,
   data: { task_status: "success", results: { output } },
@@ -77,6 +77,7 @@ describe("YouCam response parser", () => {
     ).toEqual({ state: "processing" });
     expect(parseTask({ status: 200, data: { task_status: "error" } })).toEqual({
       state: "failed",
+      errorCode: undefined,
     });
   });
   it("requires a valid returned task identifier", () => {
@@ -97,4 +98,29 @@ describe("YouCam response parser", () => {
     expect(r.metrics).toEqual([]);
     expect(r.visuals).toHaveLength(1);
   });
+});
+
+it("handles terminal provider errors with null results without exposing raw messages", () => {
+  expect(
+    parseTask({
+      status: 200,
+      data: {
+        task_status: "error",
+        results: null,
+        error: "error_download_image",
+        error_message: "private URL",
+      },
+    }),
+  ).toEqual({ state: "failed", errorCode: "error_download_image" });
+  expect(
+    parseTask({ status: 200, data: { task_status: "running", results: null } }),
+  ).toEqual({ state: "processing" });
+});
+
+it("shows safe actionable provider failures without echoing unknown details", () => {
+  expect(failureMessage("error_large_face_angle")).toContain("straight-on");
+  expect(failureMessage("error_download_image")).toContain("could not receive");
+  expect(failureMessage("https://private.test/?token=secret")).not.toContain(
+    "secret",
+  );
 });

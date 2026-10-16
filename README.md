@@ -68,7 +68,7 @@ npm audit
 
 Unit and mocked-handler tests cover parsing, special/missing/duplicate metrics, score matching, state transitions, timeouts, provider failures, consent/retention boundaries, upload validation, experiment validation, authentication, ownership filters, atomic quota failure, and duplicate submissions. These do **not** substitute for live Supabase RLS or paid provider tests.
 
-Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. Supabase authentication, storage, SQL execution, and isolation were subsequently verified on agriguard (see the connected-project section below). Real YouCam output and email delivery remain to be verified.
+Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. Supabase authentication, storage, SQL execution, and isolation were subsequently verified on agriguard (see the connected-project section below). Real successful YouCam output and email delivery remain to be verified.
 
 Before submission, complete these live checks:
 
@@ -152,3 +152,7 @@ or website deployment has been verified.
 ### HEIC uploads
 
 Scan uploads accept JPEG, PNG, HEIC and HEIF files up to 8 MB. HEIC is decoded on the server using libheif WASM, then resized and stripped of metadata before private JPEG storage and YouCam submission. Browsers without HEIC preview support show the selected filename. The server validates container bytes and decoded dimensions (256 px minimum, 25 million pixels maximum); file extensions alone are not trusted. Only the first image of a multi-image container is analyzed.
+
+### Live YouCam upload verification — 16 October 2026
+
+API authentication and unit-balance checks passed. A real task exposed a provider downloader failure on long Supabase signed URLs. Submission now registers a file with YouCam, uploads the stripped JPEG with the returned PUT instructions, and submits its file ID. A live recovery verified that this upload flow works: YouCam returned a terminal face-angle rejection within the first 10-second status check. No successful scan scores were produced in that check. Null results on running/failed tasks are accepted, terminal errors are shown with safe actionable messages, and polling no longer leaves a spinner running after automatic checks stop. Provider error text is never echoed because it can contain signed links.

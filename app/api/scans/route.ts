@@ -3,7 +3,7 @@ import { prepareImage } from "@/lib/server/image";
 import { auth, quota, scanSelect } from "@/lib/server/auth";
 import { AppError, checked, required, fail } from "@/lib/server/errors";
 import { uuid, validateImage } from "@/lib/validation";
-import { submit } from "@/lib/youcam/client";
+import { submit, uploadPhoto } from "@/lib/youcam/client";
 import { boundedFormData } from "@/lib/server/upload";
 export const runtime = "nodejs";
 export const maxDuration = 60;
@@ -162,10 +162,8 @@ export async function POST(request: Request) {
         "This scan was deleted while it was being prepared.",
         409,
       );
-    const signed = required(
-      await db.storage.from("skin-photos").createSignedUrl(path, 600),
-    );
-    const task = await submit(signed.signedUrl);
+    const fileId = await uploadPhoto(clean);
+    const task = await submit(fileId);
     const saved = checked(
       await db
         .from("skin_scans")

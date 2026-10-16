@@ -42,3 +42,12 @@ The local preview server was used for verification and stopped during teardown. 
   intentional RLS-protected signed-in GraphQL schema visibility remain warnings.
 - No YouCam/LLM credentials were supplied. Paid provider analysis, actual email delivery,
   scheduled production photo cleanup, and HTTPS deployment remain unverified.
+
+## YouCam live diagnosis — 16 October 2026
+
+- Authentication and balance GET requests succeeded.
+- Live photo task initially failed because the provider treated the signed URL query as a filename.
+- Direct YouCam File API upload and file-ID submission succeeded in a single recovery attempt.
+- The recovered task returned `error_large_face_angle` at the first status check; its saved status is failed with straight-on photo guidance. No scores were fabricated or saved.
+- Parser regression tests now cover null results in running/error responses and safe failure messages.
+- A successful live analysis still needs a suitable front-facing photo.

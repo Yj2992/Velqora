@@ -34,7 +34,8 @@ const envelope = z.object({
       "error",
       "failed",
     ]),
-    results: z.object({ output: z.array(entry) }).optional(),
+    results: z.unknown().optional(),
+    error: z.string().optional(),
   }),
 });
 export function parseTask(value: unknown) {
@@ -42,10 +43,11 @@ export function parseTask(value: unknown) {
   if (p.status !== 200)
     throw new Error("Provider returned an unsuccessful response");
   if (p.data.task_status === "error" || p.data.task_status === "failed")
-    return { state: "failed" as const };
+    return { state: "failed" as const, errorCode: p.data.error };
   if (p.data.task_status !== "success") return { state: "processing" as const };
   if (!p.data.results)
     throw new Error("Completed provider response has no output");
+  const results = z.object({ output: z.array(entry) }).parse(p.data.results);
   const metrics: Metric[] = [],
     skinTypes: SkinType[] = [];
   let overall: number | null = null,
@@ -53,7 +55,7 @@ export function parseTask(value: unknown) {
   const visuals: { type: string; url: string }[] = [];
   const seen = new Set<string>(),
     regions = new Set<string>();
-  for (const e of p.data.results.output) {
+  for (const e of results.output) {
     if (e.type === "all") {
       overall = e.ui_score ?? (typeof e.score === "number" ? e.score : null);
       continue;
@@ -127,3 +129,23 @@ export const taskCreated = z.object({
   status: z.literal(200),
   data: z.object({ task_id: z.string().min(1) }),
 });
+
+/** Never expose provider error_message: it can contain private URLs and tokens. */
+export function failureMessage(code?: string): string {
+  switch (code) {
+    case "error_download_image":
+      return "The provider could not receive this photo. Please start a new scan; the upload connection has been corrected.";
+    case "error_large_face_angle":
+      return "Your face is turned too far to the side or tilted. Take a straight-on photo at eye level, with your whole face visible.";
+    case "error_no_face":
+      return "No face was detected. Choose a clear, well-lit photo with your whole face visible.";
+    case "error_multiple_people":
+      return "More than one person was detected. Choose a photo showing only your face.";
+    case "error_src_face_too_small":
+      return "Your face is too small in this photo. Move closer so your face fills most of the frame.";
+    case "error_lighting_dark":
+      return "The photo is too dark. Take a new photo in bright, even light.";
+    default:
+      return "The provider could not analyze this photo. Try a clear, front-facing photograph.";
+  }
+}
