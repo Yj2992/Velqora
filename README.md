@@ -1,4 +1,4 @@
-# DermaLens
+# Velqora
 
 See Beyond Your Skin. Track What Truly Works.
 
@@ -109,14 +109,14 @@ and a production dependency audit on main pushes and pull requests. The workflow
 uses Node 24 and SHA-pinned actions; Dependabot proposes dependency updates weekly.
 CI uses no provider credentials and makes no live skin-analysis requests.
 
-DermaLens is now connected locally to the existing agriguard Supabase project. Live website deployment is still pending.
+Velqora is now connected locally to the existing agriguard Supabase project. Live website deployment is still pending.
 
 
 ## Connected Supabase project (16 October 2026)
 
-DermaLens reuses **agriguard**, project ref `bqsmamuarzwkdtmmvmyo`, in `us-east-2`.
+Velqora reuses **agriguard**, project ref `bqsmamuarzwkdtmmvmyo`, in `us-east-2`.
 The legacy `public.scan_results` table (21 records) and public `scans` bucket were preserved.
-DermaLens uses its own tables and the separate **private** `skin-photos` bucket.
+Velqora uses its own tables and the separate **private** `skin-photos` bucket.
 
 Both migrations were applied and recorded. Browser roles have read-only access to
 own rows through RLS; writes and server RPCs require authenticated backend handlers.
@@ -136,7 +136,7 @@ and object. It sends no emails or YouCam requests and creates no synthetic scan 
 Do not run it against a project you are not authorized to test.
 
 The Supabase security advisor reports no errors. Existing legacy scan policies and
-public bucket produce warnings; signed-in GraphQL discovery of DermaLens tables is
+public bucket produce warnings; signed-in GraphQL discovery of Velqora tables is
 also reported because authenticated users intentionally have RLS-protected SELECT
 access. These are not anonymous access grants. The two-user isolation checks passed.
 

@@ -187,7 +187,7 @@ export default function Landing() {
             <p>
               Your skin changes. Your routine evolves.
               <br />
-              DermaLens helps you see the story in between.
+              Velqora helps you see the story in between.
             </p>
           </div>
           <div className="steps-grid">
@@ -327,7 +327,7 @@ export default function Landing() {
           <p>
             Your photographs are stored privately and sent to YouCam only with
             your consent. You control your saved scans and measurements.
-            External AI sharing is optional. Delete your DermaLens data whenever
+            External AI sharing is optional. Delete your Velqora data whenever
             you choose.
           </p>
           <Link href="/privacy" className="text-link">
@@ -358,7 +358,7 @@ export default function Landing() {
           <a href="#privacy">Privacy</a>
         </div>
         <small>
-          © {new Date().getFullYear()} DermaLens. Cosmetic self-tracking, not
+          © {new Date().getFullYear()} Velqora. Cosmetic self-tracking, not
           medical diagnosis.
         </small>
       </footer>

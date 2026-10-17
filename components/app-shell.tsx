@@ -168,7 +168,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           )}
         </main>
         <footer className="app-footer">
-          <span>DermaLens · A little clarity, every day.</span>
+          <span>Velqora · A little clarity, every day.</span>
           <span>Cosmetic self-tracking. Not a medical diagnosis.</span>
         </footer>
       </div>

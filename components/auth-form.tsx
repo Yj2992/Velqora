@@ -112,7 +112,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
         </Button>
       </form>
       <div className="auth-switch">
-        {signup ? "Already have an account?" : "New to DermaLens?"}{" "}
+        {signup ? "Already have an account?" : "New to Velqora?"}{" "}
         <Link href={signup ? "/login" : "/signup"}>
           {signup ? "Sign in" : "Create an account"}
         </Link>

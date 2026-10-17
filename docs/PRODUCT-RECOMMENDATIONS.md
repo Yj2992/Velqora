@@ -1,4 +1,4 @@
-# DermaLens product discovery
+# Velqora product discovery
 
 Implemented 16 October 2026. This feature uses fixed rules and a curated factual catalog. It does not call an LLM, generate product facts, infer diagnoses, or predict a treatment result.
 
@@ -62,7 +62,7 @@ Internal sorting weights: 10 per matched concern, 2 per matched ingredient, 2 fo
 
 1. A completed scan has **Find Products**, carrying that scan ID to `/products`.
 2. `/products` presents focus chips for all 15 indicators, limitations/evidence, source-checked product images, INR prices/variant labels, named ingredients, source dates, suitability and expandable full details. Personal preferences are optional and can be saved privately.
-3. **Official store** opens the exact observed variant on the brand's store. DermaLens does not accept payment or claim live checkout availability.
+3. **Official store** opens the exact observed variant on the brand's store. Velqora does not accept payment or claim live checkout availability.
 4. **Track This Product** opens the existing new-experiment screen with the canonical product ID/name, selected owned baseline and an available target metric. A completed baseline is required. Users can switch to a custom product.
 5. Creation validates product identity server-side, validates baseline ownership and metric availability, then stores the optional product foreign key. The browser's submitted product name is not trusted for linked products.
 6. Existing daily usage logging, pause/complete controls and same-provider follow-up comparison work as before. Numerical changes remain observations; they do not prove the product caused them. Without a follow-up scan, the UI says comparison is pending.

@@ -43,7 +43,7 @@ export default function Onboarding() {
         </div>
         <span className="eyebrow">BEFORE YOUR FIRST SCAN</span>
         <h1>Your trust comes first.</h1>
-        <p>Here’s exactly how DermaLens handles your skin story.</p>
+        <p>Here’s exactly how Velqora handles your skin story.</p>
         <div className="onboarding-items">
           <div>
             <span>01</span>
@@ -90,7 +90,7 @@ export default function Onboarding() {
           <span>
             I have read this notice and consent to processing my selected facial
             photographs through YouCam and storing measurements as described. I
-            understand that I can delete my DermaLens data.
+            understand that I can delete my Velqora data.
           </span>
         </label>
         {error && (

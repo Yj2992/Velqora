@@ -247,7 +247,7 @@ export default function Results() {
               </div>
               <p className="subtle">
                 These images come directly from YouCam and may expire. They are
-                not retained by DermaLens.
+                not retained by Velqora.
               </p>
               <div className="metric-grid">
                 {scan.visualizations?.map((v, i) => (

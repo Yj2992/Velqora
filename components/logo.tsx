@@ -27,7 +27,7 @@ export function Logo() {
     <Link href="/" className="logo">
       <Mark />
       <span>
-        DermaLens<span className="logo-dot">.</span>
+        Velqora<span className="logo-dot">.</span>
       </span>
     </Link>
   );

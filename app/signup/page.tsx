@@ -25,7 +25,7 @@ export default function AuthPage() {
             <span>dl.</span>
           </div>
         </div>
-        <p className="auth-story-footer">DermaLens · See beyond your skin.</p>
+        <p className="auth-story-footer">Velqora · See beyond your skin.</p>
       </section>
       <section className="auth-panel">
         <Link href="/" className="text-link">

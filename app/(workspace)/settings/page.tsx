@@ -106,7 +106,7 @@ export default function Settings() {
             </div>
           </dl>
           <p className="subtle">
-            Deletion removes data from DermaLens. Third-party processing and
+            Deletion removes data from Velqora. Third-party processing and
             retention follow the relevant provider terms.
           </p>
         </section>
@@ -163,7 +163,7 @@ export default function Settings() {
         )}
       </section>
       <section className="card danger-zone">
-        <h2>Delete your DermaLens data</h2>
+        <h2>Delete your Velqora data</h2>
         <p>
           Remove scans, photos, experiments, usage logs, insights, product
           preferences, and consent records. Your login account remains;
@@ -181,7 +181,7 @@ export default function Settings() {
           variant="destructive"
           disabled={busy || confirmation !== "DELETE"}
           onClick={() =>
-            void run(clearData, "Your DermaLens data has been deleted.")
+            void run(clearData, "Your Velqora data has been deleted.")
           }
         >
           <Trash2 size={16} />

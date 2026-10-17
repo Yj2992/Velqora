@@ -11,7 +11,7 @@ export default function Privacy() {
           <ShieldCheck size={34} />
         </div>
         <h1>Your story belongs to you.</h1>
-        <p>DermaLens privacy notice · version 2026-10-v1</p>
+        <p>Velqora privacy notice · version 2026-10-v1</p>
         <div className="onboarding-items">
           {[
             [
@@ -32,11 +32,11 @@ export default function Privacy() {
             ],
             [
               "Control and deletion",
-              "Delete a scan or all DermaLens application data in Settings. Your login account remains after data deletion. DermaLens deletion does not revoke previously issued short-lived links or guarantee deletion of information processed by third parties; provider retention terms apply.",
+              "Delete a scan or all Velqora application data in Settings. Your login account remains after data deletion. Velqora deletion does not revoke previously issued short-lived links or guarantee deletion of information processed by third parties; provider retention terms apply.",
             ],
             [
               "Purpose",
-              "DermaLens supports cosmetic self-tracking. It does not diagnose conditions or establish that a product caused a measured change.",
+              "Velqora supports cosmetic self-tracking. It does not diagnose conditions or establish that a product caused a measured change.",
             ],
           ].map(([h, p], i) => (
             <div key={h}>
