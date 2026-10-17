@@ -85,3 +85,7 @@ The zero-match state now explains each selected concern, distinguishes structura
 ### Automatic basic-care alternatives
 
 Reproduced the reported dry-skin selection with tear troughs, dark circles and pores. The page now retains the selected priorities and directly displays 27 eligible basic-care records with an explicit separate label and 0 targeted matches. No age confirmation, retinoid, ingredient, budget or skin-type filter is relaxed. Scan selector scores use one decimal. Two additional regression tests verify automatic basic-care separation and preservation of budget/discovery filters; 73 tests, strict TypeScript and production build pass.
+
+## Product list refinement — 17 October 2026
+
+Added a nine-option category/brand-balanced starter shortlist, all-eligible view, full-ingredient-only discovery filter, ingredient-list badges and relevant-first ingredient tags. Reduced repeated card text and folded selected concern evidence into a disclosure. No catalog facts, safety eligibility rules or private preferences were changed. Four new tests verify category/brand variety, deterministic selection without mutation, preference for ordinary formats, and attributable ingredient tags. All 77 tests, TypeScript and production build pass. Browser checks verified shortlist/all switching and that all 12 initially visible full-list-filtered cards carried full ingredient lists.

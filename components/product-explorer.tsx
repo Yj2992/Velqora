@@ -28,6 +28,11 @@ import {
   type Preferences,
   type Product,
 } from "@/lib/products/types";
+import {
+  starterShortlist,
+  featuredIngredients,
+  categoryNames,
+} from "@/lib/products/presentation";
 import ingredients from "@/data/ingredients.catalog.json";
 const label = (id: string) =>
   ingredients.find((i) => i.id === id)?.name || id.replaceAll("_", " ");
@@ -51,6 +56,8 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     [brand, setBrand] = useState(""),
     [category, setCategory] = useState(""),
     [sort, setSort] = useState("matches"),
+    [listView, setListView] = useState("shortlist"),
+    [completeOnly, setCompleteOnly] = useState(false),
     [expanded, setExpanded] = useState<string | null>(null),
     [visible, setVisible] = useState(12),
     [status, setStatus] = useState(""),
@@ -105,6 +112,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
       Date.now(),
       browse,
       (m) =>
+        (!completeOnly || m.product.inci_complete) &&
         (!brand || m.product.brand_slug === brand) &&
         (!category || m.product.category === category) &&
         (!query ||
@@ -125,6 +133,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     return { ...result, matches: found };
   }, [
     products,
+    completeOnly,
     prefs,
     avoid,
     scanId,
@@ -135,6 +144,9 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     query,
     sort,
   ]);
+  const shortlist = useMemo(() => starterShortlist(matches), [matches]);
+  const displayMatches =
+    listView === "shortlist" && sort === "matches" ? shortlist : matches;
   const emptyDetails =
     !browse && !matches.length
       ? explainMatches(products, effective, focus)
@@ -391,29 +403,36 @@ export function ProductExplorer({ products }: { products: Product[] }) {
                 </button>
               ))}
             </div>
-            {focus
-              .map((id) => concernRules.find((r) => r.id === id)!)
-              .map((r) => (
-                <div className="concern-guidance" key={r.id}>
-                  <strong>
-                    {r.label}
-                    {r.support === "not_topical"
-                      ? " · topical correction not supported"
-                      : r.support === "limited"
-                        ? " · limited cosmetic support"
-                        : ""}
-                  </strong>
-                  <p>{r.limitation}</p>
-                  <a
-                    className="text-link"
-                    href={r.source}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Read the evidence <ArrowUpRight size={13} />
-                  </a>
-                </div>
-              ))}
+            {focus.length > 0 && (
+              <details className="focus-evidence">
+                <summary>
+                  Selected concern guidance & evidence ({focus.length})
+                </summary>
+                {focus
+                  .map((id) => concernRules.find((r) => r.id === id)!)
+                  .map((r) => (
+                    <div className="concern-guidance" key={r.id}>
+                      <strong>
+                        {r.label}
+                        {r.support === "not_topical"
+                          ? " · topical correction not supported"
+                          : r.support === "limited"
+                            ? " · limited cosmetic support"
+                            : ""}
+                      </strong>
+                      <p>{r.limitation}</p>
+                      <a
+                        className="text-link"
+                        href={r.source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Read the evidence <ArrowUpRight size={13} />
+                      </a>
+                    </div>
+                  ))}
+              </details>
+            )}
             <details className="score-source">
               <summary>How scan scores are used</summary>
               <p>
@@ -476,7 +495,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               <option value="">All categories</option>
               {categories.map((c) => (
                 <option key={c} value={c}>
-                  {c.replaceAll("_", " ")}
+                  {categoryNames[c]}
                 </option>
               ))}
             </select>
@@ -489,6 +508,37 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               <option value="price-low">Price: low to high</option>
               <option value="price-high">Price: high to low</option>
             </select>
+          </div>
+          <div className="product-list-controls">
+            <div
+              className="shortlist-switch"
+              role="group"
+              aria-label="List length"
+            >
+              <button
+                aria-pressed={listView === "shortlist" && sort === "matches"}
+                onClick={() => {
+                  setListView("shortlist");
+                  setSort("matches");
+                }}
+              >
+                Starter shortlist
+              </button>
+              <button
+                aria-pressed={listView === "all" || sort !== "matches"}
+                onClick={() => setListView("all")}
+              >
+                All eligible ({matches.length})
+              </button>
+            </div>
+            <label className="checkbox-row">
+              <input
+                type="checkbox"
+                checked={completeOnly}
+                onChange={(e) => setCompleteOnly(e.target.checked)}
+              />
+              Full ingredient lists only
+            </label>
           </div>
           {ready && showingBasicCare && (
             <section
@@ -527,6 +577,15 @@ export function ProductExplorer({ products }: { products: Product[] }) {
             </strong>
             <span>Preferences applied · no sponsored ranking</span>
           </div>
+          {ready && matches.length > 0 && (
+            <p className="shortlist-explanation">
+              {listView === "shortlist" && sort === "matches"
+                ? `Showing ${shortlist.length} options balanced across available categories and brands, with everyday formats first and rule order within each format.`
+                : "All products that meet your current filters."}{" "}
+              Choose alternatives that fit your routine; this is not a list to
+              use together.
+            </p>
+          )}
           {!ready ? (
             <div className="card empty-state" role="status">
               Loading your preferences…
@@ -596,7 +655,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
             </div>
           ) : (
             <div className="product-grid">
-              {matches.slice(0, visible).map((match) => {
+              {displayMatches.slice(0, visible).map((match) => {
                 const p = match.product;
                 const trackMetric =
                   match.matchedConcerns.find((id) =>
@@ -633,35 +692,43 @@ export function ProductExplorer({ products }: { products: Product[] }) {
                       </span>
                     </div>
                     <div className="product-card-body">
-                      <span className="section-label">{p.brand}</span>
+                      <div className="product-brand-row">
+                        <span className="section-label">{p.brand}</span>
+                        <span
+                          className={
+                            "ingredient-status " +
+                            (p.inci_complete ? "complete" : "partial")
+                          }
+                        >
+                          {p.inci_complete
+                            ? "Full ingredient list"
+                            : "Key ingredients only"}
+                        </span>
+                      </div>
                       <h3>{p.name}</h3>
                       <div className="product-price">
                         <strong>{money(p.price_inr)}</strong>
                         <span>{p.pack_size}</span>
                       </div>
                       <div className="ingredient-tags">
-                        {p.ingredient_ids
-                          .filter(
-                            (i) => i !== "fragrance" && i !== "alcohol_denat",
-                          )
-                          .slice(0, 4)
-                          .map((i) => (
-                            <span key={i}>{label(i)}</span>
-                          ))}
+                        {featuredIngredients(match).map((i) => (
+                          <span key={i}>{label(i)}</span>
+                        ))}
                       </div>
                       <div className="product-reason">
                         <ShieldCheck size={15} />
                         <p>
-                          {browse
-                            ? "Browse record — not a personalized efficacy claim."
-                            : match.reasons[0]}
+                          {match.matchedConcerns.length
+                            ? `Ingredient matches for ${match.matchedConcerns.map((id) => concernRules.find((r) => r.id === id)?.label.toLowerCase()).join(", ")}.`
+                            : effective.skin_type !== "unknown"
+                              ? `A ${p.category.replaceAll("_", " ")} option · the brand lists ${effective.skin_type} skin suitability.`
+                              : `A ${p.category.replaceAll("_", " ")} option · check the brand’s skin-type guidance.`}
                         </p>
                       </div>
                       <small>
-                        Brand-listed skin types:{" "}
-                        {p.skin_types.length
-                          ? p.skin_types.join(", ")
-                          : "not verified"}
+                        {effective.skin_type !== "unknown"
+                          ? `Brand-listed for ${effective.skin_type} skin`
+                          : `Brand-listed skin types: ${p.skin_types.length ? p.skin_types.join(", ") : "not verified"}`}
                       </small>
                       <small>
                         Price checked{" "}
@@ -752,7 +819,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
               })}
             </div>
           )}
-          {visible < matches.length && (
+          {visible < displayMatches.length && (
             <div className="load-products">
               <Button
                 variant="secondary"
