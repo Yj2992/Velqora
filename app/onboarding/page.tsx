@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { ShieldCheck, ArrowRight } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { browserClient, configured } from "@/lib/supabase/client";
 import { api } from "@/components/app-provider";
 export default function Onboarding() {
@@ -36,7 +37,10 @@ export default function Onboarding() {
   }
   return (
     <main className="onboarding-page">
-      <Logo />
+      <div className="auth-panel-top">
+        <Logo />
+        <ThemeToggle />
+      </div>
       <section className="card onboarding-card">
         <div className="empty-icon">
           <ShieldCheck size={34} />

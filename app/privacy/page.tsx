@@ -1,11 +1,15 @@
 import Link from "next/link";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 import { ShieldCheck } from "lucide-react";
 export default function Privacy() {
   return (
     <main className="onboarding-page">
-      <Logo />
+      <div className="auth-panel-top">
+        <Logo />
+        <ThemeToggle />
+      </div>
       <section className="card onboarding-card">
         <div className="empty-icon">
           <ShieldCheck size={34} />
@@ -28,7 +32,7 @@ export default function Privacy() {
             ],
             [
               "Product discovery",
-              "Verified catalog matches use fixed rules. Optional Groq catalog search receives your typed request and public filter vocabulary to interpret filters. Across the web additionally uses Groq’s Exa-powered browser search after a separate acknowledgment; manual web search receives your typed request. In For my scan mode, the app instead shares a derived skin type, cosmetic care targets and your selected budget/ingredient preferences after a separate explicit acknowledgment. Raw scan scores, scan IDs, skin-age estimates, photos, account details and experiment notes are not sent by product discovery. Search providers process requests under their own terms. Retrieved pages and source excerpts are displayed separately from verified catalog records; missing facts stay unverified. Web results are not saved automatically. Tracking one creates an editable custom product, with its source in your private experiment notes. Saved preferences and experiments are removed by application-data deletion. Catalog images load from brand CDNs with referrers disabled; source/purchase links open external sites. Scan photographs are not sent to retailers.",
+              "Verified catalog matches use fixed rules. Optional Gemini catalog search receives your typed request and public filter vocabulary to interpret filters. Across the web additionally uses Google Search grounding after a separate acknowledgment; manual web search receives your typed request. In For my scan mode, the app instead shares a derived skin type, cosmetic care targets and your selected budget/ingredient preferences after a separate explicit acknowledgment. Raw scan scores, scan IDs, skin-age estimates, photos, account details and experiment notes are not sent by product discovery. Search providers process requests under their own terms. Retrieved pages and source excerpts are displayed separately from verified catalog records; missing facts stay unverified. Web results are not saved automatically. Tracking one creates an editable custom product, with its source in your private experiment notes. Saved preferences and experiments are removed by application-data deletion. Catalog images load from brand CDNs with referrers disabled; source/purchase links open external sites. Scan photographs are not sent to retailers.",
             ],
             [
               "Control and deletion",
