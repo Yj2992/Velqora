@@ -171,3 +171,9 @@ Moved the existing AI checkbox out of the profile form into a dedicated top-of-p
 - Replaced prefix-only extraction with bounded contiguous evidence spans, retaining late suitability/formula/price statements. Verbatim checks still use the original opened page. Added regressions for evidence after long navigation/marketing blocks and extractor unavailability. 138 offline tests pass, with 2 opt-in live checks skipped.
 
 - Final live reproduction still returned zero qualifying additional web products despite successful ownership, derived-target and privacy checks. Retrieval included blocked/empty pages; checks were not relaxed. The positive-match live assertion remains failing and this is an external retrieval limitation, not reported as a successful end-to-end recommendation. Exact disposable fixtures were removed. When the catalog has matches and web discovery has none, catalog cards now appear first; web gaps follow below. Production build and strict TypeScript pass.
+
+## Quota fallback · 2026-11-01
+
+- Client API errors preserve server status/code while remaining compatible with Error. Product discovery recognizes provider/application rate limits without message-text matching.
+- A quota response pauses external product search until the user explicitly enables another attempt. The notice links directly to still-filtered catalog matches and does not invent a reset time. Previous retrieved results survive a failed refresh; preferences and concern filters remain intact.
+- 139 tests pass (2 optional live checks skipped), strict TypeScript and production build pass. No live provider calls were made for this change, conserving the exhausted free quota.

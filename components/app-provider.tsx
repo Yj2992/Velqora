@@ -1,4 +1,5 @@
 "use client";
+import { ApiError } from "@/lib/client/api-error";
 import {
   createContext,
   useContext,
@@ -32,8 +33,9 @@ export async function api<T>(url: string, init: RequestInit = {}): Promise<T> {
     throw new Error("The server could not complete this request.");
   }
   if (!r.ok)
-    throw new Error(
+    throw new ApiError(
       data.error?.message || "Something went wrong. Please try again.",
+      data.error?.code || "REQUEST_FAILED",r.status,
     );
   return data;
 }

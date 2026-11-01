@@ -17,6 +17,7 @@ import {
   Columns3,
   Globe,
 } from "lucide-react";
+import { isQuotaError } from "@/lib/client/api-error";
 import { useApp, api } from "./app-provider";
 import { Button } from "./ui/button";
 import { discoverProducts, explainMatches } from "@/lib/products/empty-state";
@@ -81,34 +82,36 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
   const [webResults, setWebResults] = useState<WebProductSearch | null>(null);
   const [webRequest, setWebRequest] = useState("");
   const [scanDiscovery,setScanDiscovery] = useState<ScanProductDiscovery|null>(null), [scanResultKey,setScanResultKey] = useState("");
+  const [searchPaused,setSearchPaused]=useState(false);
+  function handleSearchError(error:unknown){if(isQuotaError(error)){setSearchPaused(true);setAiError("");}else setAiError(error instanceof Error?error.message:"Search could not be completed.");}
   const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
   async function searchWithGroq() {
-    if (!aiAllowed || aiBusy || !ready) return;
+    if (!aiAllowed || searchPaused || aiBusy || !ready) return;
     if (searchScope !== "scan" && aiQuery.trim().length < 5) return;
     if ((searchScope === "web" || searchScope === "scan") && !webConsent) return;
     if (searchScope === "scan" && !scanPlan) return;
     setAiBusy(true); setAiError(""); setProposal(null);
     if (searchScope === "scan") {
-      setScanDiscovery(null);setWebResults(null);
+      setWebResults(null);
       const key=currentScanRequestKey;
       try {
         const result=await api<ScanProductDiscovery>("/api/products/discover",{method:"POST",body:JSON.stringify({mode:"scan",scan_id:scanId,preferences:{...prefs,avoid_ingredients:avoid.split(",").map(s=>s.trim()).filter(Boolean)},filters:sharedFilters,web_consent:true})});
         setScanResultKey(key);setScanDiscovery(result);
-      } catch(e){setAiError((e as Error).message);}
+      } catch(e){handleSearchError(e);}
       finally {setAiBusy(false);}
       return;
     }
     if (searchScope === "web") {
-      setWebResults(null); setWebRequest(aiQuery.trim());
-      try {setWebResults(await api<WebProductSearch>("/api/products/discover",{method:"POST",body:JSON.stringify({question:aiQuery.trim(),web_consent:true})}));}
-      catch(e){setAiError((e as Error).message);}
+      const requestText=aiQuery.trim();
+      try {setWebResults(await api<WebProductSearch>("/api/products/discover",{method:"POST",body:JSON.stringify({question:requestText,web_consent:true})}));setWebRequest(requestText);}
+      catch(e){handleSearchError(e);}
       finally {setAiBusy(false);}
       return;
     }
     try {
       const result = await api<{intent: ProductIntent}>("/api/products/search", {method:"POST",body:JSON.stringify({question:aiQuery.trim()})});
       setProposal(productIntentSchema.parse(result.intent));
-    } catch(e) {setAiError((e as Error).message);}
+    } catch(e) {handleSearchError(e);}
     finally {setAiBusy(false);}
   }
   function applyProposal() {
@@ -287,12 +290,13 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
         <div className="product-ai-intro"><span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span><h2 id="product-ai-heading">{searchScope === "scan" ? "Your scan. Your next considered step." : "Tell us what belongs on your shelf."}</h2><p>{searchScope === "scan" ? "We turn your selected scan and preferences into a search brief, find products across the web, and check the retrieved ingredient and suitability statements. No shopping prompt needed." : searchScope === "web" ? "Discover brands and product pages beyond our catalog. Groq searches the live web for India-focused sources and opens relevant pages." : "Describe a budget, category or ingredient preference. Groq turns your words into filters; verified catalog facts and fixed rules decide what appears."}</p></div>
         {searchScope === "scan" && <div className="scan-discovery-plan"><label className="field">Use this completed scan<select disabled={aiBusy} aria-label="Scan for personalized product discovery" value={scanId} onChange={e=>{setScanId(e.target.value);setManual(false);setAiError("");}}><option value="">Choose a completed scan</option>{scans.map(s=><option key={s.id} value={s.id}>{new Date(s.created_at).toLocaleDateString("en-IN")} · {s.overall_score?.toFixed(1) ?? "—"}</option>)}</select></label>{scanPlan ? <><div className="scan-plan-type"><strong>{scanPlan.skin_type === "unknown" ? "Skin type not recorded" : scanPlan.skin_type+" skin"}</strong><span>From your scan or explicit skin-type preference · change preferences below</span></div><p className="scan-plan-preferences">Budget: {prefs.budget_inr === null ? "not set" : money(prefs.budget_inr)+" per product"} · Ingredient exclusions: {avoid || "none specified"} · {prefs.adult_confirmed ? "Adult age self-confirmed" : "Adult age not confirmed"}{prefs.fragrance_free ? " · Fragrance-free required" : ""}{prefs.vegan ? " · Vegan required" : ""}</p><a className="text-link" href="#product-preferences">Edit budget and ingredient preferences ↓</a><div className="scan-plan-targets">{scanPlan.targets.map(t=><div key={t.id}><span className="section-label">SELECTED CARE FOCUS</span><h3>{t.label}</h3><p>{t.reason}</p></div>)}</div><p className="subtle">Lower relative scores are prompts for consideration, not diagnoses or severity grades. Gentle cleanser, moisturizer and sun protection form the everyday-care starting point. Your skin-age estimate is never used as your age.</p>{scanPlan.guidance.map(g=><div className="scan-plan-guidance" key={g.label}><strong>{g.label} · guidance</strong><p>{g.text}</p><a className="text-link" href={g.source} target="_blank" rel="noopener noreferrer">Read the evidence ↗</a></div>)}<p className="scan-filter-navigation"><a className="text-link" href="#product-concern-filters">Choose concerns, brand, category and ingredient coverage ↓</a></p><details className="scan-shared-brief"><summary>See the derived brief shared with search providers</summary><p>{scanPlan.search_brief}</p></details></> : <p className="notice">{demo ? "This demo uses synthetic scans with no verified score interpretation. Sign in and select a real completed YouCam scan to use automatic discovery." : "Choose a completed YouCam scan with supported score interpretation to create your personal product brief."}</p>}</div>}
         {searchScope !== "scan" && <form onSubmit={e=>{e.preventDefault();void searchWithGroq();}}>
-          <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with Groq" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setWebConsent(false);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || aiBusy || aiQuery.trim().length < 5 || (searchScope === "web" && !webConsent)}>{aiBusy ? searchScope === "web" ? "Searching the web…" : "Understanding…" : searchScope === "web" ? "Search across the web" : "Search verified catalog"}<ArrowRight size={16}/></Button></label>
+          <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with Groq" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setWebConsent(false);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || searchPaused || aiBusy || aiQuery.trim().length < 5 || (searchScope === "web" && !webConsent)}>{aiBusy ? searchScope === "web" ? "Searching the web…" : "Understanding…" : searchScope === "web" ? "Search across the web" : "Search verified catalog"}<ArrowRight size={16}/></Button></label>
         </form>}
         {(searchScope === "web" || searchScope === "scan") && <label className="checkbox-row product-web-consent"><input type="checkbox" checked={webConsent} disabled={aiBusy} onChange={e=>setWebConsent(e.target.checked)}/><span>{searchScope === "scan" ? "Use Groq + Exa search with my derived skin type, cosmetic care targets and the preferences shown below. No photo, raw scores, scan ID, skin-age estimate or account details are shared." : "Use Groq + its Exa-powered browser search for this request. Only my typed request is shared; no scans or saved profile data."}</span></label>}
-        {searchScope === "scan" && <Button className="scan-find-products" disabled={!aiAllowed || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products for your scan…" : "Find products for my scan"}<ArrowRight size={16}/></Button>}
+        {searchScope === "scan" && <Button className="scan-find-products" disabled={!aiAllowed || searchPaused || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products for your scan…" : "Find products for my scan"}<ArrowRight size={16}/></Button>}
         {searchScope !== "scan" && <div className="product-ai-examples">{["A moisturizer under ₹500 for dry skin", "A cleanser under ₹400, without niacinamide", "A vegan sunscreen under ₹700"].map(q=><button disabled={aiBusy} key={q} onClick={()=>{setAiQuery(q);setWebConsent(false);setProposal(null);setAiError("");}}>{q}<ArrowUpRight size={12}/></button>)}</div>}
         <p className="product-ai-disclosure">{demo ? "Synthetic demo: Groq is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "Groq search is not configured on this server. Catalog filters still work." : "Your selected search mode determines the information shared, as shown above. Photos, skin-age estimates and account details are not shared. Free-tier quotas apply."} {searchScope === "scan" ? "Results are checked against retrieved source statements and your selected preferences. Missing facts do not count as satisfied. Ingredient excerpts alone cannot clear an exclusion that requires a complete formula." : searchScope === "web" ? "Web results are source discoveries, not fully verified suitability matches. Catalog preferences are not automatically applied to them. Check the exact pack, ingredients and price with the seller." : "Catalog search does not browse the web or verify live prices."}</p>
+        {searchPaused && <div className="notice" role="status"><strong>Live search is paused. Catalog matching still works.</strong><p>The free search quota has been reached. Your scan priorities, preferences and ingredient filters still apply to the catalog below. No automatic retries are running. The provider has not supplied a confirmed reset time.</p><a className="text-link" href="#product-catalog-results">See catalog matches ↓</a><button className="text-link" style={{marginLeft:"1rem"}} onClick={()=>{setSearchPaused(false);setAiError("");}}>Enable another search attempt</button></div>}
         {aiError && <div className="error" role="alert">{aiError}</div>}
         {aiBusy && (searchScope === "web" || searchScope === "scan") && <div className="product-web-loading" role="status"><span className="loader small-loader"/><div><strong>Looking beyond the catalog.</strong><p>Searching product pages and checking source excerpts. This can take up to a minute.</p></div></div>}
         {proposal && searchScope === "catalog" && <div className="product-ai-review" role="status"><div className="card-heading"><div><span className="section-label">REVIEW BEFORE APPLYING</span><h3>Here’s how we understood your request.</h3></div><button aria-label="Dismiss proposed filters" onClick={()=>setProposal(null)}><X size={17}/></button></div><div className="product-ai-tags">{describeIntent(proposal).map((t,i)=><span key={i}>{t}</span>)}</div>{proposal.unresolved_terms.length > 0 ? <p className="notice">We cannot verify or represent these requirements: {proposal.unresolved_terms.join("; ")}. Edit your request or use the manual filters. These requirements have not been satisfied.</p> : !describeIntent(proposal).length ? <p>No specific filters were recognized. Try adding a category or budget.</p> : <><p>Existing ingredient exclusions, stricter budgets, age confirmation and retinoid choices stay in place. Applying replaces the text, brand and category search, and selects these concerns. Your profile is not saved automatically.</p><Button onClick={applyProposal}>Apply reviewed filters <Check size={15}/></Button></>}</div>}
@@ -628,9 +632,9 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
               Full ingredient lists only
             </label>
           </div>
-          {searchScope === "scan" && <div className="shared-filter-search"><Button disabled={!aiAllowed || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products…" : "Find products with these filters"}<ArrowRight size={16}/></Button>{!webConsent && <p className="subtle">Review the search brief and sharing checkbox above before searching. Filtering existing results happens locally.</p>}</div>}
+          {searchScope === "scan" && <div className="shared-filter-search"><Button disabled={!aiAllowed || searchPaused || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products…" : "Find products with these filters"}<ArrowRight size={16}/></Button>{!webConsent && <p className="subtle">Review the search brief and sharing checkbox above before searching. Filtering existing results happens locally.</p>}</div>}
           {searchScope === "scan" && activeScanDiscovery && <>{scanResultKey!==currentScanRequestKey && <p className="notice" role="status">Filters updated. These are eligible results from the last search. Use “Find products for my scan” again to discover more sources under these choices.</p>}{activeScanDiscovery.matches.length>0 ? <ScanProductResults discovery={activeScanDiscovery} listView={listView}/> : <p className="notice" role="status">{matches.length>0 ? `${matches.length} catalog products meet your filters below. ` : ""}No additional web products passed every source check. {activeScanDiscovery.evidence_status === "unavailable" ? "The evidence extractor was unavailable; try web discovery later." : "See the web evidence gaps after the catalog results."}</p>}</>}
-          <div className="catalog-results-label section-label">SOURCE-CHECKED CATALOG MATCHES · SAME FILTERS</div>
+          <div id="product-catalog-results" className="catalog-results-label section-label">SOURCE-CHECKED CATALOG MATCHES · SAME FILTERS</div>
           {ready && showingBasicCare && (
             <section
               className="card basic-care-intro"

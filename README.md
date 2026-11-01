@@ -236,3 +236,5 @@ Web discovery explicitly searches for manufacturer suitability for the selected 
 `RUN_SCAN_DISCOVERY=true RUN_SCAN_PORES=true npm run test:product-search` exercises the reported dry-skin / tear-trough, dark-circle and pore selection with an explicit synthetic adult retinoid opt-in; no actual user's scan or preference is transmitted.
 
 Scan discovery supplies up to two currently eligible public catalog product URLs as retrieval leads and continues searching other brands. A lead is never substituted for live source evidence. If the separate extraction step fails (including free-provider quotas), the response carries `evidence_status: unavailable`; the UI explains why details could not be checked instead of implying no suitable product exists.
+
+Product-search quota failures pause external search controls until explicit user re-enablement. Catalog filtering and tracking remain available, and failed refreshes retain previous retrieved results. No automatic retries or guessed quota reset time are introduced.
