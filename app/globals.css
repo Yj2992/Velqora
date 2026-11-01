@@ -4294,3 +4294,41 @@ em {
 .product-catalog-heading { display: flex; justify-content: space-between; gap: 20px; align-items: center; margin: 35px 0 15px; }
 .product-catalog-heading > span { font-size: 11px; color: var(--muted); }
 @media(max-width:760px) { .product-discovery-tabs { display: flex; } .product-discovery-tabs button { flex: 1; justify-content: center; padding: 10px; font-size: 11px; } .product-web-grid { grid-template-columns: 1fr; } .product-web-card.card { padding: 22px; } .product-catalog-heading { align-items: flex-start; flex-direction: column; gap: 5px; } .product-catalog-heading h2, .product-web-results h2 { font-size: 25px; } }
+.scan-discovery-plan { margin: 22px 0; }
+.scan-discovery-plan > .field { max-width: 420px; }
+.scan-plan-type { display: flex; gap: 15px; align-items: center; margin: 20px 0; }
+.scan-plan-type strong { text-transform: capitalize; background: white; border: 1px solid #dbcfe1; padding: 10px 15px; border-radius: 10px; font-size: 17px; font-family: var(--heading); }
+.scan-plan-type > span { font-size: 10px; color: var(--muted); max-width: 260px; }
+.scan-plan-targets { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 14px; margin: 20px 0; }
+.scan-plan-targets > div { border: 1px solid #dfd3e4; background: #ffffffbd; padding: 20px; border-radius: 12px; }
+.scan-plan-targets h3 { font-size: 17px; margin: 11px 0; }
+.scan-plan-targets p, .scan-plan-guidance p { font-size: 11px; line-height: 1.9; }
+.scan-plan-guidance { border-left: 2px solid #c4b1ce; padding: 7px 15px; margin: 18px 0; }
+.scan-plan-guidance strong { font-size: 12px; }
+.scan-plan-guidance .text-link { font-size: 10px; }
+.scan-shared-brief { font-size: 11px; margin: 22px 0; }
+.scan-shared-brief p { margin: 14px 0; font-size: 11px; line-height: 1.9; }
+.scan-find-products.button { margin: 8px 0; }
+.scan-product-results { margin: 35px 0; }
+.scan-product-results h2 { font-family: var(--heading); font-size: 29px; margin: 12px 0; font-weight: 500; }
+.scan-product-results .card-heading p { font-size: 11px; }
+.scan-match-card { display: flex; flex-direction: column; min-width: 0; }
+.scan-match-category { display: flex; gap: 8px; align-items: center; text-transform: capitalize; font-size: 11px; color: #85668e; }
+.scan-match-category > span { font-size: 9px; padding: 5px 7px; border: 1px solid #ded0e5; border-radius: 8px; margin-left: auto; }
+.scan-match-card > h3 { font-size: 19px; line-height: 1.6; margin: 20px 0 9px; }
+.scan-match-why { background: #f3edf6; border-radius: 12px; padding: 18px; margin: 20px 0; }
+.scan-match-why h4 { font-size: 12px; margin-bottom: 12px; }
+.scan-match-why p { display: flex; gap: 8px; font-size: 11px; line-height: 1.9; margin-top: 8px; }
+.scan-match-why p span { color: #8d6d98; }
+.scan-match-card dl > div { margin: 15px 0; }
+.scan-match-card dt { font-size: 10px; color: #a08aa8; margin-bottom: 5px; text-transform: uppercase; letter-spacing: .08em; }
+.scan-match-card dd, .scan-match-card details { font-size: 11px; line-height: 1.9; overflow-wrap: anywhere; }
+.scan-match-card details { margin: 15px 0 25px; }
+.scan-match-card details p { margin-top: 10px; }
+.scan-no-matches p { font-size: 12px; margin-top: 12px; }
+.scan-review-sources { margin: 23px 0; }
+.scan-review-sources summary { font-size: 13px; cursor: pointer; }
+.scan-review-sources > p, .scan-review-sources li { font-size: 11px; line-height: 1.8; }
+.scan-review-sources > div { border-top: 1px solid var(--border); margin-top: 18px; padding-top: 18px; }
+.scan-review-sources ul { margin: 12px 0; padding-left: 17px; }
+@media(max-width:760px) { .scan-plan-targets { grid-template-columns: 1fr; } .scan-plan-type { align-items: flex-start; flex-direction: column; gap: 9px; } .scan-plan-type > span { max-width: none; } .scan-product-results h2 { font-size: 25px; } .scan-match-category { flex-wrap: wrap; } .scan-find-products { width: 100%; } }

@@ -225,13 +225,12 @@ export default function Results() {
               <span className="section-label">YOUR NEXT SMALL STEP</span>
               <h2>Turn observations into considered choices.</h2>
               <p>
-                Explore source-checked Indian skincare products, matched by
-                ingredients and your preferences. No generative AI.
+                Use this scan to find skincare products across the web, with ingredient-based reasons and your preferences kept in view.
               </p>
             </div>
             <Button asChild>
               <Link href={"/products?scan=" + scan.id}>
-                Find Products <ArrowUpRight size={16} />
+                Find products for this scan <ArrowUpRight size={16} />
               </Link>
             </Button>
           </section>

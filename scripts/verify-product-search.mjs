@@ -1,6 +1,6 @@
 // Explicit integration check: disposable account + generic shopping request only.
 // No email delivery, real scans, saved user preferences or personal notes.
-import { randomBytes } from "node:crypto";
+import { randomBytes, randomUUID } from "node:crypto";
 import { createClient } from "@supabase/supabase-js";
 import { createServerClient } from "@supabase/ssr";
 process.loadEnvFile(new URL("../.env.local", import.meta.url));
@@ -24,13 +24,29 @@ try {
  check(blocked.status===403 && blocked.data.error.code==="AI_CONSENT","Authenticated user without saved AI consent is blocked");
  const saved=await call("/api/account",{display_name:"Product search QA",llm_consent:true},"PATCH");
  check(saved.status===200,"Disposable account can save its own AI preference");
+ if(process.env.RUN_SCAN_DISCOVERY !== "true") {
  const result=await call("/api/products/search",{question:"A moisturizer under 500 rupees for dry skin"});
  check(result.status===200,"Authenticated Groq catalog-search endpoint responds");
  check(result.data.source==="groq" && result.data.web_search===false,"Response truthfully identifies Groq filter parsing without web search");
  check(result.data.intent.budget_inr===500 && result.data.intent.categories.includes("moisturizer") && result.data.intent.skin_type==="dry","Live model returns the requested reviewable filters");
  check(!("products" in result.data.intent),"No generated products enter the response");
+ }
  const forged=await call("/api/products/search",{question:"A moisturizer",consent:true,scan_ids:["foreign"]});
  check(forged.status===400,"Client-supplied consent and scan context are rejected");
+ if(process.env.RUN_SCAN_DISCOVERY === "true") {
+  const scan=must(await admin.from("skin_scans").insert({user_id:fixtureId,idempotency_key:randomUUID(),status:"completed",provider_version:"youcam-v2.1-sd",completed_at:new Date().toISOString(),skin_age:36,overall_score:78.4}).select("id").single());
+  must(await admin.from("skin_type_results").insert({scan_id:scan.id,region:"whole",skin_type:"Dry"}));
+  must(await admin.from("skin_scan_metrics").insert([{scan_id:scan.id,metric_type:"moisture",region:"whole",ui_score:72},{scan_id:scan.id,metric_type:"tear_trough",region:"whole",ui_score:55},{scan_id:scan.id,metric_type:"pore",region:"whole",ui_score:66}]));
+  const found=await call("/api/products/discover",{mode:"scan",scan_id:scan.id,preferences:{},web_consent:true});
+  if(found.status!==200) console.log("Scan discovery status/code:",found.status,found.data.error?.code);
+  check(found.status===200,"Owned scan drives live product discovery without a typed shopping query");
+  check(found.data.plan.skin_type==="dry" && found.data.plan.targets.some(t=>t.id==="moisture"),"Dry skin creates a moisturizing-care target");
+  check(!found.data.plan.search_brief.includes(scan.id) && !found.data.plan.search_brief.includes("78.4"),"Derived search brief excludes scan IDs and raw scores");
+  if(!found.data.matches.length) console.log("Source gaps:",JSON.stringify(found.data.needs_review.map(p=>({title:p.title,opened:p.page_opened,ingredients:p.ingredients_quote,suitability:p.suitability_quote,issues:p.review_reasons}))));
+  check(found.data.matches.length>0,"Live retrieved product evidence passes personalized suitability checks");
+  check(found.data.matches.every(p=>p.reasons.length>0 && p.page_opened),"Each personalized match has source evidence and an explanation");
+  console.log("PASS: Personalized matches:",found.data.matches.length,"; sources needing review:",found.data.needs_review.length);
+ }
  if(process.env.RUN_WEB_DISCOVERY === "true") {
   const unacknowledged=await call("/api/products/discover",{question:"CeraVe cream in India"});
   check(unacknowledged.status===400,"Web discovery requires its own explicit acknowledgment");

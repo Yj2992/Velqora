@@ -204,7 +204,7 @@ Verification commands:
 
 ### Across the web · live product discovery
 
-Across the web is the default search scope and is not restricted to the 100 catalog records, their brands or stores. It uses the existing Groq key with `GROQ_WEB_SEARCH_MODEL=openai/gpt-oss-20b`, a Groq-hosted open-weight model with built-in Exa browser search. No OpenAI API key or subscription is used. Model/search access is subject to the Groq account's free plan limits; no paid fallback or billing upgrade is performed.
+Across the web is an optional manual search scope and is not restricted to the 100 catalog records, their brands or stores. It uses the existing Groq key with `GROQ_WEB_SEARCH_MODEL=openai/gpt-oss-20b`, a Groq-hosted open-weight model with built-in Exa browser search. No OpenAI API key or subscription is used. Model/search access is subject to the Groq account's free plan limits; no paid fallback or billing upgrade is performed.
 
 A signed-in user must have saved external-AI consent and separately acknowledge the Exa-powered web search before each changed request. Only the typed request and public instructions are transmitted. No saved user preferences, scan measurements, photos or experiment notes are used for this search. Five searches per user/hour are allowed. Demo mode does not call it.
 
@@ -215,3 +215,18 @@ These are web source discoveries, not fully verified product eligibility recomme
 Verification: `RUN_WEB_DISCOVERY=true npm run test:product-search` tests the authenticated consent-to-live-search endpoint with a disposable account and removes it afterward. `RUN_GROQ_WEB_SMOKE=true npx vitest run tests/web-product-search-live.test.ts` runs a generic live CeraVe source check. Both send only non-personal test requests.
 
 Provider references: https://console.groq.com/docs/tool-use/built-in-tools/browser-search and https://console.groq.com/docs/rate-limits. Browser search does not support strict structured output in the same call, so retrieval and schema-validated quote extraction are separate.
+
+
+### Scan-first personalized web discovery
+
+Find Products now defaults to **For my scan**. A selected completed scan (including the scan-result `?scan=` link) drives the search without a typed shopping request. The server fetches that scan with the authenticated owner ID and completed status; client-supplied scores/skin age are rejected. Unsupported provider versions are not automatically interpreted.
+
+`lib/products/scan-discovery.ts` builds a deterministic plan: recorded dry/sensitive skin prioritizes gentle hydrating care; supported lower UI scores supply relative cosmetic priorities without diagnostic thresholds. Structural and limited-support eye concerns receive guidance rather than supposed corrective creams. Skin age and Fitzpatrick estimates never establish actual age or active-ingredient eligibility. Automatic starter discovery excludes retinoids and respects explicit adult/sensitive-skin choices for exfoliants.
+
+With the user’s explicit scan-search acknowledgment and saved AI consent, only a derived care brief (skin type, cosmetic targets and current selected preferences) goes to Groq/Exa. No photo, raw scores, scan ID, account details, skin-age estimate or experiment notes are transmitted. The exact brief can be reviewed in the UI. Product discovery does not start on page load.
+
+Retrieved pages then pass fixed source-evidence checks: opened individual product page, supported category, manufacturer-listed skin suitability, ingredient support for a moisturizer, current preference claims, budget evidence when specified, and active-ingredient restrictions. Ingredient excerpts alone cannot clear ingredient exclusions; such sources remain under needs verification until a complete formula is checked. Missing facts never count as satisfied. Explanations distinguish everyday-care foundations from targeted ingredient support; no product-effect prediction is made.
+
+The source-supported shortlist is shown first, with why-it-appears explanations and tracking links tied to the selected baseline. Other sources remain separate under needs verification. Changing scans/preferences invalidates the displayed shortlist and resets sharing acknowledgment. The existing verified catalog and optional manual discovery remain available.
+
+Run `RUN_SCAN_DISCOVERY=true npm run test:product-search` for an explicit generic dry-skin test with a disposable scan/account. It uses a derived synthetic test brief, verifies an actual live source-supported match, then revokes the test session and removes the exact account/fixtures.
