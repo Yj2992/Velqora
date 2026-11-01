@@ -31,6 +31,15 @@ try {
  check(!("products" in result.data.intent),"No generated products enter the response");
  const forged=await call("/api/products/search",{question:"A moisturizer",consent:true,scan_ids:["foreign"]});
  check(forged.status===400,"Client-supplied consent and scan context are rejected");
+ if(process.env.RUN_WEB_DISCOVERY === "true") {
+  const unacknowledged=await call("/api/products/discover",{question:"CeraVe cream in India"});
+  check(unacknowledged.status===400,"Web discovery requires its own explicit acknowledgment");
+  const web=await call("/api/products/discover",{question:"Find CeraVe Moisturising Cream on its official India product page. Open it for ingredients.",web_consent:true});
+  check(web.status===200,"Authenticated live web discovery responds");
+  check(web.data.source==="groq-web" && web.data.results.some(r=>r.host.endsWith("ceraveindia.com")),"Live sources include a brand outside the local catalog");
+  check(web.data.results.some(r=>r.ingredients_quote || r.suitability_quote),"Retrieved source excerpts reach the API response");
+  check(web.data.results.every(r=>!("page_text" in r)),"Raw provider page text is not exposed as result facts");
+ }
 } finally {
  await client.auth.signOut({scope:"global"});
  if(fixtureId){must(await admin.auth.admin.deleteUser(fixtureId));console.log("PASS: Exact disposable account and cascading fixtures removed");}

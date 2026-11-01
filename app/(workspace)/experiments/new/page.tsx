@@ -6,6 +6,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 import { api, useApp } from "@/components/app-provider";
 import { Button } from "@/components/ui/button";
 import { PageHeader, Empty, date } from "@/components/shared";
+import { safePublicWebUrl } from "@/lib/products/web-results";
 import { metricLabels } from "@/lib/types";
 export default function CreateExperiment() {
   const { data, createExperiment } = useApp(),
@@ -15,6 +16,8 @@ export default function CreateExperiment() {
     [busy, setBusy] = useState(false),
     [baseline, setBaseline] = useState(scans.at(-1)?.id || ""),
     [metric, setMetric] = useState("moisture"),
+    [customName, setCustomName] = useState(""),
+    [customSource, setCustomSource] = useState(""),
     [product, setProduct] = useState<{ id: string; name: string } | null>(null);
   useEffect(() => {
     const p = new URLSearchParams(window.location.search);
@@ -29,6 +32,8 @@ export default function CreateExperiment() {
       );
       if (m) setMetric(m.metric_type);
     }
+    setCustomName((p.get("custom_name") || "").slice(0,240));
+    setCustomSource(safePublicWebUrl(p.get("source")) || "");
     const id = p.get("product");
     if (id)
       void api<{ id: string; name: string }>(
@@ -101,12 +106,13 @@ export default function CreateExperiment() {
                 required
                 minLength={2}
                 maxLength={240}
-                key={product?.id || "custom"}
-                defaultValue={product?.name || ""}
+                key={product?.id || customName || "custom"}
+                defaultValue={product?.name || customName}
                 readOnly={Boolean(product)}
                 placeholder="Daily barrier moisturizer"
               />
             </label>
+            {customName && !product && <p className="notice">This is an editable custom product from web discovery, not a verified catalog record. Confirm the product name and exact pack before tracking. {customSource && <a href={customSource} target="_blank" rel="noopener noreferrer">Review source ↗</a>}</p>}
             {product && (
               <p className="notice">
                 Linked to the verified product catalog.{" "}
@@ -175,6 +181,8 @@ export default function CreateExperiment() {
             Your notes <span className="optional">optional</span>
             <textarea
               name="notes"
+              key={customSource}
+              defaultValue={customSource ? ("Web discovery source (not catalog verified): " + customSource).slice(0,2000) : ""}
               maxLength={2000}
               rows={3}
               placeholder="What else is in your routine? What will you keep consistent?"

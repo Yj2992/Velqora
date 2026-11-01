@@ -11,7 +11,7 @@ export default function Privacy() {
           <ShieldCheck size={34} />
         </div>
         <h1>Your story belongs to you.</h1>
-        <p>Velqora privacy notice · version 2026-10-v1</p>
+        <p>Velqora privacy notice · updated November 1, 2026</p>
         <div className="onboarding-items">
           {[
             [
@@ -28,7 +28,7 @@ export default function Privacy() {
             ],
             [
               "Product discovery",
-              "Product matches use fixed rules without an LLM. Saved skin-type, budget and ingredient preferences are private to your account and are removed by application-data deletion. Product images load from official brand CDNs with referrers disabled; purchase links open the official store. Scan photographs are not sent to retailers for recommendations.",
+              "Verified catalog matches use fixed rules. Optional Groq catalog search receives your typed request and public filter vocabulary to interpret filters. Across the web additionally uses Groq’s Exa-powered browser search after a separate acknowledgment; it receives your typed request, not scans, photos, saved preferences or experiment notes. Search providers process requests under their own terms. Retrieved pages and source excerpts are displayed separately from verified catalog records; missing facts stay unverified. Web results are not saved automatically. Tracking one creates an editable custom product, with its source in your private experiment notes. Saved preferences and experiments are removed by application-data deletion. Catalog images load from brand CDNs with referrers disabled; source/purchase links open external sites. Scan photographs are not sent to retailers.",
             ],
             [
               "Control and deletion",

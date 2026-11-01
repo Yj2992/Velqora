@@ -186,9 +186,9 @@ Scan results link to product matches. “Track This Product” pre-fills a catal
 The new-scan screen supports a front-camera live preview, camera switching, JPEG capture, review and retake alongside existing JPEG/PNG/HEIC uploads. Camera access requires HTTPS or localhost and browser permission. Audio is never requested. Streams stop after capture, cancellation, switching cameras or leaving the screen; a permission request resolving after cancellation is immediately stopped. Only the chosen still photo is uploaded through the existing consent-protected analysis flow. Demo mode never uploads a photo.
 
 
-### Groq-assisted Find Products
+### Groq-assisted Find Products · verified catalog mode
 
-`/products` now accepts a natural-language shopping request. The existing Groq key/model and server sharing switch are reused; each signed-in user must enable AI sharing first. Groq receives only the typed request and public filter vocabulary. It receives no saved profile, scans, photos, preferences or experiment notes from this feature. Demo mode never calls Groq.
+The verified catalog mode on `/products` accepts a natural-language shopping request. The existing Groq key/model and server sharing switch are reused; each signed-in user must enable AI sharing first. Groq receives only the typed request and public filter vocabulary. It receives no saved profile, scans, photos, preferences or experiment notes from this feature. Demo mode never calls Groq.
 
 Groq converts the request into a strict, server-validated filter schema. The user reviews the interpretation before applying it. The existing rule engine still determines product eligibility, ranks matches and supplies explanations. All names, prices, ingredients, images and official purchase URLs remain catalog records. This feature does not browse the web, verify live prices, create new products or claim that unknown manufacturer properties are satisfied. Unsupported requirements block applying the interpretation until the request is refined.
 
@@ -200,3 +200,18 @@ Verification commands:
 - `npm test`: offline tests, including schema validation, consent/ownership gates, and preserved safety constraints.
 - `RUN_GROQ_SEARCH_SMOKE=true npx vitest run tests/product-search-live.test.ts`: explicit live generic-query check (requires configured Groq key).
 - `npm run test:product-search`: live disposable-account consent-to-search API check using the local server and configured Supabase project; revokes the test session and removes the exact temporary account. Never prints credentials or sends real scan/profile context to Groq.
+
+
+### Across the web · live product discovery
+
+Across the web is the default search scope and is not restricted to the 100 catalog records, their brands or stores. It uses the existing Groq key with `GROQ_WEB_SEARCH_MODEL=openai/gpt-oss-20b`, a Groq-hosted open-weight model with built-in Exa browser search. No OpenAI API key or subscription is used. Model/search access is subject to the Groq account's free plan limits; no paid fallback or billing upgrade is performed.
+
+A signed-in user must have saved external-AI consent and separately acknowledge the Exa-powered web search before each changed request. Only the typed request and public instructions are transmitted. No saved user preferences, scan measurements, photos or experiment notes are used for this search. Five searches per user/hour are allowed. Demo mode does not call it.
+
+The model performs live searches and opens relevant India-focused product pages, preferring official sites and established retailers. The app derives at most six source cards from the actual browser tool metadata, ignoring product names/URLs in the generated assistant answer. A second bounded extraction step proposes literal price, ingredient and suitability excerpts; the application accepts each only if it occurs in retrieved page text. Missing, ambiguous or failed extraction stays unverified. HTTPS public-host link validation rejects unsafe schemes, credentials, local hosts and unusual ports. Our server never fetches arbitrary result URLs directly.
+
+These are web source discoveries, not fully verified product eligibility recommendations. Collection pages can appear. Source statements are seller claims, and exact packs, prices, availability, full ingredients and suitability must be reviewed on the source and received label. Saved catalog preferences are not automatically sent or applied to web results. Discoveries never silently enter the verified catalog. Track as custom product prefills an editable name and public source in Experiment Lab; it uses no catalog product ID.
+
+Verification: `RUN_WEB_DISCOVERY=true npm run test:product-search` tests the authenticated consent-to-live-search endpoint with a disposable account and removes it afterward. `RUN_GROQ_WEB_SMOKE=true npx vitest run tests/web-product-search-live.test.ts` runs a generic live CeraVe source check. Both send only non-personal test requests.
+
+Provider references: https://console.groq.com/docs/tool-use/built-in-tools/browser-search and https://console.groq.com/docs/rate-limits. Browser search does not support strict structured output in the same call, so retrieval and schema-validated quote extraction are separate.

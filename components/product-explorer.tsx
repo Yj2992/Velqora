@@ -15,6 +15,7 @@ import {
   ArrowRight,
   X,
   Columns3,
+  Globe,
 } from "lucide-react";
 import { useApp, api } from "./app-provider";
 import { Button } from "./ui/button";
@@ -38,6 +39,7 @@ import {
   categoryNames,
 } from "@/lib/products/presentation";
 import { productIntentSchema, mergeSearchPreferences, matchesSearchIntent, describeIntent, type ProductIntent } from "@/lib/products/search-intent";
+import type { WebProductSearch } from "@/lib/products/web-results";
 import ingredients from "@/data/ingredients.catalog.json";
 const label = (id: string) =>
   ingredients.find((i) => i.id === id)?.name || id.replaceAll("_", " ");
@@ -72,10 +74,21 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
   const [aiQuery, setAiQuery] = useState(""), [aiBusy, setAiBusy] = useState(false), [aiError, setAiError] = useState("");
   const [proposal, setProposal] = useState<ProductIntent | null>(null), [aiIntent, setAiIntent] = useState<ProductIntent | null>(null);
   const [compareIds, setCompareIds] = useState<string[]>([]);
+  const [searchScope, setSearchScope] = useState<"web" | "catalog">("web"), [webConsent, setWebConsent] = useState(false);
+  const [webResults, setWebResults] = useState<WebProductSearch | null>(null);
+  const [webRequest, setWebRequest] = useState("");
   const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
   async function searchWithGroq() {
     if (!aiAllowed || aiBusy || aiQuery.trim().length < 5) return;
+    if (searchScope === "web" && !webConsent) return;
     setAiBusy(true); setAiError(""); setProposal(null);
+    if (searchScope === "web") {
+      setWebResults(null); setWebRequest(aiQuery.trim());
+      try {setWebResults(await api<WebProductSearch>("/api/products/discover",{method:"POST",body:JSON.stringify({question:aiQuery.trim(),web_consent:true})}));}
+      catch(e){setAiError((e as Error).message);}
+      finally {setAiBusy(false);}
+      return;
+    }
     try {
       const result = await api<{intent: ProductIntent}>("/api/products/search", {method:"POST",body:JSON.stringify({question:aiQuery.trim()})});
       setProposal(productIntentSchema.parse(result.intent));
@@ -222,14 +235,14 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
           </h1>
           <p>
             Real products. Published ingredients. Matches explained by fixed
-            rules. Describe what you need, then let Groq help you navigate the verified catalog.
+            rules. Describe what you need, then let Groq explore India’s skincare shelves, across the web or in your verified catalog.
           </p>
           <div className="product-hero-pills">
             <span>
               <ShieldCheck size={15} /> Source-checked in India
             </span>
             <span>
-              <Sparkles size={15} /> Groq search · fixed-rule matches
+              <Sparkles size={15} /> Live web discovery + verified catalog
             </span>
           </div>
         </div>
@@ -247,15 +260,20 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
         </div>
       )}
       <section className="product-ai-search" aria-labelledby="product-ai-heading">
-        <div className="product-ai-intro"><span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span><h2 id="product-ai-heading">Tell us what belongs on your shelf.</h2><p>Describe a budget, category or ingredient preference. Groq turns your words into filters; verified catalog facts and fixed rules decide what appears.</p></div>
+        <div className="product-discovery-tabs" role="group" aria-label="Where to search"><button disabled={aiBusy} aria-pressed={searchScope === "web"} onClick={()=>{setSearchScope("web");setProposal(null);setAiError("");}}><Globe size={16}/>Across the web</button><button disabled={aiBusy} aria-pressed={searchScope === "catalog"} onClick={()=>{setSearchScope("catalog");setAiError("");}}><ShieldCheck size={16}/>Verified catalog</button></div>
+        <div className="product-ai-intro"><span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span><h2 id="product-ai-heading">Tell us what belongs on your shelf.</h2><p>{searchScope === "web" ? "Discover brands and product pages beyond our catalog. Groq searches the live web for India-focused sources and opens relevant pages." : "Describe a budget, category or ingredient preference. Groq turns your words into filters; verified catalog facts and fixed rules decide what appears."}</p></div>
         <form onSubmit={e=>{e.preventDefault();void searchWithGroq();}}>
-          <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with Groq" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || aiBusy || aiQuery.trim().length < 5}>{aiBusy ? "Understanding…" : "Search with Groq"}<ArrowRight size={16}/></Button></label>
+          <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with Groq" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setWebConsent(false);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || aiBusy || aiQuery.trim().length < 5 || (searchScope === "web" && !webConsent)}>{aiBusy ? searchScope === "web" ? "Searching the web…" : "Understanding…" : searchScope === "web" ? "Search across the web" : "Search verified catalog"}<ArrowRight size={16}/></Button></label>
         </form>
-        <div className="product-ai-examples">{["A moisturizer under ₹500 for dry skin", "A cleanser under ₹400, without niacinamide", "A vegan sunscreen under ₹700"].map(q=><button disabled={aiBusy} key={q} onClick={()=>{setAiQuery(q);setProposal(null);setAiError("");}}>{q}<ArrowUpRight size={12}/></button>)}</div>
-        <p className="product-ai-disclosure">{demo ? "Synthetic demo: Groq is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "Groq search is not configured on this server. Catalog filters still work." : "Only the request you type and public filter vocabulary go to Groq. No scans, photos, saved preferences or experiment notes are sent by this search. Free-tier quotas apply."} Groq does not search the web or verify live prices.</p>
+        {searchScope === "web" && <label className="checkbox-row product-web-consent"><input type="checkbox" checked={webConsent} disabled={aiBusy} onChange={e=>setWebConsent(e.target.checked)}/><span>Use Groq + its Exa-powered browser search for this request. Only my typed request is shared; no scans or saved profile data.</span></label>}
+        <div className="product-ai-examples">{["A moisturizer under ₹500 for dry skin", "A cleanser under ₹400, without niacinamide", "A vegan sunscreen under ₹700"].map(q=><button disabled={aiBusy} key={q} onClick={()=>{setAiQuery(q);setWebConsent(false);setProposal(null);setAiError("");}}>{q}<ArrowUpRight size={12}/></button>)}</div>
+        <p className="product-ai-disclosure">{demo ? "Synthetic demo: Groq is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "Groq search is not configured on this server. Catalog filters still work." : "Only your typed request and public context are used. No scans, photos, saved preferences or experiment notes are sent. Free-tier quotas apply."} {searchScope === "web" ? "Web results are source discoveries, not fully verified suitability matches. Catalog preferences are not automatically applied to them. Check the exact pack, ingredients and price with the seller." : "Catalog search does not browse the web or verify live prices."}</p>
         {aiError && <div className="error" role="alert">{aiError}</div>}
-        {proposal && <div className="product-ai-review" role="status"><div className="card-heading"><div><span className="section-label">REVIEW BEFORE APPLYING</span><h3>Here’s how we understood your request.</h3></div><button aria-label="Dismiss proposed filters" onClick={()=>setProposal(null)}><X size={17}/></button></div><div className="product-ai-tags">{describeIntent(proposal).map((t,i)=><span key={i}>{t}</span>)}</div>{proposal.unresolved_terms.length > 0 ? <p className="notice">We cannot verify or represent these requirements: {proposal.unresolved_terms.join("; ")}. Edit your request or use the manual filters. These requirements have not been satisfied.</p> : !describeIntent(proposal).length ? <p>No specific filters were recognized. Try adding a category or budget.</p> : <><p>Existing ingredient exclusions, stricter budgets, age confirmation and retinoid choices stay in place. Applying replaces the text, brand and category search, and selects these concerns. Your profile is not saved automatically.</p><Button onClick={applyProposal}>Apply reviewed filters <Check size={15}/></Button></>}</div>}
+        {aiBusy && searchScope === "web" && <div className="product-web-loading" role="status"><span className="loader small-loader"/><div><strong>Looking beyond the catalog.</strong><p>Searching product pages and checking source excerpts. This can take up to a minute.</p></div></div>}
+        {proposal && searchScope === "catalog" && <div className="product-ai-review" role="status"><div className="card-heading"><div><span className="section-label">REVIEW BEFORE APPLYING</span><h3>Here’s how we understood your request.</h3></div><button aria-label="Dismiss proposed filters" onClick={()=>setProposal(null)}><X size={17}/></button></div><div className="product-ai-tags">{describeIntent(proposal).map((t,i)=><span key={i}>{t}</span>)}</div>{proposal.unresolved_terms.length > 0 ? <p className="notice">We cannot verify or represent these requirements: {proposal.unresolved_terms.join("; ")}. Edit your request or use the manual filters. These requirements have not been satisfied.</p> : !describeIntent(proposal).length ? <p>No specific filters were recognized. Try adding a category or budget.</p> : <><p>Existing ingredient exclusions, stricter budgets, age confirmation and retinoid choices stay in place. Applying replaces the text, brand and category search, and selects these concerns. Your profile is not saved automatically.</p><Button onClick={applyProposal}>Apply reviewed filters <Check size={15}/></Button></>}</div>}
       </section>
+      {webResults && <section className="product-web-results" aria-labelledby="web-results-heading"><div className="card-heading"><div><span className="section-label">LIVE WEB DISCOVERY · INDIA</span><h2 id="web-results-heading">A wider shelf to explore.</h2><p>For “{webRequest}” · Searched {new Date(webResults.searched_at).toLocaleString("en-IN")}</p></div><button className="text-link" onClick={()=>setWebResults(null)}>Dismiss results <X size={14}/></button></div><p className="product-web-note">These sources are outside the verified catalog. Titles and links come from search-tool results; detail excerpts are checked against retrieved page text. Search results may include collection pages. Price, availability, full ingredients and suitability require your review. No match percentage or treatment claim is inferred.</p><div className="product-web-grid">{webResults.results.map(r=><article className="card product-web-card" key={r.url}><div className="product-web-source"><Globe size={18}/><span>{r.host}</span><small>{r.page_opened ? "Page opened" : "Search result"}</small></div><h3>{r.title}</h3><dl><div><dt>Price excerpt</dt><dd>{r.price_quote || "Price / exact pack not verified"}</dd></div><div><dt>Ingredients excerpt</dt><dd>{r.ingredients_quote || "Full ingredient information not verified"}</dd></div><div><dt>Suitability excerpt</dt><dd>{r.suitability_quote || "Skin suitability not verified"}</dd></div></dl><p className="subtle">Page statements are seller claims. Read the source and the received pack before choosing.</p><div className="product-web-actions"><Button asChild><a href={r.url} target="_blank" rel="noopener noreferrer">Open source <ArrowUpRight size={14}/></a></Button><Button asChild variant="secondary"><Link href={"/experiments/new?custom_name="+encodeURIComponent(r.title)+"&source="+encodeURIComponent(r.url)}>Track as custom product <FlaskConical size={14}/></Link></Button></div></article>)}</div><p className="product-web-note">Want checked ingredient exclusions and transparent eligibility? Use the verified catalog below. Web discoveries are never silently added to it.</p></section>}
+      <div className="product-catalog-heading"><div><span className="section-label">YOUR VERIFIED CATALOG</span><h2>Source-checked. Matches explained.</h2></div><span>{products.length} records · fixed-rule eligibility</span></div>
       <nav className="product-category-rail" aria-label="Shop by category"><button aria-pressed={!category} onClick={()=>{setCategory("");}}>All categories</button>{categories.map(c=><button key={c} aria-pressed={category === c} onClick={()=>{setCategory(c);}}>{categoryNames[c]}</button>)}</nav>
       {aiIntent && <div className="product-ai-applied"><div><span className="section-label">GROQ-INTERPRETED SEARCH</span><div className="product-ai-tags">{describeIntent(aiIntent).map((t,i)=><span key={i}>{t}</span>)}</div><p>Products and explanations below come from catalog facts and rules, not generated recommendations. Any stricter preferences still apply.</p></div><button className="text-link" onClick={()=>setAiIntent(null)}>Remove AI search constraints <X size={13}/></button></div>}
       {compareIds.length > 0 && <section id="product-comparison" className="product-compare card" aria-label="Compare selected products"><div className="card-heading"><div><span className="section-label">SIDE BY SIDE</span><h2>Compare the details that matter.</h2></div><button className="text-link" onClick={()=>setCompareIds([])}>Clear comparison <X size={14}/></button></div><p>Catalog facts only. Comparison does not override your eligibility filters or establish effectiveness.</p><div className="product-compare-scroll"><table><caption className="sr-only">Selected product facts</caption><thead><tr><th scope="col">Published details</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><th scope="col" key={p.id}>{p.name}<button aria-label={"Remove "+p.name+" from comparison"} onClick={()=>setCompareIds(ids=>ids.filter(id=>id!==p.id))}><X size={14}/></button></th>)}</tr></thead><tbody>{["Brand","Pack price","Pack size","Category","Key ingredients","Brand-listed skin types","Ingredient coverage","Last verified","Source"].map((row,i)=><tr key={row}><th scope="row">{row}</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><td key={p.id}>{i===0?p.brand:i===1?money(p.price_inr):i===2?p.pack_size:i===3?categoryNames[p.category]:i===4?p.ingredient_ids.map(label).join(", ")||"Not verified":i===5?p.skin_types.join(", ")||"Not verified":i===6?p.inci_complete?"Full INCI captured":"Key ingredients only":i===7?new Date(p.verified_at).toLocaleDateString("en-IN"):<a className="text-link" href={p.source_url} target="_blank" rel="noopener noreferrer">Official source ↗</a>}</td>)}</tr>)}</tbody></table></div></section>}

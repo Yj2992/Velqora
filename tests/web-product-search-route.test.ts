@@ -1,0 +1,11 @@
+import { it, expect, vi, beforeEach } from "vitest";
+const mock=vi.hoisted(()=>({auth:vi.fn(),quota:vi.fn(),search:vi.fn(),from:vi.fn(),select:vi.fn(),eq:vi.fn(),single:vi.fn()}));
+vi.mock("../lib/server/auth",()=>({auth:mock.auth,quota:mock.quota}));
+vi.mock("../lib/ai/web-product-search",()=>({searchWebProducts:mock.search}));
+import { POST } from "../app/api/products/discover/route";
+const request=(body:unknown={question:"CeraVe cream in India",web_consent:true})=>new Request("https://app.test/api/products/discover",{method:"POST",body:JSON.stringify(body)});
+beforeEach(()=>{vi.clearAllMocks();const chain={select:mock.select,eq:mock.eq,single:mock.single};mock.from.mockReturnValue(chain);mock.select.mockReturnValue(chain);mock.eq.mockReturnValue(chain);mock.single.mockResolvedValue({data:{llm_consent:true},error:null});mock.auth.mockResolvedValue({user:{id:"owner"},db:{from:mock.from}});mock.quota.mockResolvedValue(undefined);mock.search.mockResolvedValue({source:"groq-web",results:[]});});
+it("requires a separate affirmative web-search acknowledgment",async()=>{expect((await POST(request({question:"CeraVe cream in India"}))).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();});
+it("also requires the owner's saved AI consent",async()=>{mock.single.mockResolvedValue({data:{llm_consent:false},error:null});expect((await POST(request())).status).toBe(403);expect(mock.search).not.toHaveBeenCalled();});
+it("uses authenticated consent and its own bounded quota",async()=>{const r=await POST(request());expect(r.status).toBe(200);expect(mock.eq).toHaveBeenCalledWith("id","owner");expect(mock.quota).toHaveBeenCalledWith(expect.anything(),"owner","product-web-search",5);expect(mock.search).toHaveBeenCalledWith("CeraVe cream in India",true);expect(r.headers.get("cache-control")).toContain("no-store");});
+it("does not accept saved profile or scan payloads",async()=>{expect((await POST(request({question:"CeraVe cream",web_consent:true,scans:[{}]}))).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();});
