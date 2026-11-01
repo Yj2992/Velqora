@@ -177,7 +177,15 @@ export const concernRules: ConcernRule[] = [
   {
     id: "dark_circle_v2",
     label: "Dark-circle appearance",
-    ingredients: ["glycerin", "hyaluronic_acid"],
+    ingredients: [
+      "glycerin",
+      "hyaluronic_acid",
+      "ceramides",
+      "caffeine",
+      "peptides",
+      "vitamin_c",
+      "niacinamide",
+    ],
     categories: ["eye_care"],
     support: "limited",
     explanation:

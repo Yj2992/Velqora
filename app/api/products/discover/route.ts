@@ -31,7 +31,20 @@ export async function POST(request:Request) {
       catch {throw new AppError("SCAN_UNSUPPORTED","This scan’s provider version does not support automatic interpretation. Choose a supported YouCam scan.",400);}
       await quota(db,user.id,"product-web-search",50);
       const f=requestInput.filters;
-      const leads=recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(({product:p})=>(!f.category||p.category===f.category)&&(!f.brand||sourceBrandMatches(p.name,new URL(p.official_url).hostname,f.brand))&&(!f.full_ingredients_only||p.inci_complete)&&(!f.query||[p.name,...p.ingredient_ids].join(" ").toLowerCase().includes(f.query.toLowerCase()))).slice(0,2).map(({product:p})=>({name:p.name,url:p.official_url}));
+      const filterLead=({product:p}:{product:Product})=>(!f.category||p.category===f.category)&&(!f.brand||sourceBrandMatches(p.name,new URL(p.official_url).hostname,f.brand))&&(!f.full_ingredients_only||p.inci_complete)&&(!f.query||[p.name,...p.ingredient_ids].join(" ").toLowerCase().includes(f.query.toLowerCase()));
+      const leadsMap=new Map<string,{name:string;url:string}>();
+      const targetCategories=[...new Set(plan.targets.flatMap(t=>t.id==="dark_circle_v2"?["eye_care"]:[]))];
+      // Ensure eye_care or explicit category targets get a dedicated starting reference lead when multi-concern scans are run
+      for(const cat of targetCategories){
+        for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(m=>m.product.category===cat&&filterLead(m)).slice(0,2)){
+          leadsMap.set(item.product.official_url,{name:item.product.name,url:item.product.official_url});
+        }
+      }
+      for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(filterLead).slice(0,4)){
+        if(leadsMap.size>=4)break;
+        leadsMap.set(item.product.official_url,{name:item.product.name,url:item.product.official_url});
+      }
+      const leads=[...leadsMap.values()].slice(0,4);
       const found=await searchWebProducts(plan.search_brief,true,leads);
       result={...found,scan_id:requestInput.scan_id,plan,...assessScanProducts(found.results,plan,requestInput.preferences,requestInput.filters)};
     } else {

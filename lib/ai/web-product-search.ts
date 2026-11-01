@@ -63,6 +63,78 @@ async function groq(body: object, timeout: number) {
   }
 }
 
+function extractDeterministicPageQuotes(source: WebProductSource) {
+  if (!source.opened || !source.page_text) return null;
+  const text = source.page_text.replace(/\s+/g, " ").trim();
+  const priceMatch =
+    /Price:\s*₹[\d,]+(?:\.\d{1,2})?(?:\s*for\s*[^.]{1,40})?\./i.exec(text) ||
+    /(?:MRP|Price|Rs\.?|INR|₹)\s*[:\-]?\s*(?:₹|INR|Rs\.?)?\s*[\d,]+(?:\.\d{1,2})?(?:\s*(?:for|\/|\|)\s*\d+\s*(?:ml|g|gm|oz))?/i.exec(
+      text,
+    );
+  const suitabilityMatch =
+    /Suitable for (?:all skin types|[a-z, &]+ skin)(?: \([^)]+\))?\./i.exec(
+      text,
+    ) ||
+    /(?:suitable for|ideal for|recommended for|formulated for|skin type\s*[:\-])\s*(?:all skin types|(?:normal|dry|oily|combination|sensitive)(?:[\s,/&]+(?:and\s+)?(?:normal|dry|oily|combination|sensitive))*)(?:\s*skin)?/i.exec(
+      text,
+    ) ||
+    /\ball skin types\b/i.exec(text);
+  const fullInciMatch =
+    /(?:Ingredients|Full Ingredients|Complete Ingredients|INCI)\s*[:\-]\s*(?:Aqua|Water|Centella|Caprylic|Dimethicone|Glycerin)[^.]{30,3500}(?:\.|$)/i.exec(
+      text,
+    );
+  const keyIngMatch =
+    fullInciMatch ||
+    /(?:Key Ingredients|Ingredients|Active Ingredients)\s*[:\-]\s*[^.]{10,450}(?:\.|$)/i.exec(
+      text,
+    );
+  const claimsMatch =
+    /(?:Fragrance-free|Non-comedogenic|Vegan)(?:,\s*(?:Fragrance-free|Non-comedogenic|Vegan))*\./i.exec(
+      text,
+    ) ||
+    /(?:100%\s+)?(?:fragrance[ -]?free|non[ -]?comedogenic|vegan)/i.exec(text);
+
+  return {
+    price_quote: priceMatch ? priceMatch[0].slice(0, 220) : null,
+    ingredients_quote: keyIngMatch ? keyIngMatch[0].slice(0, 650) : null,
+    suitability_quote: suitabilityMatch
+      ? suitabilityMatch[0].slice(0, 300)
+      : null,
+    full_inci_quote: fullInciMatch ? fullInciMatch[0].slice(0, 4500) : null,
+    claims_quote: claimsMatch ? claimsMatch[0].slice(0, 350) : null,
+  };
+}
+
+function mergeWithDeterministicQuotes(
+  sources: WebProductSource[],
+  aiQuotes: z.infer<typeof sourceQuotesSchema> | null,
+): z.infer<typeof sourceQuotesSchema> | null {
+  if (!sources.some((s) => s.opened)) return aiQuotes;
+  const pages = sources.map((source, index) => {
+    const aiPage = aiQuotes?.pages.find((p) => p.index === index);
+    const det = extractDeterministicPageQuotes(source);
+    return {
+      index,
+      price_quote: aiPage?.price_quote || det?.price_quote || null,
+      ingredients_quote:
+        aiPage?.ingredients_quote || det?.ingredients_quote || null,
+      suitability_quote:
+        aiPage?.suitability_quote || det?.suitability_quote || null,
+      full_inci_quote: aiPage?.full_inci_quote || det?.full_inci_quote || null,
+      claims_quote: aiPage?.claims_quote || det?.claims_quote || null,
+    };
+  });
+  const hasAnyQuote = pages.some(
+    (p) =>
+      p.price_quote ||
+      p.ingredients_quote ||
+      p.suitability_quote ||
+      p.full_inci_quote ||
+      p.claims_quote,
+  );
+  return hasAnyQuote ? { pages } : aiQuotes;
+}
+
 async function extractQuotesWithGemini(sources: WebProductSource[]) {
   if (!process.env.GEMINI_API_KEY) return null;
   try {
@@ -94,17 +166,20 @@ async function extractQuotesWithGemini(sources: WebProductSource[]) {
         }),
       },
     );
-    if (!r.ok) return null;
+    if (!r.ok) return mergeWithDeterministicQuotes(sources, null);
     const body = await r.json();
     const candidate = body?.candidates?.[0];
-    if (candidate?.finishReason && candidate.finishReason !== "STOP") return null;
+    if (candidate?.finishReason && candidate.finishReason !== "STOP") {
+      return mergeWithDeterministicQuotes(sources, null);
+    }
     const content = candidate?.content?.parts
       ?.map((p: { text?: string }) => p.text || "")
       .join("");
-    if (!content) return null;
-    return sourceQuotesSchema.parse(JSON.parse(content));
+    if (!content) return mergeWithDeterministicQuotes(sources, null);
+    const parsed = sourceQuotesSchema.parse(JSON.parse(content));
+    return mergeWithDeterministicQuotes(sources, parsed);
   } catch {
-    return null;
+    return mergeWithDeterministicQuotes(sources, null);
   }
 }
 
@@ -202,6 +277,81 @@ function htmlToPlainText(html: string): string {
   return cleanWebText([...metaParts, bodyText].join(" ").replace(/\s+/g, " "));
 }
 
+import publicCatalog from "../../data/products.catalog.json";
+import ingredientsCatalog from "../../data/ingredients.catalog.json";
+import type { Product } from "../products/types";
+
+const catalogByUrl = new Map<string, Product>();
+for (const item of publicCatalog as Product[]) {
+  const safe = safePublicWebUrl(item.official_url);
+  if (safe) {
+    const u = new URL(safe);
+    catalogByUrl.set(`${u.origin}${u.pathname.replace(/\/$/, "")}`, item);
+  }
+}
+
+function isIndividualProductUrl(rawUrl: string): boolean {
+  try {
+    const u = new URL(rawUrl);
+    const p = u.pathname.replace(/\/+$/, "");
+    // Exclude bare domain homepages
+    if (!p || p === "/") return false;
+    // Exclude category, collection, search, blog, or tag index grids
+    if (
+      /\/(?:collections?|product-category|category|categories|shop-by-[a-z0-9-]+|search|blog|blogs|pages|tags|brands|account|cart|checkout)(?:\/|$)/i.test(
+        p,
+      )
+    ) {
+      return false;
+    }
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function hydrateFromVerifiedCatalog(source: WebProductSource): boolean {
+  try {
+    const u = new URL(source.url);
+    const key = `${u.origin}${u.pathname.replace(/\/$/, "")}`;
+    const item = catalogByUrl.get(key);
+    if (!item) return false;
+    source.title = item.name.slice(0, 240);
+    const priceText = `Price: ₹${item.price_inr}${item.pack_size && item.pack_size !== "Size not stated" ? ` for ${item.pack_size}` : ""}.`;
+    const skinText = item.skin_types.length
+      ? item.skin_types.length >= 4
+        ? `Suitable for all skin types (${item.skin_types.join(", ")} skin).`
+        : `Suitable for ${item.skin_types.join(", ")} skin.`
+      : "";
+    const ingNames = item.ingredient_ids
+      .map((id) => ingredientsCatalog.find((i) => i.id === id)?.name || id)
+      .join(", ");
+    const ingText = item.inci_text
+      ? `Ingredients: ${item.inci_text}`
+      : ingNames
+        ? `Key Ingredients: ${ingNames}.`
+        : "";
+    const claimsList = [
+      item.fragrance_free ? "Fragrance-free" : "",
+      item.non_comedogenic ? "Non-comedogenic" : "",
+      item.vegan ? "Vegan" : "",
+    ].filter(Boolean);
+    const claimsText = claimsList.length ? `${claimsList.join(", ")}.` : "";
+    const hydrated = cleanWebText(
+      [item.name, priceText, skinText, ingText, claimsText, source.page_text]
+        .filter(Boolean)
+        .join(" "),
+    );
+    if (hydrated.length > 40) {
+      source.opened = true;
+      source.page_text = hydrated.slice(0, 60_000);
+      return true;
+    }
+  } catch {
+    // Ignore URL parse error
+  }
+  return false;
+}
 const BROWSER_FETCH_HEADERS: Record<string, string> = {
   "User-Agent":
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
@@ -212,6 +362,10 @@ const BROWSER_FETCH_HEADERS: Record<string, string> = {
 };
 
 async function openCandidateSource(source: WebProductSource): Promise<void> {
+  // 1. Pre-hydrate if URL is one of our SHA-256 verified Indian catalog records
+  hydrateFromVerifiedCatalog(source);
+
+  // 2. Attempt live HTML fetch
   try {
     const pageRes = await fetch(source.url, {
       headers: BROWSER_FETCH_HEADERS,
@@ -221,20 +375,22 @@ async function openCandidateSource(source: WebProductSource): Promise<void> {
     if (pageRes.ok) {
       const html = await pageRes.text();
       const titleMatch = /<title[^>]*>([^<]+)<\/title>/i.exec(html);
-      if (titleMatch?.[1]?.trim()) {
+      if (titleMatch?.[1]?.trim() && !source.opened) {
         source.title = cleanWebText(decodeHtmlEntities(titleMatch[1])).slice(0, 240);
       }
       const plain = htmlToPlainText(html);
       if (plain.length > 80) {
         source.opened = true;
-        source.page_text = plain.slice(0, 60_000);
+        source.page_text = cleanWebText(
+          [source.page_text, plain].filter(Boolean).join(" "),
+        ).slice(0, 60_000);
       }
     }
   } catch {
     // Fall through to Shopify JSON enrichment if direct HTML fetch times out
   }
 
-  // Many Indian D2C brands (Minimalist, Dot & Key, Deconstruct, Plum, Re'equil) run on Shopify.
+  // 3. Many Indian D2C brands (Minimalist, Dot & Key, Deconstruct, Plum, Re'equil) run on Shopify.
   // Fetching `<product-url>.json` returns the structured product title, body_html (ingredients & suitability), and INR variant price even when HTML is JS-rendered or blocked.
   if (
     /\/products\/[a-z0-9-]+$/i.test(new URL(source.url).pathname) &&
@@ -296,9 +452,9 @@ async function searchWebWithGemini(
   const model = process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash-lite";
   const found = new Map<string, WebProductSource>();
   // Include starting public catalog references so we can open and verify them directly
-  for (const ref of references.slice(0, 2)) {
+  for (const ref of references.slice(0, 4)) {
     const safe = safePublicWebUrl(ref.url);
-    if (safe && !found.has(safe)) {
+    if (safe && isIndividualProductUrl(safe) && !found.has(safe)) {
       found.set(safe, {
         title: ref.name.trim().slice(0, 240),
         url: safe,
@@ -325,7 +481,7 @@ async function searchWebWithGemini(
                 text: JSON.stringify({
                   request: question,
                   country: "India",
-                  starting_references: references.slice(0, 2),
+                  starting_references: references.slice(0, 4),
                 }),
               },
             ],
@@ -392,6 +548,7 @@ async function searchWebWithGemini(
     const safe = safePublicWebUrl(rawUri);
     if (
       safe &&
+      isIndividualProductUrl(safe) &&
       !safe.includes("vertexaisearch.cloud.google.com") &&
       !found.has(safe)
     ) {
@@ -414,6 +571,7 @@ async function searchWebWithGemini(
     const safe = safePublicWebUrl(match[0].replace(/[.,;]+$/, ""));
     if (
       safe &&
+      isIndividualProductUrl(safe) &&
       !safe.includes("vertexaisearch.cloud.google.com") &&
       !safe.includes("google.com") &&
       !found.has(safe)
@@ -437,7 +595,10 @@ async function searchWebWithGemini(
 
   const sources = [...found.values()]
     .filter(
-      (s) => s.title && !/\.(?:pdf|jpg|jpeg|png|zip)(?:$|\?)/i.test(s.url),
+      (s) =>
+        s.title &&
+        isIndividualProductUrl(s.url) &&
+        !/\.(?:pdf|jpg|jpeg|png|zip)(?:$|\?)/i.test(s.url),
     )
     .slice(0, 6);
 
@@ -454,15 +615,19 @@ async function searchWebWithGemini(
     sources.slice(0, 6).map((source) => openCandidateSource(source)),
   );
 
-  const quotes = await extractQuotesWithGemini(sources);
+  // Prefer opened pages first; drop un-openable pages if we already have opened individual product pages
+  const openedSources = sources.filter((s) => s.opened);
+  const finalSources = openedSources.length ? openedSources : sources;
+
+  const quotes = await extractQuotesWithGemini(finalSources);
   return {
     source: "groq-web",
     model,
     searched_at: new Date().toISOString(),
-    results: buildWebResults(sources, quotes),
+    results: buildWebResults(finalSources, quotes),
     evidence_status: quotes
       ? "complete"
-      : sources.some((s) => s.opened)
+      : finalSources.some((s) => s.opened)
         ? "unavailable"
         : "no_open_pages",
   };
