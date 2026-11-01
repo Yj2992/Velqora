@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/theme-toggle";
 function SkinArtwork() {
   return (
     <div className="skin-artwork" aria-hidden="true">
@@ -123,6 +124,7 @@ export default function Landing() {
           <a href="#privacy">Your privacy</a>
         </nav>
         <div>
+          <ThemeToggle />
           <Link href="/login" className="login-link">
             Log in
           </Link>

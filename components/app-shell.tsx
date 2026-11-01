@@ -18,6 +18,7 @@ import {
 import { useState } from "react";
 import { Logo } from "./logo";
 import { Button } from "./ui/button";
+import { ThemeToggle } from "./theme-toggle";
 import { useApp } from "./app-provider";
 import { browserClient } from "@/lib/supabase/client";
 const nav = [
@@ -128,6 +129,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </span>
           <div className="topbar-right">
             {demo && <span className="pill demo-pill">SYNTHETIC DEMO</span>}
+            <ThemeToggle />
             <span className="tiny-status">
               <i />
               Private workspace

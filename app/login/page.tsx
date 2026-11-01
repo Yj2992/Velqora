@@ -1,5 +1,6 @@
 import { Logo } from "@/components/logo";
 import { AuthForm } from "@/components/auth-form";
+import { ThemeToggle } from "@/components/theme-toggle";
 import Link from "next/link";
 import { ArrowLeft, ShieldCheck } from "lucide-react";
 export default function AuthPage() {
@@ -22,16 +23,19 @@ export default function AuthPage() {
             <i />
             <i />
             <i />
-            <span>dl.</span>
+            <span>vq.</span>
           </div>
         </div>
         <p className="auth-story-footer">Velqora · See beyond your skin.</p>
       </section>
       <section className="auth-panel">
-        <Link href="/" className="text-link">
-          <ArrowLeft size={16} />
-          Back home
-        </Link>
+        <div className="auth-panel-top">
+          <Link href="/" className="text-link">
+            <ArrowLeft size={16} />
+            Back home
+          </Link>
+          <ThemeToggle />
+        </div>
         <div className="auth-box">
           <span className="eyebrow">GOOD TO SEE YOU AGAIN</span>
           <h1>Welcome to your space.</h1>
