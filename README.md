@@ -184,3 +184,19 @@ Scan results link to product matches. “Track This Product” pre-fills a catal
 ### Live camera capture
 
 The new-scan screen supports a front-camera live preview, camera switching, JPEG capture, review and retake alongside existing JPEG/PNG/HEIC uploads. Camera access requires HTTPS or localhost and browser permission. Audio is never requested. Streams stop after capture, cancellation, switching cameras or leaving the screen; a permission request resolving after cancellation is immediately stopped. Only the chosen still photo is uploaded through the existing consent-protected analysis flow. Demo mode never uploads a photo.
+
+
+### Groq-assisted Find Products
+
+`/products` now accepts a natural-language shopping request. The existing Groq key/model and server sharing switch are reused; each signed-in user must enable AI sharing first. Groq receives only the typed request and public filter vocabulary. It receives no saved profile, scans, photos, preferences or experiment notes from this feature. Demo mode never calls Groq.
+
+Groq converts the request into a strict, server-validated filter schema. The user reviews the interpretation before applying it. The existing rule engine still determines product eligibility, ranks matches and supplies explanations. All names, prices, ingredients, images and official purchase URLs remain catalog records. This feature does not browse the web, verify live prices, create new products or claim that unknown manufacturer properties are satisfied. Unsupported requirements block applying the interpretation until the request is refined.
+
+Existing ingredient exclusions, lower budgets, sensitive-skin restrictions, adult confirmation and retinoid avoidance cannot be relaxed by the parser. Applied filters are local until the user explicitly saves preferences. New search constraints compose with the existing manual filters; removing the AI-specific category/brand/ingredient constraints preserves the updated safety/preferences controls, which remain visible in the sidebar. The endpoint enforces authenticated ownership of the consent record, 10 requests/user/hour, a bounded response and timeout, and honest quota/provider errors without paid fallback.
+
+The page also provides category shortcuts and up-to-three-product factual comparison with source links. Track This Product continues to use the canonical product ID and Experiment Lab flow.
+
+Verification commands:
+- `npm test`: offline tests, including schema validation, consent/ownership gates, and preserved safety constraints.
+- `RUN_GROQ_SEARCH_SMOKE=true npx vitest run tests/product-search-live.test.ts`: explicit live generic-query check (requires configured Groq key).
+- `npm run test:product-search`: live disposable-account consent-to-search API check using the local server and configured Supabase project; revokes the test session and removes the exact temporary account. Never prints credentials or sends real scan/profile context to Groq.

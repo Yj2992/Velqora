@@ -11,6 +11,10 @@ import {
   Leaf,
   BookOpen,
   ShoppingBag,
+  Sparkles,
+  ArrowRight,
+  X,
+  Columns3,
 } from "lucide-react";
 import { useApp, api } from "./app-provider";
 import { Button } from "./ui/button";
@@ -33,6 +37,7 @@ import {
   featuredIngredients,
   categoryNames,
 } from "@/lib/products/presentation";
+import { productIntentSchema, mergeSearchPreferences, matchesSearchIntent, describeIntent, type ProductIntent } from "@/lib/products/search-intent";
 import ingredients from "@/data/ingredients.catalog.json";
 const label = (id: string) =>
   ingredients.find((i) => i.id === id)?.name || id.replaceAll("_", " ");
@@ -42,7 +47,7 @@ const money = (amount: number) =>
     currency: "INR",
     maximumFractionDigits: 2,
   }).format(amount);
-export function ProductExplorer({ products }: { products: Product[] }) {
+export function ProductExplorer({ products, aiSearchAvailable = false }: { products: Product[]; aiSearchAvailable?: boolean }) {
   const { data, demo } = useApp();
   const scans = data.scans
     .filter((s) => s.status === "completed")
@@ -64,6 +69,29 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     [saving, setSaving] = useState(false),
     [ready, setReady] = useState(false),
     [avoid, setAvoid] = useState("");
+  const [aiQuery, setAiQuery] = useState(""), [aiBusy, setAiBusy] = useState(false), [aiError, setAiError] = useState("");
+  const [proposal, setProposal] = useState<ProductIntent | null>(null), [aiIntent, setAiIntent] = useState<ProductIntent | null>(null);
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+  const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
+  async function searchWithGroq() {
+    if (!aiAllowed || aiBusy || aiQuery.trim().length < 5) return;
+    setAiBusy(true); setAiError(""); setProposal(null);
+    try {
+      const result = await api<{intent: ProductIntent}>("/api/products/search", {method:"POST",body:JSON.stringify({question:aiQuery.trim()})});
+      setProposal(productIntentSchema.parse(result.intent));
+    } catch(e) {setAiError((e as Error).message);}
+    finally {setAiBusy(false);}
+  }
+  function applyProposal() {
+    if (!proposal || proposal.unresolved_terms.length) return;
+    try {
+      const next = mergeSearchPreferences({...prefs,avoid_ingredients:avoid.split(",").map(s=>s.trim()).filter(Boolean)},proposal);
+      setPrefs(next); setAvoid(next.avoid_ingredients.join(", "));
+      setAiIntent(proposal); setManual(true); setFocus(proposal.concerns as ConcernId[]);
+      setBrowse(!proposal.concerns.length); setQuery(""); setBrand(""); setCategory(""); setSort("matches");
+      setProposal(null); setStatus("Groq search filters applied for this visit. Your stricter preferences remain. Nothing was saved to your profile.");
+    } catch {setAiError("These filters exceed the ingredient-exclusion limit. Review your exclusions manually; none were removed.");}
+  }
   const selected = scans.find((s) => s.id === scanId);
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -112,6 +140,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
       Date.now(),
       browse,
       (m) =>
+        matchesSearchIntent(m.product, aiIntent) &&
         (!completeOnly || m.product.inci_complete) &&
         (!brand || m.product.brand_slug === brand) &&
         (!category || m.product.category === category) &&
@@ -133,6 +162,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
     return { ...result, matches: found };
   }, [
     products,
+    aiIntent,
     completeOnly,
     prefs,
     avoid,
@@ -192,14 +222,14 @@ export function ProductExplorer({ products }: { products: Product[] }) {
           </h1>
           <p>
             Real products. Published ingredients. Matches explained by fixed
-            rules, with room for what your skin tells you.
+            rules. Describe what you need, then let Groq help you navigate the verified catalog.
           </p>
           <div className="product-hero-pills">
             <span>
               <ShieldCheck size={15} /> Source-checked in India
             </span>
             <span>
-              <Leaf size={15} /> No generative AI
+              <Sparkles size={15} /> Groq search · fixed-rule matches
             </span>
           </div>
         </div>
@@ -216,6 +246,20 @@ export function ProductExplorer({ products }: { products: Product[] }) {
           it is not a personal skin assessment.
         </div>
       )}
+      <section className="product-ai-search" aria-labelledby="product-ai-heading">
+        <div className="product-ai-intro"><span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span><h2 id="product-ai-heading">Tell us what belongs on your shelf.</h2><p>Describe a budget, category or ingredient preference. Groq turns your words into filters; verified catalog facts and fixed rules decide what appears.</p></div>
+        <form onSubmit={e=>{e.preventDefault();void searchWithGroq();}}>
+          <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with Groq" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || aiBusy || aiQuery.trim().length < 5}>{aiBusy ? "Understanding…" : "Search with Groq"}<ArrowRight size={16}/></Button></label>
+        </form>
+        <div className="product-ai-examples">{["A moisturizer under ₹500 for dry skin", "A cleanser under ₹400, without niacinamide", "A vegan sunscreen under ₹700"].map(q=><button disabled={aiBusy} key={q} onClick={()=>{setAiQuery(q);setProposal(null);setAiError("");}}>{q}<ArrowUpRight size={12}/></button>)}</div>
+        <p className="product-ai-disclosure">{demo ? "Synthetic demo: Groq is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "Groq search is not configured on this server. Catalog filters still work." : "Only the request you type and public filter vocabulary go to Groq. No scans, photos, saved preferences or experiment notes are sent by this search. Free-tier quotas apply."} Groq does not search the web or verify live prices.</p>
+        {aiError && <div className="error" role="alert">{aiError}</div>}
+        {proposal && <div className="product-ai-review" role="status"><div className="card-heading"><div><span className="section-label">REVIEW BEFORE APPLYING</span><h3>Here’s how we understood your request.</h3></div><button aria-label="Dismiss proposed filters" onClick={()=>setProposal(null)}><X size={17}/></button></div><div className="product-ai-tags">{describeIntent(proposal).map((t,i)=><span key={i}>{t}</span>)}</div>{proposal.unresolved_terms.length > 0 ? <p className="notice">We cannot verify or represent these requirements: {proposal.unresolved_terms.join("; ")}. Edit your request or use the manual filters. These requirements have not been satisfied.</p> : !describeIntent(proposal).length ? <p>No specific filters were recognized. Try adding a category or budget.</p> : <><p>Existing ingredient exclusions, stricter budgets, age confirmation and retinoid choices stay in place. Applying replaces the text, brand and category search, and selects these concerns. Your profile is not saved automatically.</p><Button onClick={applyProposal}>Apply reviewed filters <Check size={15}/></Button></>}</div>}
+      </section>
+      <nav className="product-category-rail" aria-label="Shop by category"><button aria-pressed={!category} onClick={()=>{setCategory("");}}>All categories</button>{categories.map(c=><button key={c} aria-pressed={category === c} onClick={()=>{setCategory(c);}}>{categoryNames[c]}</button>)}</nav>
+      {aiIntent && <div className="product-ai-applied"><div><span className="section-label">GROQ-INTERPRETED SEARCH</span><div className="product-ai-tags">{describeIntent(aiIntent).map((t,i)=><span key={i}>{t}</span>)}</div><p>Products and explanations below come from catalog facts and rules, not generated recommendations. Any stricter preferences still apply.</p></div><button className="text-link" onClick={()=>setAiIntent(null)}>Remove AI search constraints <X size={13}/></button></div>}
+      {compareIds.length > 0 && <section id="product-comparison" className="product-compare card" aria-label="Compare selected products"><div className="card-heading"><div><span className="section-label">SIDE BY SIDE</span><h2>Compare the details that matter.</h2></div><button className="text-link" onClick={()=>setCompareIds([])}>Clear comparison <X size={14}/></button></div><p>Catalog facts only. Comparison does not override your eligibility filters or establish effectiveness.</p><div className="product-compare-scroll"><table><caption className="sr-only">Selected product facts</caption><thead><tr><th scope="col">Published details</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><th scope="col" key={p.id}>{p.name}<button aria-label={"Remove "+p.name+" from comparison"} onClick={()=>setCompareIds(ids=>ids.filter(id=>id!==p.id))}><X size={14}/></button></th>)}</tr></thead><tbody>{["Brand","Pack price","Pack size","Category","Key ingredients","Brand-listed skin types","Ingredient coverage","Last verified","Source"].map((row,i)=><tr key={row}><th scope="row">{row}</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><td key={p.id}>{i===0?p.brand:i===1?money(p.price_inr):i===2?p.pack_size:i===3?categoryNames[p.category]:i===4?p.ingredient_ids.map(label).join(", ")||"Not verified":i===5?p.skin_types.join(", ")||"Not verified":i===6?p.inci_complete?"Full INCI captured":"Key ingredients only":i===7?new Date(p.verified_at).toLocaleDateString("en-IN"):<a className="text-link" href={p.source_url} target="_blank" rel="noopener noreferrer">Official source ↗</a>}</td>)}</tr>)}</tbody></table></div></section>}
+      {compareIds.length > 0 && <a className="product-compare-floating" href="#product-comparison"><Columns3 size={16}/>{compareIds.length} of 3 selected · View comparison <ArrowUpRight size={15}/></a>}
       <div className="product-layout">
         <aside className="product-sidebar card">
           <div className="card-heading">
@@ -598,6 +642,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
                 Your scan priorities do not always have a suitable topical
                 product. Here is what is limiting this selection.
               </p>
+              {aiIntent && <p className="notice">AI search constraints are also applied. Remove them above to explore more products; your ingredient exclusions and safety preferences stay in place.</p>}
               {emptyDetails && (
                 <div className="empty-match-details">
                   {emptyDetails.rows.map((row) => (
@@ -673,6 +718,7 @@ export function ProductExplorer({ products }: { products: Product[] }) {
                 const track = `/experiments/new?product=${encodeURIComponent(p.id)}${selected ? `&scan=${selected.id}` : ""}&metric=${encodeURIComponent(trackMetric)}`;
                 return (
                   <article className="product-card" key={p.id}>
+                    <button className={"product-compare-toggle " + (compareIds.includes(p.id) ? "selected" : "")} aria-pressed={compareIds.includes(p.id)} disabled={compareIds.length >= 3 && !compareIds.includes(p.id)} onClick={()=>setCompareIds(ids=>ids.includes(p.id)?ids.filter(id=>id!==p.id):[...ids,p.id])}><Columns3 size={14}/>{compareIds.includes(p.id)?"Added to comparison":"Compare"}</button>
                     <div className="product-image">
                       {p.image_url ? (
                         <img

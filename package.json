@@ -10,7 +10,8 @@
     "test": "vitest run",
     "test:integration": "node scripts/verify-supabase.mjs",
     "catalog:import": "node scripts/import-product-catalog.mjs",
-    "test:products": "node scripts/verify-products.mjs"
+    "test:products": "node scripts/verify-products.mjs",
+    "test:product-search": "node scripts/verify-product-search.mjs"
   },
   "keywords": [],
   "author": "",
