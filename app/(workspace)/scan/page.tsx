@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import {
+  Camera,
   Upload,
   Check,
   ScanFace,
@@ -11,6 +12,7 @@ import {
 } from "lucide-react";
 import { useApp, api } from "@/components/app-provider";
 import { Button } from "@/components/ui/button";
+import { CameraCapture } from "@/components/camera-capture";
 import { PageHeader } from "@/components/shared";
 export default function NewScan() {
   const { demo, addDemoScan } = useApp(),
@@ -23,7 +25,9 @@ export default function NewScan() {
     [notes, setNotes] = useState(""),
     [busy, setBusy] = useState(false),
     [error, setError] = useState(""),
-    [drag, setDrag] = useState(false);
+    [drag, setDrag] = useState(false),
+    [cameraOpen, setCameraOpen] = useState(false),
+    [photoSource, setPhotoSource] = useState<"camera" | "upload">("upload");
   useEffect(() => {
     key.current = crypto.randomUUID();
   }, []);
@@ -40,7 +44,8 @@ export default function NewScan() {
     setPreview(url);
     return () => URL.revokeObjectURL(url);
   }, [file]);
-  function choose(f?: File) {
+  function choose(f?: File, source: "camera" | "upload" = "upload") {
+    if (busy) return;
     setError("");
     if (!f) return;
     if (
@@ -62,6 +67,9 @@ export default function NewScan() {
       return;
     }
     setFile(f);
+    setPhotoSource(source);
+    setConsent(false);
+    setCameraOpen(false);
     key.current = crypto.randomUUID();
   }
   async function submit() {
@@ -107,86 +115,115 @@ export default function NewScan() {
               photo stays in this browser and is never uploaded.
             </div>
           )}
-          <div
-            className={"dropzone " + (drag ? "dragging" : "")}
-            onDragOver={(e) => {
-              e.preventDefault();
-              setDrag(true);
-            }}
-            onDragLeave={() => setDrag(false)}
-            onDrop={(e) => {
-              e.preventDefault();
-              setDrag(false);
-              choose(e.dataTransfer.files[0]);
-            }}
-          >
-            {preview ? (
-              <div className="image-preview">
-                <img src={preview} alt="Your selected face photograph" />
-                <button
-                  className="icon-button"
-                  aria-label="Remove photo"
-                  onClick={() => setFile(null)}
-                >
-                  <X />
-                </button>
-              </div>
-            ) : file ? (
-              <div>
-                <ScanFace size={48} aria-hidden="true" />
-                <h2>HEIC photo selected</h2>
-                <p>{file.name}</p>
-                <p>
-                  Ready to upload. This photo will be converted and
-                  automatically framed around your face.
-                </p>
-                <button
-                  className="icon-button"
-                  aria-label="Remove photo"
-                  onClick={() => setFile(null)}
-                >
-                  <X />
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="upload-art">
-                  <ScanFace size={62} strokeWidth={1} />
-                  <span />
-                  <span />
-                </div>
-                <h2>A clear photo. A clearer picture.</h2>
-                <p>
-                  Drop your face photograph here
-                  <br />
-                  or choose one from your device.
-                </p>
-              </>
-            )}
-            <Button
-              variant="secondary"
-              onClick={() => input.current?.click()}
-              disabled={busy}
-            >
-              <Upload size={17} />
-              {file ? "Choose another photo" : "Choose photograph"}
-            </Button>
-            <small>
-              JPEG, PNG or HEIC · Up to 8 MB · Automatic face framing
-            </small>
-            <p className="subtle">
-              We crop excess background around a single detected face before
-              analysis. Keep your whole face visible and look straight ahead.
-            </p>
-            <input
-              ref={input}
-              type="file"
-              accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif"
-              className="sr-only"
-              aria-label="Select face photograph"
-              onChange={(e) => choose(e.target.files?.[0])}
+          {cameraOpen ? (
+            <CameraCapture
+              onCapture={(file) => choose(file, "camera")}
+              onCancel={() => setCameraOpen(false)}
             />
-          </div>
+          ) : (
+            <div
+              className={"dropzone " + (drag ? "dragging" : "")}
+              onDragOver={(e) => {
+                e.preventDefault();
+                setDrag(true);
+              }}
+              onDragLeave={() => setDrag(false)}
+              onDrop={(e) => {
+                e.preventDefault();
+                setDrag(false);
+                choose(e.dataTransfer.files[0]);
+              }}
+            >
+              {preview ? (
+                <div className="image-preview">
+                  <img src={preview} alt="Your selected face photograph" />
+                  <button
+                    className="icon-button"
+                    aria-label="Remove photo"
+                    onClick={() => {
+                      setFile(null);
+                      setConsent(false);
+                    }}
+                  >
+                    <X />
+                  </button>
+                </div>
+              ) : file ? (
+                <div>
+                  <ScanFace size={48} aria-hidden="true" />
+                  <h2>HEIC photo selected</h2>
+                  <p>{file.name}</p>
+                  <p>
+                    Ready to upload. This photo will be converted and
+                    automatically framed around your face.
+                  </p>
+                  <button
+                    className="icon-button"
+                    aria-label="Remove photo"
+                    onClick={() => {
+                      setFile(null);
+                      setConsent(false);
+                    }}
+                  >
+                    <X />
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <div className="upload-art">
+                    <ScanFace size={62} strokeWidth={1} />
+                    <span />
+                    <span />
+                  </div>
+                  <h2>A clear photo. A clearer picture.</h2>
+                  <p>
+                    Take a fresh photo with your camera
+                    <br />
+                    or upload one from your device.
+                  </p>
+                </>
+              )}
+              <div className="photo-source-actions">
+                <Button
+                  variant={file ? "secondary" : "default"}
+                  disabled={busy}
+                  onClick={() => {
+                    setError("");
+                    setConsent(false);
+                    setCameraOpen(true);
+                  }}
+                >
+                  <Camera size={17} />
+                  {file && photoSource === "camera"
+                    ? "Retake photo"
+                    : "Use live camera"}
+                </Button>
+                <Button
+                  variant="secondary"
+                  onClick={() => input.current?.click()}
+                  disabled={busy}
+                >
+                  <Upload size={17} />
+                  {file ? "Choose another photo" : "Upload photograph"}
+                </Button>
+              </div>
+              <small>
+                JPEG, PNG or HEIC · Up to 8 MB · Automatic face framing
+              </small>
+              <p className="subtle">
+                We crop excess background around a single detected face before
+                analysis. Keep your whole face visible and look straight ahead.
+              </p>
+              <input
+                ref={input}
+                type="file"
+                accept="image/jpeg,image/png,image/heic,image/heif,.heic,.heif"
+                className="sr-only"
+                aria-label="Select face photograph"
+                onChange={(e) => choose(e.target.files?.[0])}
+              />
+            </div>
+          )}
           <label className="field">
             Capture notes <span className="optional">optional</span>
             <input
@@ -215,7 +252,7 @@ export default function NewScan() {
           )}
           <Button
             className="full"
-            disabled={busy || (!demo && !file) || !consent}
+            disabled={busy || cameraOpen || (!demo && !file) || !consent}
             onClick={() => void submit()}
           >
             {busy

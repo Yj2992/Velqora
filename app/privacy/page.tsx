@@ -16,7 +16,7 @@ export default function Privacy() {
           {[
             [
               "Photos and analysis",
-              "Your selected face photograph is sent to Perfect Corp.’s YouCam Skin AI only after onboarding and per-scan consent. Photos are stored in a private Supabase bucket. Access is through short-lived signed links.",
+              "Live camera previews stay on your device; microphone access is never requested. A captured photo can be reviewed or retaken before upload. Your selected face photograph is sent to Perfect Corp.’s YouCam Skin AI only after onboarding and per-scan consent. Photos are stored in a private Supabase bucket. Access is through short-lived signed links.",
             ],
             [
               "Retention",
