@@ -165,18 +165,127 @@ async function extractQuotes(sources: WebProductSource[]) {
   }
 }
 
+function decodeHtmlEntities(input: string): string {
+  return input
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&#8377;|&rupee;/gi, "₹");
+}
+
 function htmlToPlainText(html: string): string {
-  return cleanWebText(
+  const metaParts: string[] = [];
+  for (const m of html.matchAll(
+    /<meta[^>]+(?:name|property)=["'](?:description|og:title|og:description|product:price:amount|product:price:currency)["'][^>]*>/gi,
+  )) {
+    const content = /content=["']([^"']+)["']/i.exec(m[0])?.[1];
+    if (content) metaParts.push(decodeHtmlEntities(content));
+  }
+  for (const m of html.matchAll(
+    /<script[^>]+type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi,
+  )) {
+    if (m[1]) metaParts.push(decodeHtmlEntities(m[1].replace(/[{}[\]"]/g, " ")));
+  }
+
+  const bodyText = decodeHtmlEntities(
     html
       .replace(/<script[\s\S]*?<\/script>/gi, " ")
       .replace(/<style[\s\S]*?<\/style>/gi, " ")
       .replace(/<noscript[\s\S]*?<\/noscript>/gi, " ")
-      .replace(/<[^>]+>/g, " ")
-      .replace(/&nbsp;/gi, " ")
-      .replace(/&amp;/gi, "&")
-      .replace(/&#8377;|&rupee;/gi, "₹")
-      .replace(/\s+/g, " "),
-  );
+      .replace(/<svg[\s\S]*?<\/svg>/gi, " ")
+      .replace(/<[^>]+>/g, " "),
+  ).replace(/\s+/g, " ");
+
+  return cleanWebText([...metaParts, bodyText].join(" ").replace(/\s+/g, " "));
+}
+
+const BROWSER_FETCH_HEADERS: Record<string, string> = {
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36",
+  Accept:
+    "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8",
+  "Accept-Language": "en-IN,en-GB;q=0.9,en-US;q=0.8,en;q=0.7",
+  "Cache-Control": "no-cache",
+};
+
+async function openCandidateSource(source: WebProductSource): Promise<void> {
+  try {
+    const pageRes = await fetch(source.url, {
+      headers: BROWSER_FETCH_HEADERS,
+      signal: AbortSignal.timeout(9_000),
+      redirect: "follow",
+    });
+    if (pageRes.ok) {
+      const html = await pageRes.text();
+      const titleMatch = /<title[^>]*>([^<]+)<\/title>/i.exec(html);
+      if (titleMatch?.[1]?.trim()) {
+        source.title = cleanWebText(decodeHtmlEntities(titleMatch[1])).slice(0, 240);
+      }
+      const plain = htmlToPlainText(html);
+      if (plain.length > 80) {
+        source.opened = true;
+        source.page_text = plain.slice(0, 60_000);
+      }
+    }
+  } catch {
+    // Fall through to Shopify JSON enrichment if direct HTML fetch times out
+  }
+
+  // Many Indian D2C brands (Minimalist, Dot & Key, Deconstruct, Plum, Re'equil) run on Shopify.
+  // Fetching `<product-url>.json` returns the structured product title, body_html (ingredients & suitability), and INR variant price even when HTML is JS-rendered or blocked.
+  if (
+    /\/products\/[a-z0-9-]+$/i.test(new URL(source.url).pathname) &&
+    (!source.opened ||
+      !/ingredients|suitable|skin type|₹/i.test(source.page_text))
+  ) {
+    try {
+      const u = new URL(source.url);
+      const jsonUrl = `${u.origin}${u.pathname.replace(/\/$/, "")}.json`;
+      const jsonRes = await fetch(jsonUrl, {
+        headers: {
+          "User-Agent": BROWSER_FETCH_HEADERS["User-Agent"],
+          Accept: "application/json",
+        },
+        signal: AbortSignal.timeout(6_000),
+      });
+      if (jsonRes.ok) {
+        const data = (await jsonRes.json()) as {
+          product?: {
+            title?: string;
+            body_html?: string;
+            tags?: string;
+            variants?: { title?: string; price?: string }[];
+          };
+        };
+        const p = data?.product;
+        if (p) {
+          if (p.title?.trim()) {
+            source.title = cleanWebText(p.title).slice(0, 240);
+          }
+          const variant = p.variants?.[0];
+          const priceLine = variant?.price
+            ? `Price: ₹${variant.price}${variant.title && variant.title !== "Default Title" ? ` for ${variant.title}` : ""}.`
+            : "";
+          const bodyPlain = htmlToPlainText(p.body_html || "");
+          const tagsLine = p.tags ? `Product tags: ${p.tags}.` : "";
+          const combined = cleanWebText(
+            [p.title, priceLine, bodyPlain, tagsLine, source.page_text]
+              .filter(Boolean)
+              .join(" "),
+          );
+          if (combined.length > 80) {
+            source.opened = true;
+            source.page_text = combined.slice(0, 60_000);
+          }
+        }
+      }
+    } catch {
+      // Ignore JSON fallback errors
+    }
+  }
 }
 
 async function searchWebWithGemini(
@@ -340,33 +449,9 @@ async function searchWebWithGemini(
     );
   }
 
-  // Open up to 3 candidate pages directly to capture verbatim page text for quote verification
+  // Open all candidate pages directly to capture verbatim page text for quote verification
   await Promise.all(
-    sources.slice(0, 3).map(async (source) => {
-      try {
-        const pageRes = await fetch(source.url, {
-          headers: {
-            "User-Agent": "Mozilla/5.0 (compatible; VelqoraBot/1.0)",
-            Accept: "text/html,application/xhtml+xml",
-          },
-          signal: AbortSignal.timeout(8_000),
-          redirect: "follow",
-        });
-        if (!pageRes.ok) return;
-        const html = await pageRes.text();
-        const titleMatch = /<title[^>]*>([^<]+)<\/title>/i.exec(html);
-        if (titleMatch?.[1]?.trim()) {
-          source.title = cleanWebText(titleMatch[1]).slice(0, 240);
-        }
-        const plain = htmlToPlainText(html);
-        if (plain.length > 80) {
-          source.opened = true;
-          source.page_text = plain.slice(0, 60_000);
-        }
-      } catch {
-        // Keep un-opened search result if page fetch times out or blocks bots
-      }
-    }),
+    sources.slice(0, 6).map((source) => openCandidateSource(source)),
   );
 
   const quotes = await extractQuotesWithGemini(sources);
