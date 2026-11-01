@@ -185,10 +185,24 @@ async function searchWebWithGemini(
 ): Promise<WebProductSearch> {
   const key = process.env.GEMINI_API_KEY!.trim();
   const model = process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash-lite";
+  const found = new Map<string, WebProductSource>();
+  // Include starting public catalog references so we can open and verify them directly
+  for (const ref of references.slice(0, 2)) {
+    const safe = safePublicWebUrl(ref.url);
+    if (safe && !found.has(safe)) {
+      found.set(safe, {
+        title: ref.name.trim().slice(0, 240),
+        url: safe,
+        host: new URL(safe).hostname,
+        page_text: "",
+        opened: false,
+      });
+    }
+  }
+
   const url = `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(key)}`;
-  let r: Response;
-  try {
-    r = await fetch(url, {
+  const callGemini = async (withSearchTool: boolean) =>
+    fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       signal: AbortSignal.timeout(35_000),
@@ -208,13 +222,22 @@ async function searchWebWithGemini(
             ],
           },
         ],
-        tools: [{ google_search: {} }],
+        ...(withSearchTool ? { tools: [{ google_search: {} }] } : {}),
         generationConfig: {
           temperature: 0.1,
           maxOutputTokens: 1200,
         },
       }),
     });
+
+  let r: Response;
+  try {
+    r = await callGemini(true);
+    // If the Google Search grounding tool hits a stricter free-tier quota (429) or isn't enabled (400/403),
+    // retry without the search tool so starting references and direct URLs still work without tripping 429.
+    if (!r.ok && [400, 403, 429].includes(r.status)) {
+      r = await callGemini(false);
+    }
   } catch {
     throw new AppError(
       "WEB_TIMEOUT",
@@ -222,43 +245,32 @@ async function searchWebWithGemini(
       504,
     );
   }
-  if (r.status === 429) {
+  if (r.status === 429 && !found.size) {
     throw new AppError(
       "AI_QUOTA",
       "The free AI search quota is temporarily exhausted. Try later; no paid fallback is used.",
       429,
     );
   }
-  if (!r.ok) {
+  if (!r.ok && !found.size) {
     throw new AppError(
       "WEB_UNAVAILABLE",
       "The web-search model is unavailable for this account. Your catalog still works.",
       502,
     );
   }
-  let body: any;
-  try {
-    body = await r.json();
-  } catch {
-    throw new AppError(
-      "WEB_INVALID",
-      "The search provider returned an unreadable response.",
-      502,
-    );
-  }
-
-  const found = new Map<string, WebProductSource>();
-  // Include starting public catalog references so we can open and verify them directly
-  for (const ref of references.slice(0, 2)) {
-    const safe = safePublicWebUrl(ref.url);
-    if (safe && !found.has(safe)) {
-      found.set(safe, {
-        title: ref.name.trim().slice(0, 240),
-        url: safe,
-        host: new URL(safe).hostname,
-        page_text: "",
-        opened: false,
-      });
+  let body: any = null;
+  if (r.ok) {
+    try {
+      body = await r.json();
+    } catch {
+      if (!found.size) {
+        throw new AppError(
+          "WEB_INVALID",
+          "The search provider returned an unreadable response.",
+          502,
+        );
+      }
     }
   }
 
