@@ -8,17 +8,17 @@ export function Mark() {
       fill="none"
       aria-hidden="true"
     >
-      <circle cx="17" cy="17" r="14" stroke="currentColor" strokeWidth="1.4" />
+      <circle cx="17" cy="17" r="14" stroke="#22d3ee" strokeOpacity="0.85" strokeWidth="1.5" />
       <ellipse
         cx="17"
         cy="17"
         rx="7"
         ry="14"
-        stroke="currentColor"
-        strokeWidth="1.4"
+        stroke="#a855f7"
+        strokeWidth="1.5"
         transform="rotate(40 17 17)"
       />
-      <circle cx="17" cy="17" r="4" fill="currentColor" />
+      <circle cx="17" cy="17" r="4" fill="#22d3ee" />
     </svg>
   );
 }

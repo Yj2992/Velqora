@@ -61,12 +61,19 @@ export default function Dashboard() {
               <div className="score-main">
                 <div className="score-ring">
                   <svg viewBox="0 0 150 150">
+                    <defs>
+                      <linearGradient id="cyberScoreGrad" x1="0" y1="0" x2="150" y2="150" gradientUnits="userSpaceOnUse">
+                        <stop offset="0%" stopColor="#22d3ee" />
+                        <stop offset="55%" stopColor="#8b5cf6" />
+                        <stop offset="100%" stopColor="#10b981" />
+                      </linearGradient>
+                    </defs>
                     <circle
                       cx="75"
                       cy="75"
                       r="62"
                       fill="none"
-                      stroke="#EAE5E8"
+                      stroke="rgba(148, 163, 184, 0.18)"
                       strokeWidth="7"
                     />
                     <circle
@@ -74,7 +81,7 @@ export default function Dashboard() {
                       cy="75"
                       r="62"
                       fill="none"
-                      stroke="#70556A"
+                      stroke="url(#cyberScoreGrad)"
                       strokeWidth="7"
                       strokeLinecap="round"
                       strokeDasharray={`${Math.min(100, Math.max(0, latest.overall_score || 0)) * 3.896} 389.6`}

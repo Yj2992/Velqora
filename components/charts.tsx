@@ -51,12 +51,18 @@ export function TrendChart({
         >
           <defs>
             <linearGradient id="scoreGradient" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#70556A" stopOpacity={0.19} />
-              <stop offset="95%" stopColor="#70556A" stopOpacity={0} />
+              <stop offset="0%" stopColor="#06b6d4" stopOpacity={0.38} />
+              <stop offset="65%" stopColor="#8b5cf6" stopOpacity={0.14} />
+              <stop offset="95%" stopColor="#8b5cf6" stopOpacity={0} />
+            </linearGradient>
+            <linearGradient id="scoreStroke" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stopColor="#8b5cf6" />
+              <stop offset="55%" stopColor="#06b6d4" />
+              <stop offset="100%" stopColor="#10b981" />
             </linearGradient>
           </defs>
           <CartesianGrid
-            stroke="#EAE5E8"
+            stroke="rgba(148, 163, 184, 0.16)"
             vertical={false}
             strokeDasharray="3 5"
           />
@@ -64,30 +70,36 @@ export function TrendChart({
             dataKey="label"
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#817B82", fontSize: 11 }}
+            tick={{ fill: "#94a3b8", fontSize: 11 }}
             dy={12}
           />
           <YAxis
             domain={["auto", "auto"]}
             axisLine={false}
             tickLine={false}
-            tick={{ fill: "#817B82", fontSize: 11 }}
+            tick={{ fill: "#94a3b8", fontSize: 11 }}
           />
           <Tooltip
             contentStyle={{
               borderRadius: 12,
-              border: "1px solid #EAE5E8",
+              backgroundColor: "rgba(15, 23, 42, 0.92)",
+              border: "1px solid rgba(6, 182, 212, 0.42)",
+              color: "#f8fafc",
+              boxShadow: "0 12px 28px rgba(2, 6, 23, 0.75)",
               fontSize: 12,
             }}
+            itemStyle={{ color: "#67e8f9" }}
+            labelStyle={{ color: "#cbd5e1", marginBottom: 4 }}
           />
           <Area
             type="monotone"
             dataKey="score"
             name="Score"
-            stroke="#70556A"
-            strokeWidth={2.5}
+            stroke="url(#scoreStroke)"
+            strokeWidth={2.8}
             fill="url(#scoreGradient)"
-            dot={{ r: 4, fill: "#FAF8F5", strokeWidth: 2 }}
+            dot={{ r: 4, fill: "#06b6d4", stroke: "#0f172a", strokeWidth: 2 }}
+            activeDot={{ r: 6, fill: "#22d3ee", stroke: "#f8fafc", strokeWidth: 2 }}
             connectNulls={false}
           />
         </AreaChart>

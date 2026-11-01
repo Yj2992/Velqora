@@ -26,47 +26,53 @@ function SkinArtwork() {
             y2="440"
             gradientUnits="userSpaceOnUse"
           >
-            <stop stopColor="#E1C2B3" />
-            <stop offset=".6" stopColor="#C79E93" />
-            <stop offset="1" stopColor="#AB7F80" />
+            <stop stopColor="#1e293b" />
+            <stop offset=".55" stopColor="#1e1b4b" />
+            <stop offset="1" stopColor="#0f172a" />
           </linearGradient>
           <radialGradient id="glow">
-            <stop stopColor="#F7E7DD" stopOpacity=".7" />
-            <stop offset="1" stopColor="#E4C3B3" stopOpacity="0" />
+            <stop stopColor="#22d3ee" stopOpacity=".42" />
+            <stop offset=".55" stopColor="#8b5cf6" stopOpacity=".22" />
+            <stop offset="1" stopColor="#0f172a" stopOpacity="0" />
           </radialGradient>
         </defs>
         <path
           d="M195 50C100 40 69 120 79 221C85 289 105 336 151 368L143 406C121 432 82 432 48 470H352C318 432 279 432 257 406L249 368C295 336 315 289 321 221C331 120 300 40 205 50"
           fill="url(#face)"
+          stroke="#38bdf8"
+          strokeOpacity=".35"
+          strokeWidth="1.2"
         />
         <ellipse cx="175" cy="180" rx="115" ry="145" fill="url(#glow)" />
         <path
           d="M113 207C131 196 154 198 167 207M234 207C247 198 270 196 288 207"
-          stroke="#875F65"
-          strokeWidth="3"
+          stroke="#67e8f9"
+          strokeWidth="2.5"
           strokeLinecap="round"
         />
         <path
           d="M199 205L184 265C188 277 207 280 219 265"
-          stroke="#A47878"
+          stroke="#a855f7"
           strokeWidth="2"
           strokeLinecap="round"
         />
         <path
           d="M166 304C183 296 201 298 217 301C227 304 232 304 237 303C221 320 184 321 166 304Z"
-          fill="#A57678"
+          fill="#38bdf8"
+          fillOpacity=".45"
         />
         <path
           d="M91 173C102 101 127 66 198 68C271 62 297 108 311 173"
-          stroke="#BC958B"
+          stroke="#8b5cf6"
+          strokeOpacity=".65"
           strokeWidth="2"
         />
-        <g stroke="#FAF8F5" strokeOpacity=".7" strokeWidth=".7">
+        <g stroke="#22d3ee" strokeOpacity=".78" strokeWidth=".9">
           <ellipse cx="200" cy="232" rx="101" ry="129" />
           <path d="M103 200L167 160L234 160L296 200L275 274L233 339L168 339L125 274Z" />
           <path d="M167 160L125 274L233 339L234 160L275 274L168 339L167 160ZM103 200L296 200M125 274L275 274" />
         </g>
-        <g fill="#FAF8F5">
+        <g fill="#67e8f9">
           {[
             [103, 200],
             [167, 160],
@@ -77,7 +83,7 @@ function SkinArtwork() {
             [168, 339],
             [233, 339],
           ].map(([x, y]) => (
-            <circle key={x} cx={x} cy={y} r="3" />
+            <circle key={x} cx={x} cy={y} r="3.5" />
           ))}
         </g>
       </svg>
@@ -290,14 +296,29 @@ export default function Landing() {
                 role="img"
                 aria-label="Illustrative synthetic score history"
               >
+                <defs>
+                  <linearGradient id="previewLineGrad" x1="0" y1="0" x2="400" y2="0" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#8b5cf6" />
+                    <stop offset="55%" stopColor="#06b6d4" />
+                    <stop offset="100%" stopColor="#10b981" />
+                  </linearGradient>
+                  <linearGradient id="previewFillGrad" x1="0" y1="12" x2="0" y2="128" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stopColor="#06b6d4" stopOpacity="0.32" />
+                    <stop offset="100%" stopColor="#8b5cf6" stopOpacity="0.0" />
+                  </linearGradient>
+                </defs>
                 <path
                   d="M0 30H400M0 70H400M0 110H400"
-                  stroke="#EAE5E8"
+                  stroke="rgba(148, 163, 184, 0.2)"
                   strokeDasharray="3 5"
                 />
                 <path
+                  d="M5 105C35 105 49 83 80 82S135 94 160 87S214 40 240 45S282 38 320 35S367 17 395 12L395 125L5 125Z"
+                  fill="url(#previewFillGrad)"
+                />
+                <path
                   d="M5 105C35 105 49 83 80 82S135 94 160 87S214 40 240 45S282 38 320 35S367 17 395 12"
-                  stroke="#70556A"
+                  stroke="url(#previewLineGrad)"
                   strokeWidth="3"
                   fill="none"
                 />
