@@ -18,3 +18,10 @@ it("passes shared concern/category/brand filters to discovery and rejects invali
  expect(r.status).toBe(200);const q=mock.search.mock.calls[0][0];expect(q).toContain("Brand: Minimalist only");expect(q).toContain("COMPLETE ingredient/INCI");
  mock.search.mockClear();expect((await POST(request({filters:{concerns:["invented"]}}))).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();
 });
+
+it("passes only public eligible product leads without treating them as live evidence",async()=>{
+ const r=await POST(request({preferences:{...defaultPreferences,adult_confirmed:true,avoid_retinoids:false},filters:{concerns:["pore"]}}));
+ expect(r.status).toBe(200);const leads=mock.search.mock.calls[0][2];expect(Array.isArray(leads)).toBe(true);expect(leads.length).toBeLessThanOrEqual(2);
+ for(const lead of leads){expect(Object.keys(lead).sort()).toEqual(["name","url"]);expect(lead.url).toMatch(/^https:/);}
+ expect((await r.json()).matches).toEqual([]);
+});

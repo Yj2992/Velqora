@@ -17,7 +17,7 @@ export type WebProductResult = {
   full_inci_quote?: string | null;
   claims_quote?: string | null;
 };
-export type WebProductSearch = { source: "groq-web"; model: string; searched_at: string; results: WebProductResult[] };
+export type WebProductSearch = { source: "groq-web"; model: string; searched_at: string; results: WebProductResult[]; evidence_status?: "complete" | "unavailable" | "no_open_pages" };
 export function safePublicWebUrl(value: unknown): string | null {
   if (typeof value !== "string" || value.length > 2000) return null;
   try {
@@ -31,7 +31,7 @@ export function safePublicWebUrl(value: unknown): string | null {
   } catch { return null; }
 }
 export const cleanWebText = (text: string) => text.replace(/^L\d+:\s?/gm, "").replace(/\\\|/g,"|").trim();
-export function collectWebSources(message: unknown): WebProductSource[] {
+export function collectWebSources(message: unknown, references:{name:string;url:string}[]=[]): WebProductSource[] {
   const tools = z.object({executed_tools:z.array(z.unknown())}).safeParse(message);
   if (!tools.success) return [];
   const found = new Map<string,WebProductSource>();
@@ -49,11 +49,33 @@ export function collectWebSources(message: unknown): WebProductSource[] {
     if (!tool.success || tool.data.name !== "browser.open") continue;
     const text=cleanWebText(tool.data.output);
     const url=safePublicWebUrl(text.match(/(?:^|\n)URL:\s*\n?(https:\/\/\S+)/)?.[1]);
-    // An opened page counts only when its URL was also returned by a search tool.
-    const record=url ? found.get(url) : undefined;
-    if(record && text.length>80){record.opened=true;record.page_text=text.slice(0,12000);}
+    // Opened pages bind to search metadata or explicit public catalog retrieval leads.
+    let record=url ? found.get(url) : undefined;
+    // Explicit public catalog leads may be opened directly; preserve the actual opened URL.
+    if(url&&!record){const opened=new URL(url);const lead=references.find(r=>{const ref=safePublicWebUrl(r.url);if(!ref)return false;const u=new URL(ref);return u.origin===opened.origin&&u.pathname===opened.pathname;});if(lead){record={title:lead.name,url,host:opened.hostname,page_text:"",opened:false};found.set(url,record);}}
+    if(record && text.length>80){record.opened=true;record.page_text=text.slice(0,60000);}
   }
   return [...found.values()].filter(r=>r.title && !/\.(?:pdf|jpg|jpeg|png|zip)(?:$|\?)/i.test(r.url)).sort((a,b)=>Number(b.opened)-Number(a.opened)).slice(0,6);
+}
+// Preserve source-backed evidence beyond navigation/marketing prefixes within a bounded model input.
+export function evidenceExcerpt(text:string, budget=5000):string {
+  if(text.length<=budget)return text;
+  const ranges:{start:number;end:number}[]=[];
+  const add=(start:number,end:number)=>{ranges.push({start:Math.max(0,start),end:Math.min(text.length,end)});};
+  // Suitability first: this is a required eligibility fact, not inferred from moisturizing ingredients.
+  for(const m of text.matchAll(/suitable for|(?:for|ideal for|recommended for) (?:normal|dry|oily|combination|sensitive)|all skin types|not recommended|not suitable/gi)){
+    add(m.index-140,m.index+460);if(ranges.length>=4)break;
+  }
+  const formula=/(?:ingredients|\binci\b)\s*[:\-]/i.exec(text);
+  if(formula)add(formula.index-50,formula.index+2200);
+  for(const pattern of [/(?:₹|INR|Rs\.)\s*[\d,]+/i,/fragrance[ -]?free|non[ -]?comedogenic|\bvegan\b/i]){
+    const m=pattern.exec(text);if(m)add(m.index-100,m.index+350);
+  }
+  add(0,650);
+  // Keep independent original spans; never manufacture a quote by joining distant sentences.
+  let remaining=budget;const selected:{start:number;end:number}[]=[];
+  for(const r of ranges){if(selected.some(s=>r.start>=s.start&&r.end<=s.end))continue;const end=Math.min(r.end,r.start+remaining);if(end>r.start){selected.push({start:r.start,end});remaining-=end-r.start+25;}if(remaining<=0)break;}
+  return selected.sort((a,b)=>a.start-b.start).map(r=>text.slice(r.start,r.end)).join("\n[separate source span]\n");
 }
 export const sourceQuotesSchema=z.object({pages:z.array(z.object({
   index:z.number().int().min(0).max(5),

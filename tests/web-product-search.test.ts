@@ -1,5 +1,5 @@
 import { it, expect, vi, afterEach } from "vitest";
-import { collectWebSources, buildWebResults, safePublicWebUrl } from "../lib/products/web-results";
+import { collectWebSources, evidenceExcerpt, buildWebResults, safePublicWebUrl } from "../lib/products/web-results";
 import { searchWebProducts } from "../lib/ai/web-product-search";
 const url="https://www.ceraveindia.com/ceramides-skin-care/moisturisers/moisturising-cream";
 const message={content:"Invented product at https://fake.example.com/products/fake",executed_tools:[
@@ -36,7 +36,7 @@ it("uses browser tools and returns honest missing details if extraction fails",a
  vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
  const f=vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({choices:[{message}]}))).mockResolvedValueOnce(new Response("",{status:429}));vi.stubGlobal("fetch",f);
  const r=await searchWebProducts("CeraVe cream in India",true);
- expect(r.source).toBe("groq-web");expect(r.results[0].title).toBe("CeraVe Moisturising Cream");expect(r.results[0].price_quote).toBeNull();
+ expect(r.evidence_status).toBe("unavailable");expect(r.source).toBe("groq-web");expect(r.results[0].title).toBe("CeraVe Moisturising Cream");expect(r.results[0].price_quote).toBeNull();
  const request=JSON.parse(f.mock.calls[0][1].body);expect(request.tool_choice).toBe("required");expect(request.tools).toEqual([{type:"browser_search"}]);expect(request).not.toHaveProperty("response_format");expect(f.mock.calls.every(c=>c[0]==="https://api.groq.com/openai/v1/chat/completions")).toBe(true);
 });
 it("reports exhausted free web quotas without a paid provider fallback",async()=>{
@@ -51,4 +51,21 @@ it("requires a verbatim headed formula for full-list filtering",()=>{
  expect(verified.full_inci_quote).toBe(full);expect(verified.claims_quote).toBe("Fragrance-free.");
  const [rejected]=buildWebResults(sources,{pages:[{index:0,price_quote:null,ingredients_quote:null,suitability_quote:null,full_inci_quote:"Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate",claims_quote:"Vegan"}]});
  expect(rejected.full_inci_quote).toBeNull();expect(rejected.claims_quote).toBeNull();
+});
+
+it("keeps late suitability and ingredient evidence within the extraction budget",()=>{
+ const text="Navigation and marketing. ".repeat(800)+"Suitable for dry skin. Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate. Price: ₹499. "+"Footer ".repeat(500);
+ const excerpt=evidenceExcerpt(text);expect(excerpt.length).toBeLessThanOrEqual(5000);expect(excerpt).toContain("Suitable for dry skin.");expect(excerpt).toContain("Ingredients: Aqua, Glycerin");
+ expect(evidenceExcerpt("Short product text")).toBe("Short product text");
+});
+it("retains late opened-page evidence before selecting extraction spans",()=>{
+ const long={executed_tools:[message.executed_tools[0],{name:"browser.open",output:`URL:\n${url}\n`+"Navigation ".repeat(1600)+"Suitable for dry skin. Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate."}]};
+ const sources=collectWebSources(long);expect(sources[0].page_text).toContain("Suitable for dry skin.");expect(evidenceExcerpt(sources[0].page_text)).toContain("Suitable for dry skin.");
+});
+
+it("retains a directly opened public reference while rejecting unrelated opens",()=>{
+ const opened={executed_tools:[{name:"browser.open",output:`URL:\n${url}\nIngredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate. Suitable for dry skin.`}]};
+ expect(collectWebSources(opened)).toEqual([]);
+ const sources=collectWebSources(opened,[{name:"CeraVe Moisturising Cream",url:url+"?pack=50g"}]);
+ expect(sources).toHaveLength(1);expect(sources[0].opened).toBe(true);expect(sources[0].url).toBe(url);
 });

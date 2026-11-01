@@ -37,10 +37,11 @@ try {
   const scan=must(await admin.from("skin_scans").insert({user_id:fixtureId,idempotency_key:randomUUID(),status:"completed",provider_version:"youcam-v2.1-sd",completed_at:new Date().toISOString(),skin_age:36,overall_score:78.4}).select("id").single());
   must(await admin.from("skin_type_results").insert({scan_id:scan.id,region:"whole",skin_type:"Dry"}));
   must(await admin.from("skin_scan_metrics").insert([{scan_id:scan.id,metric_type:"moisture",region:"whole",ui_score:72},{scan_id:scan.id,metric_type:"tear_trough",region:"whole",ui_score:55},{scan_id:scan.id,metric_type:"pore",region:"whole",ui_score:66}]));
-  const found=await call("/api/products/discover",{mode:"scan",scan_id:scan.id,preferences:{},web_consent:true});
+  const poreCheck=process.env.RUN_SCAN_PORES === "true";
+  const found=await call("/api/products/discover",{mode:"scan",scan_id:scan.id,preferences:poreCheck?{adult_confirmed:true,avoid_retinoids:false}:{},...(poreCheck?{filters:{concerns:["tear_trough","dark_circle_v2","pore"]}}:{}),web_consent:true});
   if(found.status!==200) console.log("Scan discovery status/code:",found.status,found.data.error?.code);
   check(found.status===200,"Owned scan drives live product discovery without a typed shopping query");
-  check(found.data.plan.skin_type==="dry" && found.data.plan.targets.some(t=>t.id==="moisture"),"Dry skin creates a moisturizing-care target");
+  check(found.data.plan.skin_type==="dry" && found.data.plan.targets.some(t=>t.id===(poreCheck?"pore":"moisture")),"Dry skin and selected concerns drive the requested care target");
   check(!found.data.plan.search_brief.includes(scan.id) && !found.data.plan.search_brief.includes("78.4"),"Derived search brief excludes scan IDs and raw scores");
   if(!found.data.matches.length) console.log("Source gaps:",JSON.stringify(found.data.needs_review.map(p=>({title:p.title,opened:p.page_opened,ingredients:p.ingredients_quote,suitability:p.suitability_quote,issues:p.review_reasons}))));
   check(found.data.matches.length>0,"Live retrieved product evidence passes personalized suitability checks");

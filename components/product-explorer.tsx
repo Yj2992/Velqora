@@ -629,7 +629,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
             </label>
           </div>
           {searchScope === "scan" && <div className="shared-filter-search"><Button disabled={!aiAllowed || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products…" : "Find products with these filters"}<ArrowRight size={16}/></Button>{!webConsent && <p className="subtle">Review the search brief and sharing checkbox above before searching. Filtering existing results happens locally.</p>}</div>}
-          {searchScope === "scan" && activeScanDiscovery && <>{scanResultKey!==currentScanRequestKey && <p className="notice" role="status">Filters updated. These are eligible results from the last search. Use “Find products for my scan” again to discover more sources under these choices.</p>}<ScanProductResults discovery={activeScanDiscovery} listView={listView}/></>}
+          {searchScope === "scan" && activeScanDiscovery && <>{scanResultKey!==currentScanRequestKey && <p className="notice" role="status">Filters updated. These are eligible results from the last search. Use “Find products for my scan” again to discover more sources under these choices.</p>}{activeScanDiscovery.matches.length>0 ? <ScanProductResults discovery={activeScanDiscovery} listView={listView}/> : <p className="notice" role="status">{matches.length>0 ? `${matches.length} catalog products meet your filters below. ` : ""}No additional web products passed every source check. {activeScanDiscovery.evidence_status === "unavailable" ? "The evidence extractor was unavailable; try web discovery later." : "See the web evidence gaps after the catalog results."}</p>}</>}
           <div className="catalog-results-label section-label">SOURCE-CHECKED CATALOG MATCHES · SAME FILTERS</div>
           {ready && showingBasicCare && (
             <section
@@ -922,6 +922,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
               </Button>
             </div>
           )}
+          {searchScope === "scan" && activeScanDiscovery && activeScanDiscovery.matches.length===0 && <ScanProductResults discovery={activeScanDiscovery} listView={listView}/>}
           <div className="product-footnote">
             <ShieldCheck size={20} />
             <p>

@@ -4,6 +4,10 @@ import { auth, quota, scanSelect } from "@/lib/server/auth";
 import { AppError, checked, required, fail } from "@/lib/server/errors";
 import { searchWebProducts } from "@/lib/ai/web-product-search";
 import type { Scan } from "@/lib/types";
+import publicCatalog from "@/data/products.catalog.json";
+import { recommend } from "@/lib/products/engine";
+import { sourceBrandMatches } from "@/lib/products/discovery-filters";
+import type { Product } from "@/lib/products/types";
 import { preferencesSchema } from "@/lib/products/types";
 import { defaultDiscoveryFilters, discoveryFiltersSchema } from "@/lib/products/discovery-filters";
 import { buildScanDiscoveryPlan, assessScanProducts } from "@/lib/products/scan-discovery";
@@ -26,7 +30,9 @@ export async function POST(request:Request) {
       try {plan=buildScanDiscoveryPlan(row as unknown as Scan,requestInput.preferences,requestInput.filters);}
       catch {throw new AppError("SCAN_UNSUPPORTED","This scan’s provider version does not support automatic interpretation. Choose a supported YouCam scan.",400);}
       await quota(db,user.id,"product-web-search",5);
-      const found=await searchWebProducts(plan.search_brief,true);
+      const f=requestInput.filters;
+      const leads=recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(({product:p})=>(!f.category||p.category===f.category)&&(!f.brand||sourceBrandMatches(p.name,new URL(p.official_url).hostname,f.brand))&&(!f.full_ingredients_only||p.inci_complete)&&(!f.query||[p.name,...p.ingredient_ids].join(" ").toLowerCase().includes(f.query.toLowerCase()))).slice(0,2).map(({product:p})=>({name:p.name,url:p.official_url}));
+      const found=await searchWebProducts(plan.search_brief,true,leads);
       result={...found,scan_id:requestInput.scan_id,plan,...assessScanProducts(found.results,plan,requestInput.preferences,requestInput.filters)};
     } else {
       await quota(db,user.id,"product-web-search",5);
