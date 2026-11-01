@@ -113,3 +113,11 @@ Added camera preview, front/back preference switching, bounded JPEG still captur
 ## Discoverable AI consent settings · 2026-11-01
 
 Moved the existing AI checkbox out of the profile form into a dedicated top-of-page AI Insights sharing card, with saved state, explicit save button and direct Insights anchor links. Profile saves preserve the saved AI preference. Demo explicitly disables external sharing and explains that sign-in is required. Browser verified card visibility and demo-disabled controls; no real user's consent was changed. All 88 tests and strict TypeScript pass.
+
+
+## AI Insights workspace redesign · 2026-11-01
+
+- Replaced the single expanding chat card with a contained scrollable conversation, multiline composer, character count, copy actions, pending/error states, and searchable saved-answer history. Recent view shows the latest six answers; all records remain accessible in History.
+- Added four question categories with editable starters, latest scan details, active experiment links, connected product/progress actions and source library. Sharing/demo labels and selected comparison scan IDs are preserved. No server or database behavior changed; saved history is a record of individual questions, not a claim of model conversation memory.
+- Browser verified history filtering/opening, question category changes, starter -> composer -> send -> persisted synthetic answer, and 390px mobile layout/composer without horizontal overflow. Desktop screenshot saved at `../velqora-insights-studio.png`.
+- All 88 existing tests, strict TypeScript and production build passed. No personal data or scan photos were sent to an external model during UI verification.
