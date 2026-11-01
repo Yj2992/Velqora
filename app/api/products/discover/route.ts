@@ -36,15 +36,15 @@ export async function POST(request:Request) {
       const targetCategories=[...new Set(plan.targets.flatMap(t=>t.id==="dark_circle_v2"?["eye_care"]:[]))];
       // Ensure eye_care or explicit category targets get a dedicated starting reference lead when multi-concern scans are run
       for(const cat of targetCategories){
-        for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(m=>m.product.category===cat&&filterLead(m)).slice(0,2)){
+        for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(m=>m.product.category===cat&&filterLead(m)).slice(0,1)){
           leadsMap.set(item.product.official_url,{name:item.product.name,url:item.product.official_url});
         }
       }
-      for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(filterLead).slice(0,4)){
-        if(leadsMap.size>=4)break;
+      for(const item of recommend(publicCatalog as Product[],{...requestInput.preferences,skin_type:plan.skin_type},plan.priorities.map(p=>p.id)).filter(filterLead).slice(0,2)){
+        if(leadsMap.size>=2)break;
         leadsMap.set(item.product.official_url,{name:item.product.name,url:item.product.official_url});
       }
-      const leads=[...leadsMap.values()].slice(0,4);
+      const leads=[...leadsMap.values()].slice(0,2);
       const found=await searchWebProducts(plan.search_brief,true,leads);
       result={...found,scan_id:requestInput.scan_id,plan,...assessScanProducts(found.results,plan,requestInput.preferences,requestInput.filters)};
     } else {
