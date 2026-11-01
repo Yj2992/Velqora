@@ -1,5 +1,5 @@
 import { it, expect, vi, afterEach } from "vitest";
-import { insight } from "../lib/ai/provider";
+import { insight, GeminiProvider, type AIProvider } from "../lib/ai/provider";
 import { demoData } from "../lib/demo";
 afterEach(() => {
   vi.unstubAllEnvs();
@@ -9,6 +9,7 @@ it("does not transmit measurements without user consent", async () => {
   vi.stubEnv("LLM_API_KEY", "test");
   vi.stubEnv("LLM_MODEL", "test");
   vi.stubEnv("GROQ_API_KEY", "");
+  vi.stubEnv("GEMINI_API_KEY", "");
   vi.stubEnv("LLM_BASE_URL", "https://example.com/v1");
   vi.stubEnv("LLM_DATA_SHARING_ENABLED", "true");
   const fetcher = vi.fn();
@@ -23,6 +24,7 @@ it("sends structured values and precomputed changes without photo fields", async
   vi.stubEnv("LLM_API_KEY", "test");
   vi.stubEnv("LLM_MODEL", "test");
   vi.stubEnv("GROQ_API_KEY", "");
+  vi.stubEnv("GEMINI_API_KEY", "");
   vi.stubEnv("LLM_BASE_URL", "https://example.com/v1");
   vi.stubEnv("LLM_DATA_SHARING_ENABLED", "true");
   const fetcher = vi
@@ -87,3 +89,74 @@ it("omits photo fields, identifiers and excess personal context", async () => {
   expect(text).not.toContain("private-");
   expect(JSON.parse(JSON.parse(text).messages[1].content).context.scans).toHaveLength(3);
 });
+it("falls back to labeled deterministic reference guidance when fallbackOnQuota is enabled", async () => {
+  vi.stubEnv("GROQ_API_KEY", "test");
+  vi.stubEnv("LLM_DATA_SHARING_ENABLED", "true");
+  const fetcher = vi.fn().mockResolvedValue(new Response("", { status: 429 }));
+  vi.stubGlobal("fetch", fetcher);
+  const result = await insight("How can I care for dry skin?", [], [], true, {
+    fallbackOnQuota: true,
+  });
+  expect(result.source).toBe("deterministic");
+  expect(result.response).toContain("verified reference guidance (non-AI)");
+  expect(result.response).toContain("fragrance-free moisturizer");
+  expect(fetcher).toHaveBeenCalledTimes(1);
+});
+it("supports custom AIProvider implementations behind the AIProvider adapter", async () => {
+  const customProvider: AIProvider = {
+    generateResponse: vi.fn().mockResolvedValue("Custom adapter answer."),
+  };
+  const result = await insight("What should a simple routine include?", [], [], true, {
+    provider: customProvider,
+  });
+  expect(result.source).toBe("llm");
+  expect(result.response).toBe("Custom adapter answer.");
+  expect(customProvider.generateResponse).toHaveBeenCalledTimes(1);
+});
+it("uses GeminiProvider native generateContent endpoint when GEMINI_API_KEY is configured", async () => {
+  vi.stubEnv("GROQ_API_KEY", "");
+  vi.stubEnv("GEMINI_API_KEY", "test-gemini-key");
+  vi.stubEnv("GEMINI_MODEL", "gemini-3.5-flash-lite");
+  vi.stubEnv("LLM_DATA_SHARING_ENABLED", "true");
+  const fetcher = vi.fn().mockResolvedValue(
+    new Response(
+      JSON.stringify({
+        candidates: [
+          {
+            finishReason: "STOP",
+            content: { parts: [{ text: "Gemini reference-grounded answer." }] },
+          },
+        ],
+      }),
+    ),
+  );
+  vi.stubGlobal("fetch", fetcher);
+  const result = await insight("How can I care for dry skin?", [], [], true);
+  expect(result.source).toBe("llm");
+  expect(result.response).toBe("Gemini reference-grounded answer.");
+  expect(fetcher.mock.calls[0][0]).toContain(
+    "https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent",
+  );
+});
+it.skipIf(process.env.RUN_GEMINI_SMOKE !== "true")(
+  "live Gemini smoke check generates a grounded skincare answer",
+  async () => {
+    process.loadEnvFile(".env.local");
+    const key = process.env.GEMINI_API_KEY?.trim();
+    expect(Boolean(key), "Paste your GEMINI_API_KEY in .env.local first").toBe(true);
+    const provider = new GeminiProvider(
+      key!,
+      process.env.GEMINI_MODEL?.trim() || "gemini-3.5-flash-lite",
+    );
+    const result = await insight(
+      "What should a simple dry-skin routine include?",
+      [],
+      [],
+      true,
+      { provider },
+    );
+    expect(result.source).toBe("llm");
+    expect(result.response.length).toBeGreaterThan(20);
+  },
+  30_000,
+);

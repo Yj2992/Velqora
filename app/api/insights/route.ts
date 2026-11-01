@@ -43,6 +43,7 @@ export async function POST(request: Request) {
       scans,
       experiments,
       profile.llm_consent,
+      { fallbackOnQuota: true },
     );
     return NextResponse.json(
       checked(

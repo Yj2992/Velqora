@@ -42,6 +42,7 @@ import {
 import { productIntentSchema, mergeSearchPreferences, matchesSearchIntent, describeIntent, type ProductIntent } from "@/lib/products/search-intent";
 import { ScanProductResults } from "./scan-product-results";
 import { assessScanProducts, buildScanDiscoveryPlan, type ScanProductDiscovery } from "@/lib/products/scan-discovery";
+import { buildSmartRoutine, checkIngredientCompatibility, compatibilityLabels } from "@/lib/products/routine";
 import type { DiscoveryFilters } from "@/lib/products/discovery-filters";
 import type { WebProductSearch } from "@/lib/products/web-results";
 import ingredients from "@/data/ingredients.catalog.json";
@@ -83,6 +84,8 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
   const [webRequest, setWebRequest] = useState("");
   const [scanDiscovery,setScanDiscovery] = useState<ScanProductDiscovery|null>(null), [scanResultKey,setScanResultKey] = useState("");
   const [searchPaused,setSearchPaused]=useState(false);
+  const [routineTab, setRoutineTab] = useState<"routine" | "compatibility">("routine");
+  const [checkerIngredients, setCheckerIngredients] = useState<string[]>(["retinol", "glycolic_acid", "ceramides"]);
   function handleSearchError(error:unknown){if(isQuotaError(error)){setSearchPaused(true);setAiError("");}else setAiError(error instanceof Error?error.message:"Search could not be completed.");}
   const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
   async function searchWithGroq() {
@@ -215,6 +218,14 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
     sort,
   ]);
   const shortlist = useMemo(() => starterShortlist(matches), [matches]);
+  const smartRoutine = useMemo(
+    () => buildSmartRoutine(products, effective, focus),
+    [products, prefs, avoid, scanId, focus],
+  );
+  const compatibilityResult = useMemo(
+    () => checkIngredientCompatibility(checkerIngredients),
+    [checkerIngredients],
+  );
   const displayMatches =
     listView === "shortlist" && sort === "matches" ? shortlist : matches;
   const emptyDetails =
@@ -541,6 +552,235 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
                 YouCam score documentation
               </a>
             </details>
+          </section>
+          <section className="card smart-routine-card" aria-labelledby="smart-routine-heading">
+            <div className="card-heading">
+              <div>
+                <span className="section-label">100% DETERMINISTIC · NO AI REQUIRED</span>
+                <h2 id="smart-routine-heading">
+                  {routineTab === "routine"
+                    ? "Smart Routine Builder (AM / PM)"
+                    : "Ingredient Compatibility Checker"}
+                </h2>
+              </div>
+              <div className="shortlist-switch" role="group" aria-label="Deterministic tools">
+                <button
+                  aria-pressed={routineTab === "routine"}
+                  onClick={() => setRoutineTab("routine")}
+                >
+                  Smart Routine Builder
+                </button>
+                <button
+                  aria-pressed={routineTab === "compatibility"}
+                  onClick={() => setRoutineTab("compatibility")}
+                >
+                  Ingredient Compatibility
+                </button>
+              </div>
+            </div>
+            {routineTab === "routine" ? (
+              <div className="smart-routine-body">
+                <p>
+                  Assembled deterministically from verified catalog products and your current preferences ({effective.skin_type === "unknown" ? "unspecified skin type" : `${effective.skin_type} skin`}). Strong actives are spaced between morning and evening as a conservative starting point; actual tolerance depends on formulation, concentration, frequency, and your skin.
+                </p>
+                <div className="routine-columns">
+                  {(
+                    [
+                      ["AM", "Morning Routine · Protect & Hydrate", smartRoutine.am, smartRoutine.totalAmInr],
+                      ["PM", "Evening Routine · Treat & Recover", smartRoutine.pm, smartRoutine.totalPmInr],
+                    ] as const
+                  ).map(([period, heading, steps, sumInr]) => (
+                    <div className="routine-column" key={period}>
+                      <div className="routine-col-header">
+                        <span className="pill lavender">{period}</span>
+                        <h3>{heading}</h3>
+                        <small>{money(sumInr)}</small>
+                      </div>
+                      <ol className="routine-steps-list">
+                        {steps.map((s) => (
+                          <li key={s.timeOfDay + "-" + s.step} className="routine-step-item">
+                            <div className="routine-step-top">
+                              <span className="section-label">
+                                STEP {s.step} · {s.title.toUpperCase()}
+                              </span>
+                              {s.match && (
+                                <strong className="routine-step-price">
+                                  {money(s.match.product.price_inr)}
+                                </strong>
+                              )}
+                            </div>
+                            {s.match ? (
+                              <>
+                                <h4>
+                                  {s.match.product.brand} · {s.match.product.name}
+                                </h4>
+                                <p>{s.rationale}</p>
+                                {s.caution && (
+                                  <p className="routine-step-caution">{s.caution}</p>
+                                )}
+                                <div className="routine-step-actions">
+                                  <a
+                                    className="text-link"
+                                    href={
+                                      s.match.product.official_url +
+                                      `?variant=${s.match.product.variant_id}`
+                                    }
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Official store <ArrowUpRight size={13} />
+                                  </a>
+                                  <Link
+                                    className="text-link"
+                                    href={`/experiments/new?product=${encodeURIComponent(s.match.product.id)}${selected ? `&scan=${selected.id}` : ""}&metric=${encodeURIComponent(s.match.matchedConcerns[0] || "moisture")}`}
+                                  >
+                                    Track in Lab <FlaskConical size={13} />
+                                  </Link>
+                                </div>
+                              </>
+                            ) : (
+                              <p className="subtle">{s.rationale}</p>
+                            )}
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  ))}
+                </div>
+                {smartRoutine.interactions.length > 0 && (
+                  <div className="routine-synergy-box">
+                    <span className="section-label">INGREDIENT-LEVEL LAYERING NOTES</span>
+                    <ul>
+                      {smartRoutine.interactions.slice(0, 4).map((inter) => (
+                        <li key={inter.id}>
+                          <span
+                            className={
+                              "pill " +
+                              (inter.status === "synergy"
+                                ? "sage"
+                                : inter.status === "irritation_risk"
+                                  ? "danger"
+                                  : "lavender")
+                            }
+                          >
+                            {compatibilityLabels[inter.status]}
+                          </span>{" "}
+                          <strong>
+                            {inter.labelA} + {inter.labelB}:
+                          </strong>{" "}
+                          {inter.summary}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="routine-footer-meta">
+                  <span>
+                    Unique shelf total:{" "}
+                    <strong>{money(smartRoutine.uniqueProductsInr)}</strong>
+                  </span>
+                  <span>{smartRoutine.notes[0]}</span>
+                </div>
+              </div>
+            ) : (
+              <div className="compatibility-checker-body">
+                <p>
+                  Select two or more cosmetic ingredients to review general ingredient-level layering heuristics. Combining actives is not universally unsafe—tolerance depends on product formulation, concentration, frequency, and individual skin response.
+                </p>
+                <div className="concern-chips compatibility-chips" role="group" aria-label="Select ingredients to check compatibility">
+                  {ingredients
+                    .filter((i) => !["fragrance", "alcohol_denat"].includes(i.id))
+                    .slice(0, 18)
+                    .map((ing) => {
+                      const active = checkerIngredients.includes(ing.id);
+                      return (
+                        <button
+                          key={ing.id}
+                          className={"concern-chip " + (active ? "selected" : "")}
+                          aria-pressed={active}
+                          onClick={() =>
+                            setCheckerIngredients((prev) =>
+                              prev.includes(ing.id)
+                                ? prev.filter((x) => x !== ing.id)
+                                : [...prev, ing.id],
+                            )
+                          }
+                        >
+                          {active && <Check size={13} />} {ing.name}
+                        </button>
+                      );
+                    })}
+                </div>
+                <div className="compatibility-summary-banner">
+                  <span
+                    className={
+                      "pill " +
+                      (compatibilityResult.overall === "irritation_risk"
+                        ? "danger"
+                        : compatibilityResult.overall === "caution"
+                          ? "lavender"
+                          : "sage")
+                    }
+                  >
+                    {compatibilityLabels[compatibilityResult.overall]}
+                  </span>
+                  <p>{compatibilityResult.summary}</p>
+                  {checkerIngredients.length > 0 && (
+                    <button
+                      className="text-link"
+                      onClick={() => setCheckerIngredients([])}
+                    >
+                      Clear selection
+                    </button>
+                  )}
+                </div>
+                {compatibilityResult.interactions.length > 0 && (
+                  <ul className="compatibility-interactions-list">
+                    {compatibilityResult.interactions.map((item) => (
+                      <li key={item.id} className="compatibility-item">
+                        <div className="compatibility-item-head">
+                          <span
+                            className={
+                              "pill " +
+                              (item.status === "irritation_risk"
+                                ? "danger"
+                                : item.status === "caution"
+                                  ? "lavender"
+                                  : "sage")
+                            }
+                          >
+                            {compatibilityLabels[item.status]}
+                          </span>
+                          <strong>
+                            {item.labelA} + {item.labelB}
+                          </strong>
+                          <small>
+                            {item.timing === "alternate_nights"
+                              ? "Often alternated across nights"
+                              : item.timing === "separate_am_pm"
+                                ? "Often split AM & PM"
+                                : item.timing === "avoid_stacking"
+                                  ? "Avoid redundant layering"
+                                  : "Commonly used in same routine"}
+                          </small>
+                        </div>
+                        <p>
+                          <strong>{item.summary}</strong> {item.guidance}
+                        </p>
+                        <a
+                          className="text-link"
+                          href={item.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Clinical / dermatology reference <ArrowUpRight size={13} />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
           </section>
           <div className="product-mode" role="group" aria-label="Product view">
             <button
