@@ -1,6 +1,7 @@
 import type { NextConfig } from "next";
 const config: NextConfig = {
   devIndicators: false,
+  allowedDevOrigins: ["127.0.0.1", "192.168.29.206"],
   experimental: { agentUpgrade: "security" },
   turbopack: { root: process.cwd() },
   serverExternalPackages: [

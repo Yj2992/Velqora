@@ -177,3 +177,9 @@ Moved the existing AI checkbox out of the profile form into a dedicated top-of-p
 - Client API errors preserve server status/code while remaining compatible with Error. Product discovery recognizes provider/application rate limits without message-text matching.
 - A quota response pauses external product search until the user explicitly enables another attempt. The notice links directly to still-filtered catalog matches and does not invent a reset time. Previous retrieved results survive a failed refresh; preferences and concern filters remain intact.
 - 139 tests pass (2 optional live checks skipped), strict TypeScript and production build pass. No live provider calls were made for this change, conserving the exhausted free quota.
+
+## Wi-Fi login assets · 2026-11-01
+
+- LAN dev-server logs showed blocked Next development resource requests from the explicit Wi-Fi host, followed by native GET form submissions without JavaScript. Added only 127.0.0.1 and the requested 192.168.29.206 to allowedDevOrigins; no wildcard access.
+- Login/signup forms explicitly use POST and keep submit disabled until hydration. Missing JavaScript now has a visible explanation and cannot put credentials into a query string through native form fallback.
+- Verified login HTML contains method=post, and three JavaScript assets return HTTP 200/application-javascript when requested with LAN Origin/Referer headers. Strict TypeScript and 139 tests pass. No actual user's credentials were used for verification.

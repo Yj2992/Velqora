@@ -1,10 +1,12 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { browserClient, configured } from "@/lib/supabase/client";
 import { Button } from "./ui/button";
 export function AuthForm({ signup = false }: { signup?: boolean }) {
+  const [hydrated,setHydrated]=useState(false);
+  useEffect(()=>setHydrated(true),[]);
   const [error, setError] = useState(""),
     [success, setSuccess] = useState(""),
     [busy, setBusy] = useState(false);
@@ -52,7 +54,8 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
   }
   return (
     <>
-      <form onSubmit={submit}>
+      <form method="post" onSubmit={submit}>
+        <noscript><p className="notice">Enable JavaScript to sign in. Login details are never submitted through the address bar.</p></noscript>
         {signup && (
           <label className="field">
             Your name
@@ -102,8 +105,8 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
             ready to explore.
           </div>
         )}
-        <Button className="full" disabled={busy || !configured()}>
-          {busy
+        <Button className="full" disabled={!hydrated || busy || !configured()}>
+          {!hydrated ? "Loading secure sign-in…" : busy
             ? "Please wait…"
             : signup
               ? "Begin your skin journey"
