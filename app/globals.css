@@ -4332,3 +4332,8 @@ em {
 .scan-review-sources > div { border-top: 1px solid var(--border); margin-top: 18px; padding-top: 18px; }
 .scan-review-sources ul { margin: 12px 0; padding-left: 17px; }
 @media(max-width:760px) { .scan-plan-targets { grid-template-columns: 1fr; } .scan-plan-type { align-items: flex-start; flex-direction: column; gap: 9px; } .scan-plan-type > span { max-width: none; } .scan-product-results h2 { font-size: 25px; } .scan-match-category { flex-wrap: wrap; } .scan-find-products { width: 100%; } }
+.catalog-results-label { border-top: 1px solid var(--border); padding-top: 25px; margin: 25px 0 15px; }
+.scan-filter-navigation { margin: 16px 0; font-size: 11px; }
+.scan-plan-preferences { font-size: 11px; line-height: 1.8; margin-bottom: 12px; }
+
+.shared-filter-search{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin:1rem 0}.shared-filter-search p{flex:1;min-width:220px;font-size:.8rem}

@@ -43,3 +43,12 @@ it("reports exhausted free web quotas without a paid provider fallback",async()=
  vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn().mockResolvedValue(new Response("",{status:429}));vi.stubGlobal("fetch",f);
  await expect(searchWebProducts("A moisturizer",true)).rejects.toThrow("free Groq search quota");expect(f).toHaveBeenCalledTimes(1);
 });
+
+it("requires a verbatim headed formula for full-list filtering",()=>{
+ const full="Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate";
+ const sources=[{title:"Cream",url,host:"www.ceraveindia.com",opened:true,page_text:full+". Fragrance-free.",snippet:""}];
+ const [verified]=buildWebResults(sources,{pages:[{index:0,price_quote:null,ingredients_quote:"Glycerin",suitability_quote:null,full_inci_quote:full,claims_quote:"Fragrance-free."}]});
+ expect(verified.full_inci_quote).toBe(full);expect(verified.claims_quote).toBe("Fragrance-free.");
+ const [rejected]=buildWebResults(sources,{pages:[{index:0,price_quote:null,ingredients_quote:null,suitability_quote:null,full_inci_quote:"Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate",claims_quote:"Vegan"}]});
+ expect(rejected.full_inci_quote).toBeNull();expect(rejected.claims_quote).toBeNull();
+});

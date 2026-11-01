@@ -12,3 +12,9 @@ it("fetches an owned completed scan and sends only a derived care brief",async()
 it("rejects a missing or foreign scan before any provider request",async()=>{mock.scan.maybeSingle.mockResolvedValue({data:null,error:null});expect((await POST(request())).status).toBe(404);expect(mock.search).not.toHaveBeenCalled();});
 it("does not accept injected scores or age as scan context",async()=>{expect((await POST(request({scores:{moisture:10},skin_age:60}))).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();});
 it("does not infer priorities for an unsupported scan provider",async()=>{mock.scan.maybeSingle.mockResolvedValue({data:{status:"completed",provider_version:"other"},error:null});expect((await POST(request())).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();});
+
+it("passes shared concern/category/brand filters to discovery and rejects invalid concerns",async()=>{
+ const r=await POST(request({filters:{concerns:["moisture"],brand:"Minimalist",category:"moisturizer",full_ingredients_only:true}}));
+ expect(r.status).toBe(200);const q=mock.search.mock.calls[0][0];expect(q).toContain("Brand: Minimalist only");expect(q).toContain("COMPLETE ingredient/INCI");
+ mock.search.mockClear();expect((await POST(request({filters:{concerns:["invented"]}}))).status).toBe(400);expect(mock.search).not.toHaveBeenCalled();
+});

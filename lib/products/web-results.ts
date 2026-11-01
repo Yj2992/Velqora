@@ -14,6 +14,8 @@ export type WebProductResult = {
   price_quote: string | null;
   ingredients_quote: string | null;
   suitability_quote: string | null;
+  full_inci_quote?: string | null;
+  claims_quote?: string | null;
 };
 export type WebProductSearch = { source: "groq-web"; model: string; searched_at: string; results: WebProductResult[] };
 export function safePublicWebUrl(value: unknown): string | null {
@@ -58,6 +60,8 @@ export const sourceQuotesSchema=z.object({pages:z.array(z.object({
   price_quote:z.string().max(220).nullable(),
   ingredients_quote:z.string().max(650).nullable(),
   suitability_quote:z.string().max(300).nullable(),
+  full_inci_quote:z.string().max(4500).nullable().default(null),
+  claims_quote:z.string().max(350).nullable().default(null),
 }).strict()).max(6)}).strict();
 function provenQuote(value:string|null|undefined, source:WebProductSource) {
   if(!source.opened || !value) return null;
@@ -69,7 +73,9 @@ export function buildWebResults(sources:WebProductSource[], quotes:unknown):WebP
   const parsed=sourceQuotesSchema.safeParse(quotes);
   return sources.map((s,index)=>{
     const q=parsed.success ? parsed.data.pages.find(p=>p.index===index) : undefined;
+    const full=provenQuote(q?.full_inci_quote,s);
+    const fullList=full && /(?:ingredients|\binci\b)\s*[:\-]/i.test(full) && full.split(/[,;]/).length>=4 ? full : null;
     return {title:s.title,url:s.url,host:s.host,page_opened:s.opened,
-      price_quote:q?.price_quote && /(?:₹|\bINR\b|\bRs\.?)[\s\S]*\d/i.test(q.price_quote) ? provenQuote(q.price_quote,s) : null,ingredients_quote:provenQuote(q?.ingredients_quote,s),suitability_quote:provenQuote(q?.suitability_quote,s)};
+      price_quote:q?.price_quote && /(?:₹|\bINR\b|\bRs\.?)[\s\S]*\d/i.test(q.price_quote) ? provenQuote(q.price_quote,s) : null,ingredients_quote:provenQuote(q?.ingredients_quote,s),suitability_quote:provenQuote(q?.suitability_quote,s),full_inci_quote:fullList,claims_quote:provenQuote(q?.claims_quote,s)};
   });
 }
