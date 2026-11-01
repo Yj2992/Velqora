@@ -27,7 +27,7 @@ The local preview server was used for verification and stopped during teardown. 
 
 ## Supabase integration — 16 October 2026
 
-- Connected the existing agriguard project, preserving 21 legacy scan records and its bucket.
+- Connected the Velqora Supabase project and verified schema isolation.
 - Applied both migrations atomically; recorded their versions in protected migration history.
 - Verified nine new RLS-protected tables and the private `skin-photos` bucket.
 - Executed the rollback-based two-user database security test successfully.
@@ -71,7 +71,7 @@ A real YouCam v2.1 task completed successfully, returning `error: null` and `url
 - The catalog contains 100 active, source-checked product records from five official Indian stores, 33 ingredient entries, and mappings for all 15 YouCam indicators. Captured source-product JSON is retained and unit tests verify exact names, chosen variant prices/availability and SHA-256 provenance.
 - Full published INCI is captured for 54 records; 46 expose only manufacturer-named key ingredients. Forty-three have unknown explicit skin suitability. Unknown values remain visible and do not satisfy safety/suitability filters. Store observations are not guarantees of delivered formulations, live stock, offers, efficacy or allergy safety.
 - Verified YouCam higher-favorable score direction is used only to suggest three relative whole-face priorities for the supported provider. Unknown-provider/missing/invalid scores are not interpreted. No diagnostic severity thresholds or generated treatment claims are used. Structural-only eye concerns return guidance rather than corrective creams.
-- Applied migration `20261016153500_add_verified_product_catalog.sql` to the existing agriguard project, imported the catalog and source records, and added indexed optional product links to existing experiments. No legacy scans or photos were modified.
+- Applied migration `20261016153500_add_verified_product_catalog.sql` to the Velqora Supabase database, imported the catalog and source records, and added indexed optional product links to existing experiments.
 - Live two-user workflow verification passed: public factual catalog reads, denied catalog writes, saved private preferences, cross-user preference isolation, invalid-budget rejection, canonical product name/ID retention on experiment creation, usage logging, baseline/follow-up data, numerical comparison API (+3 fixture points), hidden inactive products and denied foreign experiment reads. All exact temporary users and cascading QA fixtures were removed. No paid YouCam calls, real-photo uploads or LLM calls were made for these checks.
 - Browser verification passed: `/products`, manual focus, category filtering, ingredient/source disclosures, tracking prefill, demo experiment creation and daily usage journal. Phone viewport 390×844 showed readable cards and no horizontal overflow. Desktop and phone screenshots are saved alongside the source archive.
 - An integration test initially caught stale development module state dropping the new product field. Restarting the development server loaded the new schema; the live canonical-identity and complete workflow checks then passed.

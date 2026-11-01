@@ -6,7 +6,7 @@ export default function Demo() {
       window.location.href = "/";
       return;
     }
-    document.cookie = "dl_demo=true; path=/; SameSite=Lax; max-age=86400";
+    document.cookie = "vq_demo=true; path=/; SameSite=Lax; max-age=86400";
     window.location.replace("/dashboard");
   }, []);
   return (

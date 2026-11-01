@@ -33,7 +33,7 @@ it("returns an existing idempotent submission without spending another credit", 
   const f = new FormData();
   f.set("idempotency_key", "9f1e8217-48c1-4a7e-881a-58808a5936e2");
   const result = await POST(
-    new Request("https://dermalens.test/api/scans", {
+    new Request("https://velqora.test/api/scans", {
       method: "POST",
       body: f,
     }),
@@ -45,7 +45,7 @@ it("returns an existing idempotent submission without spending another credit", 
 it("blocks live retention before provider terms are enabled", async () => {
   vi.stubEnv("HISTORY_RETENTION_ENABLED", "false");
   const r = await POST(
-    new Request("https://dermalens.test/api/scans", { method: "POST" }),
+    new Request("https://velqora.test/api/scans", { method: "POST" }),
   );
   expect(r.status).toBe(503);
   expect((await r.json()).error.code).toBe("RETENTION_NOT_ENABLED");

@@ -20,11 +20,11 @@ The lockfile pins the installed versions. `.npmrc` makes peer resolution reprodu
 
 ## Configure the live application
 
-1. Use the configured agriguard project, or create a Supabase project for a separate environment. Apply the files in `supabase/migrations/` in order using the SQL editor, or use Supabase CLI migrations. The second migration hardens permissions for a reused project. Apply this migration to a new database before registering users; its trigger creates profiles for new accounts.
+1. Create or connect a Supabase project for your environment. Apply the files in `supabase/migrations/` in order using the SQL editor, or use Supabase CLI migrations. The second migration hardens permissions and installs the profile trigger for new accounts.
 2. Copy the Supabase project URL, anonymous key, and **server-only** service-role key into `.env.local`. Set the project's Site URL and allow `http://127.0.0.1:3000/auth/callback` and your deployed `/auth/callback` URL as authentication redirect destinations. Email confirmation is supported.
 3. Set `YOUCAM_API_KEY` from your Perfect Corp. account. The v2.1 base URL is prefilled. Check your account's available credits and permitted actions.
 4. Confirm that your applicable YouCam terms permit retaining numerical outputs for history. Only then set `HISTORY_RETENTION_ENABLED=true`. Live scans are explicitly unavailable while this flag is off; no synthetic substitute is generated.
-5. For free-tier AI Insights, create a key at https://console.groq.com/keys on the **Free plan**, add `GROQ_API_KEY` to `.env.local`, review https://console.groq.com/docs/your-data, and set `LLM_DATA_SHARING_ENABLED=true`. Restart the server, then opt in through **Settings → external AI sharing**. Never commit the key. Default model: `qwen/qwen3.8-27b` (preview; override with `GROQ_MODEL` if availability changes). Groq publishes quota limits at https://console.groq.com/docs/rate-limits; free is quota-limited, not unlimited. Keep paid billing disabled for a no-cost setup. This uses Groq, without an OpenAI API subscription. No automatic paid fallback exists.
+5. For AI Insights and live product discovery, create a Google Gemini API key (`GEMINI_API_KEY`) or compatible LLM key in `.env.local` and set `LLM_DATA_SHARING_ENABLED=true`. Restart the server, then opt in through **Settings → external AI sharing**. Never commit the key. Free-tier quotas apply; no automatic paid fallback exists.
 
    Without configuration/consent, responses are labeled reference guidance (or numerical summaries for scan questions). Configured model failures show actionable errors, including free quota exhaustion; they never masquerade as model answers. Optional other HTTPS compatible providers require explicit `LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL` configuration and may charge.
 
@@ -72,7 +72,7 @@ npm audit
 
 Unit and mocked-handler tests cover parsing, special/missing/duplicate metrics, score matching, state transitions, timeouts, provider failures, consent/retention boundaries, upload validation, experiment validation, authentication, ownership filters, atomic quota failure, and duplicate submissions. These do **not** substitute for live Supabase RLS or paid provider tests.
 
-Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. Supabase authentication, storage, SQL execution, and isolation were subsequently verified on agriguard (see the connected-project section below). Real successful YouCam output and email delivery remain to be verified.
+Run `supabase/tests/security.sql` in your Supabase SQL editor to exercise RLS and transactional completion with two temporary test users. It wraps all fixtures in a rollback. Run it in a disposable development project first. Supabase authentication, storage, SQL execution, and isolation were subsequently verified on the connected Velqora Supabase project (see the connected-project section below). Real successful YouCam output and email delivery remain to be verified.
 
 Before submission, complete these live checks:
 
@@ -105,22 +105,21 @@ This project intentionally retains the requested Next.js/Supabase/Vercel stack. 
 See `VERIFICATION.md` for the actual check results and remaining live-environment limits.
 
 
-## GitHub
+## GitHub & Live Deployment
 
-The source repository is `https://github.com/Yj2992/dermalens` (private).
+The source repository is `https://github.com/Yj2992/Velqora`.
+The live application is deployed on Render at `https://velqora-0ygv.onrender.com`.
 GitHub Actions runs strict TypeScript, the behavior test suite, a production build,
 and a production dependency audit on main pushes and pull requests. The workflow
 uses Node 24 and SHA-pinned actions; Dependabot proposes dependency updates weekly.
 CI uses no provider credentials and makes no live skin-analysis requests.
 
-Velqora is now connected locally to the existing agriguard Supabase project. Live website deployment is still pending.
+Velqora is connected to the production Supabase project and deployed on Render.
 
 
 ## Connected Supabase project (16 October 2026)
 
-Velqora reuses **agriguard**, project ref `bqsmamuarzwkdtmmvmyo`, in `us-east-2`.
-The legacy `public.scan_results` table (21 records) and public `scans` bucket were preserved.
-Velqora uses its own tables and the separate **private** `skin-photos` bucket.
+Velqora uses its dedicated Supabase tables and the **private** `skin-photos` bucket in `us-east-2`.
 
 Both migrations were applied and recorded. Browser roles have read-only access to
 own rows through RLS; writes and server RPCs require authenticated backend handlers.
@@ -173,13 +172,13 @@ Completed real scans now offer a separate consent checkbox and “Add Fitzpatric
 
 The official documentation lists 10 units per successful classification. Face pre-processing and classification are separate task phases. See https://docs.perfectcorp.com/reference/ai_fitzpatrick_skin_type for current terms and costs. A photo-based classification is an estimate, separate from dry/normal/oily skin, and cannot establish personal burning/tanning history. No ethnicity, safe tanning duration, or personalized SPF is inferred. The pasted provider table repeats Type V and omits IV; the implementation uses the API’s canonical enum I, II, III, IV, V, VI.
 
-The migration `20261016144240_add_fitzpatrick_analysis.sql` is applied to agriguard. RLS owner/non-owner checks and column grants passed in a rolled-back transaction. A live paid classification remains to be tested through the consent button. The security advisor reported no errors; signed-in GraphQL schema visibility is intentional with RLS (https://supabase.com/docs/guides/database/database-linter?lint=0027_pg_graphql_authenticated_table_exposed). Existing legacy public scan visibility and disabled leaked-password protection remain separate project notices (https://supabase.com/docs/guides/database/database-linter?lint=0026_pg_graphql_anon_table_exposed and https://supabase.com/docs/guides/auth/password-security#password-strength-and-leaked-password-protection).
+The migration `20261016144240_add_fitzpatrick_analysis.sql` is applied to the Velqora Supabase database. RLS owner/non-owner checks and column grants passed in a rolled-back transaction. A live paid classification remains to be tested through the consent button. The security advisor reported no errors; signed-in GraphQL schema visibility is intentional with RLS (https://supabase.com/docs/guides/database/database-linter?lint=0027_pg_graphql_authenticated_table_exposed).
 
 ### Rule-based Indian skincare product discovery
 
 `/products` now provides a curated 100-product catalog from five official Indian stores, fixed rules covering all 15 YouCam indicators, private budget/ingredient/skin-type preferences, source links and verification dates. There are 54 captured full ingredient lists and 46 key-ingredient-only records; unknown suitability is preserved and conservative filters exclude incomplete/unknown facts. No LLM or generative model is used for recommendations. YouCam higher-favorable score direction is documented, but no clinical severity cutoffs or product efficacy predictions are invented.
 
-Scan results link to product matches. “Track This Product” pre-fills a catalog-linked experiment; usage logging and future same-provider comparisons use the existing Lab. The Supabase catalog migration and 100 active records are applied to the existing agriguard project. See [product research, rules, provenance and maintenance](docs/PRODUCT-RECOMMENDATIONS.md). Import curated updates with `node scripts/import-product-catalog.mjs`; run the isolated live workflow check with `node scripts/verify-products.mjs` while the app is running. Product data older than 30 days is excluded until reverified.
+Scan results link to product matches. “Track This Product” pre-fills a catalog-linked experiment; usage logging and future same-provider comparisons use the existing Lab. The Supabase catalog migration and 100 active records are applied to the Velqora database. See [product research, rules, provenance and maintenance](docs/PRODUCT-RECOMMENDATIONS.md). Import curated updates with `node scripts/import-product-catalog.mjs`; run the isolated live workflow check with `node scripts/verify-products.mjs` while the app is running. Product data older than 30 days is excluded until reverified.
 
 ### Live camera capture
 

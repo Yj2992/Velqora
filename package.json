@@ -1,5 +1,5 @@
 {
-  "name": "dermalens",
+  "name": "velqora",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -15,8 +15,8 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "description": "",
+  "license": "MIT",
+  "description": "Velqora — AI Skin Telemetry, Longitudinal Tracking & Source-Backed Skincare Discovery",
   "dependencies": {
     "@radix-ui/react-slot": "^1.5.0",
     "@supabase/ssr": "0.12.7",

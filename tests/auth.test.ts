@@ -24,7 +24,7 @@ it("rejects unauthenticated requests", async () => {
 it("rejects cross-origin mutations before authenticating", async () => {
   await expect(
     auth(
-      new Request("https://dermalens.test/api/scans", {
+      new Request("https://velqora.test/api/scans", {
         method: "POST",
         headers: { origin: "https://attacker.test" },
       }),

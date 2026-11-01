@@ -25,7 +25,7 @@ const must = (r, name) => {
   return r.data;
 };
 async function fixture() {
-  const email = `dermalens.qa.${Date.now()}.${randomBytes(3).toString("hex")}@example.com`,
+  const email = `velqora.qa.${Date.now()}.${randomBytes(3).toString("hex")}@example.com`,
     password = randomBytes(30).toString("base64url");
   const data = must(
     await admin.auth.admin.generateLink({

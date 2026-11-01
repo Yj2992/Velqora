@@ -1,4 +1,4 @@
--- Scope grants to DermaLens objects only; preserve the reused project's legacy data.
+-- Scope grants to Velqora objects only; preserve the reused project's legacy data.
 revoke all on table public.profiles, public.consent_records, public.skin_scans,
   public.skin_scan_metrics, public.skin_type_results, public.skincare_experiments,
   public.product_usage_logs, public.ai_insights, public.request_quotas
@@ -18,19 +18,19 @@ alter function public.claim_scan_poll(uuid,uuid) security invoker;
 alter function public.complete_scan(uuid,uuid,numeric,numeric,jsonb,jsonb) security invoker;
 
 -- The Auth trigger does need elevated privileges, but belongs in a private schema.
-create schema if not exists dermalens_private;
-revoke all on schema dermalens_private from public, anon, authenticated;
-create function dermalens_private.on_user_created() returns trigger
+create schema if not exists velqora_private;
+revoke all on schema velqora_private from public, anon, authenticated;
+create function velqora_private.on_user_created() returns trigger
 language plpgsql security definer set search_path='' as $$
 begin
   insert into public.profiles(id,display_name)
   values(new.id,left(coalesce(new.raw_user_meta_data->>'display_name',''),80));
   return new;
 end;$$;
-revoke all on function dermalens_private.on_user_created() from public,anon,authenticated,service_role;
+revoke all on function velqora_private.on_user_created() from public,anon,authenticated,service_role;
 drop trigger create_user_profile on auth.users;
 create trigger create_user_profile after insert on auth.users for each row
-  execute function dermalens_private.on_user_created();
+  execute function velqora_private.on_user_created();
 drop function public.on_user_created();
 
 -- Cache the calling user's ID once per policy statement.

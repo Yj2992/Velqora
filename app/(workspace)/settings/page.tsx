@@ -213,7 +213,7 @@ export default function Settings() {
             disabled={busy}
             onClick={() =>
               void run(async () => {
-                localStorage.removeItem("dermalens-demo-v1");
+                localStorage.removeItem("velqora-demo-v1");
                 await refresh();
               }, "Synthetic demo reset.")
             }

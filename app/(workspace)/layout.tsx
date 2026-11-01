@@ -11,7 +11,7 @@ export default async function WorkspaceLayout({
 }) {
   const jar = await cookies(),
     demo =
-      jar.get("dl_demo")?.value === "true" &&
+      jar.get("vq_demo")?.value === "true" &&
       process.env.NEXT_PUBLIC_DEMO_ENABLED !== "false";
   if (!demo) {
     if (!process.env.NEXT_PUBLIC_SUPABASE_URL) redirect("/login");

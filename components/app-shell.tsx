@@ -34,7 +34,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
     { data, demo, loading, error, refresh } = useApp(),
     [open, setOpen] = useState(false);
   async function leave() {
-    document.cookie = "dl_demo=; path=/; max-age=0; SameSite=Lax";
+    document.cookie = "vq_demo=; path=/; max-age=0; SameSite=Lax";
     if (!demo) await browserClient().auth.signOut();
     window.location.href = "/";
   }

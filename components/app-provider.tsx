@@ -70,7 +70,7 @@ export function AppProvider({
   const save = useCallback(
     (next: AppData) => {
       setData(next);
-      if (demo) localStorage.setItem("dermalens-demo-v1", JSON.stringify(next));
+      if (demo) localStorage.setItem("velqora-demo-v1", JSON.stringify(next));
     },
     [demo],
   );
@@ -78,7 +78,7 @@ export function AppProvider({
     setError("");
     try {
       if (demo) {
-        const saved = localStorage.getItem("dermalens-demo-v1");
+        const saved = localStorage.getItem("velqora-demo-v1");
         try {
           setData(saved ? JSON.parse(saved) : demoData());
         } catch {

@@ -31,7 +31,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
         });
         if (result.error) throw result.error;
         if (result.data.session) {
-          document.cookie = "dl_demo=; path=/; max-age=0";
+          document.cookie = "vq_demo=; path=/; max-age=0";
           window.location.href = "/onboarding";
         } else
           setSuccess(
@@ -43,7 +43,7 @@ export function AuthForm({ signup = false }: { signup?: boolean }) {
           password,
         });
         if (result.error) throw result.error;
-        document.cookie = "dl_demo=; path=/; max-age=0";
+        document.cookie = "vq_demo=; path=/; max-age=0";
         window.location.href = "/dashboard";
       }
     } catch (e) {
