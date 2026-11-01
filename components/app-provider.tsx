@@ -8,7 +8,7 @@ import {
 } from "react";
 import { demoData } from "@/lib/demo";
 import type { AppData, Experiment, Insight, Scan } from "@/lib/types";
-import { deterministicSummary } from "@/lib/progress";
+import { referenceGuidance } from "@/lib/ai/guidance";
 const empty: AppData = {
   scans: [],
   experiments: [],
@@ -180,7 +180,7 @@ export function AppProvider({
           {
             id: crypto.randomUUID(),
             question: q,
-            response: deterministicSummary(
+            response: referenceGuidance(q,
               scanIds
                 ? data.scans.filter((s) => scanIds.includes(s.id))
                 : data.scans,

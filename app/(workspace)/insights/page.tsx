@@ -1,5 +1,7 @@
 "use client";
 import { useState, useEffect } from "react";
+import Link from "next/link";
+import { skinReferences } from "@/lib/ai/guidance";
 import { Sparkles, ArrowUp, ScanFace } from "lucide-react";
 import { useApp } from "@/components/app-provider";
 import { Button } from "@/components/ui/button";
@@ -32,7 +34,7 @@ export default function Insights() {
       <PageHeader
         eyebrow="MAKE SPACE FOR UNDERSTANDING"
         title="A little context for your skin story."
-        description="Explore your measurements and routine with thoughtful, grounded explanations."
+        description="Ask about everyday skincare, understand your scans, and consider your next step. General guidance, never a diagnosis."
       />
       {scanIds && (
         <div className="notice">
@@ -55,8 +57,8 @@ export default function Insights() {
           <div className="suggestions">
             {[
               "What changed since my last scan?",
-              "Explain my skin texture trend",
-              "Summarize my skincare experiment",
+              "How can I care for dry skin?",
+              "What should a simple acne-prone routine include?",
             ].map((q) => (
               <button disabled={busy} onClick={() => void send(q)} key={q}>
                 {q}
@@ -73,9 +75,9 @@ export default function Insights() {
                   <span className="section-label">
                     {i.source === "llm"
                       ? "AI EXPLANATION"
-                      : "DETERMINISTIC SUMMARY"}
+                      : "REFERENCE GUIDANCE · NO AI MODEL USED"}
                   </span>
-                  <p>{i.response}</p>
+                  <p style={{ whiteSpace: "pre-wrap" }}>{i.response}</p>
                 </div>
               </div>
             </div>
@@ -83,7 +85,7 @@ export default function Insights() {
           {busy && (
             <div className="chat-answer" aria-live="polite">
               <div className="loader small-loader" />
-              <p>Reviewing your recorded measurements…</p>
+              <p>Considering your question…</p>
             </div>
           )}
           {error && (
@@ -99,7 +101,7 @@ export default function Insights() {
             }}
           >
             <input
-              aria-label="Ask about your skin measurements"
+              aria-label="Ask a skincare question"
               value={question}
               onChange={(e) => setQuestion(e.target.value)}
               placeholder="Ask about your skin story…"
@@ -116,10 +118,10 @@ export default function Insights() {
           </form>
           <p className="subtle centered">
             {demo
-              ? "Demo responses are deterministic summaries of synthetic data."
+              ? "Demo uses reference guidance and synthetic scan summaries; no model is called."
               : !data.llmConsent
-                ? "External AI sharing is off. Responses use a labeled deterministic summary."
-                : "AI explanations require a configured provider. Otherwise, a deterministic summary is labeled clearly."}
+                ? "External AI sharing is off. Enable it in Settings to use the configured model. Until then, answers use reference guidance."
+                : "Groq AI answers require the site’s configured key and sharing switch. Free-tier quotas apply; reference guidance is labeled separately."}
           </p>
         </section>
         <aside className="card insight-context">
@@ -141,6 +143,11 @@ export default function Insights() {
             supplied measurements.
           </p>
           <div className="divider" />
+          <Link href="/products" className="text-link">Find Products →</Link>
+          <p><Link href="/settings" className="text-link">Manage AI sharing →</Link></p>
+          <span className="section-label">REFERENCE LIBRARY</span>
+          {skinReferences.map((r) => <p key={r.url}><a className="text-link" href={r.url} target="_blank" rel="noopener noreferrer">{r.title} ↗</a></p>)}
+          <p className="subtle">These references support general guidance. AI answers can make mistakes; check important advice with a qualified professional. No photos are sent to the chat model.</p>
           <p>
             Photo conditions affect results. Routine associations don’t prove
             causation. For medical concerns, consult a qualified professional.

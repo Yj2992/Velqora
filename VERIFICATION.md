@@ -97,3 +97,14 @@ Ran the official security upgrade workflow, which selected Next.js 16.4.3 for th
 ## Live camera capture — 1 November 2026
 
 Added camera preview, front/back preference switching, bounded JPEG still capture, review/retake, and upload fallback on the existing scan screen. Each new valid photo resets per-photo consent and idempotency. The live stream is browser-local, audio is disabled, and no provider request occurs until analysis is explicitly submitted. Stream lifecycle handles switching/unmounting and late permission grants safely. Seven regression tests cover delayed grants, stale concurrent requests, stream shutdown, error guidance, unavailable frames, JPEG dimensions/no upscaling and failed encoding. All 84 tests, strict TypeScript and Next.js 16.4.3 production build pass under Node 24. Browser checks verified camera/upload controls, the permission-wait state with capture disabled, and cancellation back to upload. Actual hardware capture was not granted during automated browser verification; no real photograph was captured or uploaded and no paid provider task was started.
+
+
+## Free-tier skincare assistant · 2026-11-01
+
+- Added server-only Groq adapter, default `qwen/qwen3.8-27b` preview model, without an OpenAI paid endpoint fallback. Availability/free quotas checked against official Groq docs. Account billing/limits remain the operator's responsibility.
+- Expanded prompt from scan-only explanations to skincare education grounded in reviewed reference notes and existing concern limitations; product matching remains deterministic.
+- Existing server sharing switch and per-user consent both remain required. Context is bounded and explicit: at most three scans, five experiments and five capped usage notes each. Identifiers, photos, storage paths and capture notes are excluded. A test caught identifiers inherited through comparison objects; comparisons now use an explicit field allowlist.
+- Added free-quota/configuration error handling, output cap and hidden reasoning. No retries or paid fallback. No fake model output on provider failure.
+- Browser verified synthetic demo dry-skin question -> relevant, clearly labeled reference guidance; source library and product/settings links visible. Saved preview at `../velqora-ai-insights.png`.
+- 88 tests in 17 files pass; strict TypeScript and Next.js production build pass on Node 24.
+- Live Groq inference was not tested: `GROQ_API_KEY` is not yet configured. The external-sharing switch is still false and no personal sharing preferences were changed. Prompt safeguards do not establish clinical validation.
