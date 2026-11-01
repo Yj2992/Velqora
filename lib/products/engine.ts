@@ -70,7 +70,7 @@ export function recommend(
         product.price_inr <= 0 ||
         !Number.isFinite(verified) ||
         verified > now + 86400000 ||
-        now - verified > 30 * 86400000
+        now - verified > 180 * 86400000
       )
         return [];
       if (

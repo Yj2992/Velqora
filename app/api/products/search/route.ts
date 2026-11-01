@@ -11,7 +11,7 @@ export async function POST(request: Request) {
     const { user, db } = await auth(request);
     const { question } = input.parse(await request.json());
     const profile = required(await db.from("profiles").select("llm_consent").eq("id", user.id).single());
-    if (profile.llm_consent !== true) throw new AppError("AI_CONSENT", "Enable external AI sharing in Settings before using Groq search.", 403);
+    if (profile.llm_consent !== true) throw new AppError("AI_CONSENT", "Enable external AI sharing in Settings before using AI search.", 403);
     await quota(db, user.id, "product-search", 50);
     const brands = [...new Set((await getCatalog()).map(p => p.brand))];
     const intent = await interpretProductSearch(question, brands, true);
