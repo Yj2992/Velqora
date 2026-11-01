@@ -89,3 +89,7 @@ Reproduced the reported dry-skin selection with tear troughs, dark circles and p
 ## Product list refinement — 17 October 2026
 
 Added a nine-option category/brand-balanced starter shortlist, all-eligible view, full-ingredient-only discovery filter, ingredient-list badges and relevant-first ingredient tags. Reduced repeated card text and folded selected concern evidence into a disclosure. No catalog facts, safety eligibility rules or private preferences were changed. Four new tests verify category/brand variety, deterministic selection without mutation, preference for ordinary formats, and attributable ingredient tags. All 77 tests, TypeScript and production build pass. Browser checks verified shortlist/all switching and that all 12 initially visible full-list-filtered cards carried full ingredient lists.
+
+## Next.js security patch — 1 November 2026
+
+Ran the official security upgrade workflow, which selected Next.js 16.4.3 for the affected 16.4.0 installation. Pinned the exact patched release, updated the lockfile and matching Next.js packages, and retained security upgrade reminders through experimental.agentUpgrade. No major-version migration or unrelated dependency upgrade was applied. Verification under Node 24.22.1: strict TypeScript, all 77 tests and the production build passed; npm audit reported zero known vulnerabilities. Initial disk-space failures were resolved by removing only incomplete/generated project dependencies and build caches before rerunning successfully.
