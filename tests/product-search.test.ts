@@ -6,6 +6,10 @@ import { recommend } from "../lib/products/engine";
 import catalog from "../data/products.catalog.json";
 const intent = productIntentSchema.parse({skin_type:"dry",budget_inr:500,categories:["moisturizer"],concerns:[],ingredient_ids:[],avoid_ingredients:[],brand_names:[],fragrance_free:true,non_comedogenic:false,vegan:false,sensitive:false,unresolved_terms:[]});
 afterEach(()=>{vi.unstubAllEnvs();vi.unstubAllGlobals();});
+const groqOnly = () => {
+  vi.stubEnv("AI_PROVIDER", "");
+  vi.stubEnv("GEMINI_API_KEY", "");
+};
 it("does not permit products, age consent or unsafe preference changes in model output",()=>{
  for(const extra of [{products:["invented"]},{adult_confirmed:true},{avoid_retinoids:false},{ingredients:["miracle"]}]) expect(productIntentSchema.safeParse({...intent,...extra}).success).toBe(false);
  expect(productIntentSchema.safeParse({...intent,ingredient_ids:["invented"]}).success).toBe(false);
@@ -34,14 +38,14 @@ it("keeps generated filters inside rule-based product eligibility",()=>{
  expect(recommend([fixture],prefs,[],Date.parse("2026-11-01T12:00:00Z"),true).filter(m=>matchesSearchIntent(m.product,intent))).toHaveLength(1);
 });
 it("requires both consent and server opt-in before any request",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn();vi.stubGlobal("fetch",f);
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn();vi.stubGlobal("fetch",f);
  await expect(interpretProductSearch("Dry skin moisturizer",[],false)).rejects.toThrow("sharing");
  vi.stubEnv("LLM_DATA_SHARING_ENABLED","false");
  await expect(interpretProductSearch("Dry skin moisturizer",[],true)).rejects.toThrow("not configured");
  expect(f).not.toHaveBeenCalled();
 });
 it("requests structured filters only and validates model output",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
  const f=vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{finish_reason:"stop",message:{content:JSON.stringify(intent)}}]})));vi.stubGlobal("fetch",f);
  expect(await interpretProductSearch("Dry skin moisturizer under 500",["Minimalist"],true)).toEqual(intent);
  const args=f.mock.calls[0];expect(args[0]).toBe("https://api.groq.com/openai/v1/chat/completions");
@@ -51,12 +55,22 @@ it("requests structured filters only and validates model output",async()=>{
  await expect(interpretProductSearch("A moisturizer",[],true)).rejects.toThrow("reliably");
 });
 it("reports free quota exhaustion without switching providers",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn().mockResolvedValue(new Response("",{status:429}));vi.stubGlobal("fetch",f);
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn().mockResolvedValue(new Response("",{status:429}));vi.stubGlobal("fetch",f);
  await expect(interpretProductSearch("A moisturizer",[],true)).rejects.toThrow("free Groq quota");expect(f).toHaveBeenCalledTimes(1);
 });
 it("rejects truncated structured output",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{finish_reason:"length",message:{content:JSON.stringify(intent)}}]}))));
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{finish_reason:"length",message:{content:JSON.stringify(intent)}}]}))));
  await expect(interpretProductSearch("A moisturizer",[],true)).rejects.toThrow("reliably");
+});
+
+it("uses Gemini structured JSON output for product search when GEMINI_API_KEY is configured",async()=>{
+ vi.stubEnv("GROQ_API_KEY","");vi.stubEnv("GEMINI_API_KEY","test-gemini");vi.stubEnv("GEMINI_MODEL","gemini-3.5-flash-lite");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
+ const f=vi.fn().mockResolvedValue(new Response(JSON.stringify({candidates:[{finishReason:"STOP",content:{parts:[{text:JSON.stringify(intent)}]}}]})));
+ vi.stubGlobal("fetch",f);
+ expect(await interpretProductSearch("Dry skin moisturizer under 500",["Minimalist"],true)).toEqual(intent);
+ expect(f.mock.calls[0][0]).toContain("https://generativelanguage.googleapis.com/v1beta/models/gemini-3.5-flash-lite:generateContent");
+ const body=JSON.parse(f.mock.calls[0][1].body);
+ expect(body.generationConfig.responseMimeType).toBe("application/json");
 });
 
 it("unresolved requirements cannot become supposedly complete matches",()=>{
@@ -65,7 +79,7 @@ it("unresolved requirements cannot become supposedly complete matches",()=>{
  expect(matchesSearchIntent((catalog as Product[])[0],unresolved)).toBe(false);
 });
 it("pregnancy suitability cannot be implied by parsed filters",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
  vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{finish_reason:"stop",message:{content:JSON.stringify(intent)}}]}))));
  const parsed=await interpretProductSearch("A moisturizer safe during pregnancy",[],true);
  expect(parsed.unresolved_terms.join(" ")).toContain("Pregnancy");

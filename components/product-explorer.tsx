@@ -86,7 +86,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
   const [searchPaused,setSearchPaused]=useState(false);
   const [routineTab, setRoutineTab] = useState<"routine" | "compatibility">("routine");
   const [checkerIngredients, setCheckerIngredients] = useState<string[]>(["retinol", "glycolic_acid", "ceramides"]);
-  function handleSearchError(error:unknown){if(isQuotaError(error)){setSearchPaused(true);setAiError("");}else setAiError(error instanceof Error?error.message:"Search could not be completed.");}
+  function handleSearchError(error:unknown){if(isQuotaError(error)){setSearchPaused(true);setAiError("");}else if(error instanceof Error && error.message.includes("web-search model is unavailable")){setSearchScope("catalog");setStatus("Live web-search model is unavailable for this account — switched to Verified Catalog AI search.");setAiError("");}else setAiError(error instanceof Error?error.message:"Search could not be completed.");}
   const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
   async function searchWithGroq() {
     if (!aiAllowed || searchPaused || aiBusy || !ready) return;

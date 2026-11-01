@@ -7,6 +7,10 @@ const message={content:"Invented product at https://fake.example.com/products/fa
  {name:"browser.open",output:`L0: \nL1: URL:\nL2: ${url}\nL3: CeraVe Moisturising Cream\nL4: Ingredients: glycerin and ceramides.\nL5: Suitable for dry skin.\nL6: Price: ₹500 for 50g.\nL7: Main product details and manufacturer information.`},
 ]};
 afterEach(()=>{vi.unstubAllEnvs();vi.unstubAllGlobals();});
+const groqOnly = () => {
+  vi.stubEnv("AI_PROVIDER", "");
+  vi.stubEnv("GEMINI_API_KEY", "");
+};
 it("uses actual search-tool metadata, never assistant-invented names or links",()=>{
  const sources=collectWebSources(message);expect(sources).toHaveLength(1);expect(sources[0].url).toBe(url);expect(sources[0].opened).toBe(true);expect(JSON.stringify(sources)).not.toContain("fake.example");
  expect(collectWebSources({content:"A product https://brand.com/product"})).toEqual([]);
@@ -25,23 +29,37 @@ it("does not attach quotes to search-only pages or unrelated opened URLs",()=>{
  const [r]=buildWebResults(sources,{pages:[{index:0,price_quote:"₹500 for 50g",ingredients_quote:null,suitability_quote:null}]});expect(r.page_opened).toBe(false);expect(r.price_quote).toBeNull();
 });
 it("enforces consent before even a browser-search request",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn();vi.stubGlobal("fetch",f);
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn();vi.stubGlobal("fetch",f);
  await expect(searchWebProducts("A moisturizer",false)).rejects.toThrow("confirm");expect(f).not.toHaveBeenCalled();
 });
 it("requires live source tool results, with no generative fallback",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{message:{content:"Some made up product"}}]}))));
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");vi.stubGlobal("fetch",vi.fn().mockResolvedValue(new Response(JSON.stringify({choices:[{message:{content:"Some made up product"}}]}))));
  await expect(searchWebProducts("A moisturizer",true)).rejects.toThrow("No usable live source");
 });
 it("uses browser tools and returns honest missing details if extraction fails",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
  const f=vi.fn().mockResolvedValueOnce(new Response(JSON.stringify({choices:[{message}]}))).mockResolvedValueOnce(new Response("",{status:429}));vi.stubGlobal("fetch",f);
  const r=await searchWebProducts("CeraVe cream in India",true);
  expect(r.evidence_status).toBe("unavailable");expect(r.source).toBe("groq-web");expect(r.results[0].title).toBe("CeraVe Moisturising Cream");expect(r.results[0].price_quote).toBeNull();
  const request=JSON.parse(f.mock.calls[0][1].body);expect(request.tool_choice).toBe("required");expect(request.tools).toEqual([{type:"browser_search"}]);expect(request).not.toHaveProperty("response_format");expect(f.mock.calls.every(c=>c[0]==="https://api.groq.com/openai/v1/chat/completions")).toBe(true);
 });
 it("reports exhausted free web quotas without a paid provider fallback",async()=>{
- vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn().mockResolvedValue(new Response("",{status:429}));vi.stubGlobal("fetch",f);
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");const f=vi.fn().mockResolvedValue(new Response("",{status:429}));vi.stubGlobal("fetch",f);
  await expect(searchWebProducts("A moisturizer",true)).rejects.toThrow("free Groq search quota");expect(f).toHaveBeenCalledTimes(1);
+});
+it("falls back to Gemini web discovery when Groq web-search model is unavailable for the account",async()=>{
+ vi.stubEnv("GROQ_API_KEY","test");vi.stubEnv("GEMINI_API_KEY","test-gemini");vi.stubEnv("GEMINI_MODEL","gemini-3.5-flash-lite");vi.stubEnv("LLM_DATA_SHARING_ENABLED","true");
+ const f=vi.fn()
+   .mockResolvedValueOnce(new Response("Model unavailable",{status:400}))
+   .mockResolvedValueOnce(new Response(JSON.stringify({candidates:[{finishReason:"STOP",groundingMetadata:{groundingChunks:[{web:{uri:url,title:"CeraVe Moisturising Cream"}}]},content:{parts:[{text:url}]}}]})))
+   .mockResolvedValueOnce(new Response("<html><head><title>CeraVe Moisturising Cream</title></head><body>Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate. Suitable for dry skin. Price: ₹500 for 50g.</body></html>",{status:200}))
+   .mockResolvedValueOnce(new Response(JSON.stringify({candidates:[{finishReason:"STOP",content:{parts:[{text:JSON.stringify({pages:[{index:0,price_quote:"Price: ₹500 for 50g.",ingredients_quote:"Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate.",suitability_quote:"Suitable for dry skin.",full_inci_quote:"Ingredients: Aqua, Glycerin, Ceramide NP, Sodium Hyaluronate.",claims_quote:null}]})}]}}]})));
+ vi.stubGlobal("fetch",f);
+ const r=await searchWebProducts("CeraVe cream in India",true);
+ expect(r.results).toHaveLength(1);
+ expect(r.results[0].url).toBe(url);
+ expect(r.results[0].price_quote).toBe("Price: ₹500 for 50g.");
+ expect(r.results[0].suitability_quote).toBe("Suitable for dry skin.");
 });
 
 it("requires a verbatim headed formula for full-list filtering",()=>{
