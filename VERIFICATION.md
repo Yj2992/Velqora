@@ -108,3 +108,8 @@ Added camera preview, front/back preference switching, bounded JPEG still captur
 - Browser verified synthetic demo dry-skin question -> relevant, clearly labeled reference guidance; source library and product/settings links visible. Saved preview at `../velqora-ai-insights.png`.
 - 88 tests in 17 files pass; strict TypeScript and Next.js production build pass on Node 24.
 - Live Groq inference was not tested: `GROQ_API_KEY` is not yet configured. The external-sharing switch is still false and no personal sharing preferences were changed. Prompt safeguards do not establish clinical validation.
+
+
+## Discoverable AI consent settings · 2026-11-01
+
+Moved the existing AI checkbox out of the profile form into a dedicated top-of-page AI Insights sharing card, with saved state, explicit save button and direct Insights anchor links. Profile saves preserve the saved AI preference. Demo explicitly disables external sharing and explains that sign-in is required. Browser verified card visibility and demo-disabled controls; no real user's consent was changed. All 88 tests and strict TypeScript pass.

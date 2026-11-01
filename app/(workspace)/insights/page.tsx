@@ -116,6 +116,7 @@ export default function Insights() {
               <ArrowUp size={20} />
             </Button>
           </form>
+          {!demo && !data.llmConsent && <p className="centered"><Link className="text-link" href="/settings#ai-sharing">Enable AI sharing in Settings →</Link></p>}
           <p className="subtle centered">
             {demo
               ? "Demo uses reference guidance and synthetic scan summaries; no model is called."
@@ -144,7 +145,7 @@ export default function Insights() {
           </p>
           <div className="divider" />
           <Link href="/products" className="text-link">Find Products →</Link>
-          <p><Link href="/settings" className="text-link">Manage AI sharing →</Link></p>
+          <p><Link href="/settings#ai-sharing" className="text-link">Manage AI sharing →</Link></p>
           <span className="section-label">REFERENCE LIBRARY</span>
           {skinReferences.map((r) => <p key={r.url}><a className="text-link" href={r.url} target="_blank" rel="noopener noreferrer">{r.title} ↗</a></p>)}
           <p className="subtle">These references support general guidance. AI answers can make mistakes; check important advice with a qualified professional. No photos are sent to the chat model.</p>

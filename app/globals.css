@@ -4104,3 +4104,8 @@ em {
     min-height: 230px;
   }
 }
+
+.ai-sharing-settings { margin-bottom: 25px; scroll-margin-top: 24px; }
+.ai-sharing-settings h2 { margin: 12px 0; }
+.ai-sharing-settings > p { margin: 14px 0; max-width: 760px; }
+.ai-sharing-settings .checkbox-row { margin: 22px 0; }
