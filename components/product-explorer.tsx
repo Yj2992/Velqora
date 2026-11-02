@@ -564,21 +564,6 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
               </a>
             </details>
           </section>
-                        <a
-                          className="text-link"
-                          href={item.source}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          Clinical / dermatology reference <ArrowUpRight size={13} />
-                        </a>
-                      </li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            )}
-          </section>
           <div className="product-command-bar card">
             <div className="product-command-top">
               <div className="product-mode" role="group" aria-label="Product view">
@@ -1211,7 +1196,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
                         >
                           Clinical / dermatology reference <ArrowUpRight size={13} />
                         </a>
-                      </div>
+                      </li>
                     ))}
                   </ul>
                 )}
