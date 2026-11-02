@@ -71,7 +71,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
     [listView, setListView] = useState("shortlist"),
     [completeOnly, setCompleteOnly] = useState(false),
     [expanded, setExpanded] = useState<string | null>(null),
-    [visible, setVisible] = useState(12),
+    [visible, setVisible] = useState(6),
     [status, setStatus] = useState(""),
     [saving, setSaving] = useState(false),
     [ready, setReady] = useState(false),
@@ -85,6 +85,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
   const [scanDiscovery,setScanDiscovery] = useState<ScanProductDiscovery|null>(null), [scanResultKey,setScanResultKey] = useState("");
   const [searchPaused,setSearchPaused]=useState(false);
   const [routineTab, setRoutineTab] = useState<"routine" | "compatibility">("routine");
+  const [routineExpanded, setRoutineExpanded] = useState(false);
   const [checkerIngredients, setCheckerIngredients] = useState<string[]>(["retinol", "glycolic_acid", "ceramides"]);
   function handleSearchError(error:unknown){if(isQuotaError(error)){setSearchPaused(true);setAiError("");}else if(error instanceof Error && error.message.includes("web-search model is unavailable")){setSearchScope("catalog");setStatus("Live web-search model is unavailable for this account — switched to Verified Catalog AI search.");setAiError("");}else setAiError(error instanceof Error?error.message:"Search could not be completed.");}
   const aiAllowed = !demo && data.llmConsent && aiSearchAvailable;
@@ -233,7 +234,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
       ? explainMatches(products, effective, focus)
       : null;
   useEffect(
-    () => setVisible(12),
+    () => setVisible(6),
     [query, brand, category, sort, focus, prefs, browse, avoid, scanId],
   );
   async function save() {
@@ -297,24 +298,34 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
         </div>
       )}
       <section className="product-ai-search" aria-labelledby="product-ai-heading">
-        <div className="product-discovery-tabs" role="group" aria-label="Where to search"><button disabled={aiBusy} aria-pressed={searchScope === "scan"} onClick={()=>{setSearchScope("scan");setProposal(null);setAiError("");setWebConsent(false);}}>For my scan</button><button disabled={aiBusy} aria-pressed={searchScope === "web"} onClick={()=>{setSearchScope("web");setProposal(null);setAiError("");}}><Globe size={16}/>Across the web</button><button disabled={aiBusy} aria-pressed={searchScope === "catalog"} onClick={()=>{setSearchScope("catalog");setAiError("");}}><ShieldCheck size={16}/>Verified catalog</button></div>
-        <div className="product-ai-intro"><span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span><h2 id="product-ai-heading">{searchScope === "scan" ? "Your scan. Your next considered step." : "Tell us what belongs on your shelf."}</h2><p>{searchScope === "scan" ? "We turn your selected scan and preferences into a search brief, find products across the web, and check the retrieved ingredient and suitability statements. No shopping prompt needed." : searchScope === "web" ? "Discover brands and product pages beyond our catalog. AI searches the live web for India-focused sources and opens relevant pages." : "Describe a budget, category or ingredient preference. AI turns your words into filters; verified catalog facts and fixed rules decide what appears."}</p></div>
-        {searchScope === "scan" && <div className="scan-discovery-plan"><label className="field">Use this completed scan<select disabled={aiBusy} aria-label="Scan for personalized product discovery" value={scanId} onChange={e=>{setScanId(e.target.value);setManual(false);setAiError("");}}><option value="">Choose a completed scan</option>{scans.map(s=><option key={s.id} value={s.id}>{new Date(s.created_at).toLocaleDateString("en-IN")} · {s.overall_score?.toFixed(1) ?? "—"}</option>)}</select></label>{scanPlan ? <><div className="scan-plan-type"><strong>{scanPlan.skin_type === "unknown" ? "Skin type not recorded" : scanPlan.skin_type+" skin"}</strong><span>From your scan or explicit skin-type preference · change preferences below</span></div><p className="scan-plan-preferences">Budget: {prefs.budget_inr === null ? "not set" : money(prefs.budget_inr)+" per product"} · Ingredient exclusions: {avoid || "none specified"} · {prefs.adult_confirmed ? "Adult age self-confirmed" : "Adult age not confirmed"}{prefs.fragrance_free ? " · Fragrance-free required" : ""}{prefs.vegan ? " · Vegan required" : ""}</p><a className="text-link" href="#product-preferences">Edit budget and ingredient preferences ↓</a><div className="scan-plan-targets">{scanPlan.targets.map(t=><div key={t.id}><span className="section-label">SELECTED CARE FOCUS</span><h3>{t.label}</h3><p>{t.reason}</p></div>)}</div><p className="subtle">Lower relative scores are prompts for consideration, not diagnoses or severity grades. Gentle cleanser, moisturizer and sun protection form the everyday-care starting point. Your skin-age estimate is never used as your age.</p>{scanPlan.guidance.map(g=><div className="scan-plan-guidance" key={g.label}><strong>{g.label} · guidance</strong><p>{g.text}</p><a className="text-link" href={g.source} target="_blank" rel="noopener noreferrer">Read the evidence ↗</a></div>)}<p className="scan-filter-navigation"><a className="text-link" href="#product-concern-filters">Choose concerns, brand, category and ingredient coverage ↓</a></p><details className="scan-shared-brief"><summary>See the derived brief shared with search providers</summary><p>{scanPlan.search_brief}</p></details></> : <p className="notice">{demo ? "This demo uses synthetic scans with no verified score interpretation. Sign in and select a real completed YouCam scan to use automatic discovery." : "Choose a completed YouCam scan with supported score interpretation to create your personal product brief."}</p>}</div>}
+        <div className="product-ai-header-row">
+          <div className="product-ai-intro">
+            <span className="section-label"><Sparkles size={14}/> A MORE PERSONAL WAY TO SEARCH</span>
+            <h2 id="product-ai-heading">{searchScope === "scan" ? "Your scan. Your next considered step." : "Tell us what belongs on your shelf."}</h2>
+            <p>{searchScope === "scan" ? "We turn your selected scan and preferences into a search brief, find products across the web, and check the retrieved ingredient and suitability statements." : searchScope === "web" ? "Discover brands and product pages beyond our catalog. AI searches the live web for India-focused sources and opens relevant pages." : "Describe a budget, category or ingredient preference. AI turns your words into filters; verified catalog facts and fixed rules decide what appears."}</p>
+          </div>
+          <div className="product-discovery-tabs" role="group" aria-label="Where to search"><button disabled={aiBusy} aria-pressed={searchScope === "scan"} onClick={()=>{setSearchScope("scan");setProposal(null);setAiError("");setWebConsent(false);}}>For my scan</button><button disabled={aiBusy} aria-pressed={searchScope === "web"} onClick={()=>{setSearchScope("web");setProposal(null);setAiError("");}}><Globe size={16}/>Across the web</button><button disabled={aiBusy} aria-pressed={searchScope === "catalog"} onClick={()=>{setSearchScope("catalog");setAiError("");}}><ShieldCheck size={16}/>Verified catalog</button></div>
+        </div>
+        {searchScope === "scan" && <div className="scan-discovery-plan"><div className="scan-plan-top-bar"><label className="field">Use this completed scan<select disabled={aiBusy} aria-label="Scan for personalized product discovery" value={scanId} onChange={e=>{setScanId(e.target.value);setManual(false);setAiError("");}}><option value="">Choose a completed scan</option>{scans.map(s=><option key={s.id} value={s.id}>{new Date(s.created_at).toLocaleDateString("en-IN")} · {s.overall_score?.toFixed(1) ?? "—"}</option>)}</select></label>{scanPlan && <div className="scan-plan-summary-strip"><div className="scan-plan-type"><strong>{scanPlan.skin_type === "unknown" ? "Skin type not recorded" : scanPlan.skin_type+" skin"}</strong><span>From scan or preference</span></div><p className="scan-plan-preferences">Budget: {prefs.budget_inr === null ? "not set" : money(prefs.budget_inr)+" per product"} · Exclusions: {avoid || "none"} · {prefs.adult_confirmed ? "18+ confirmed" : "18+ not confirmed"}{prefs.fragrance_free ? " · Fragrance-free" : ""}{prefs.vegan ? " · Vegan" : ""} · <a className="text-link" href="#product-preferences">Edit preferences ↓</a></p></div>}</div>{scanPlan ? <><div className="scan-plan-targets">{scanPlan.targets.map(t=><div key={t.id}><span className="section-label">CARE FOCUS</span><h3>{t.label}</h3><p>{t.reason}</p></div>)}</div><details className="scan-shared-brief"><summary>View clinical guidance, evidence links & derived search brief ({scanPlan.targets.length} focus areas)</summary><p className="subtle">Lower relative scores are prompts for consideration, not diagnoses or severity grades. Gentle cleanser, moisturizer and sun protection form the everyday-care starting point. Your skin-age estimate is never used as your age.</p>{scanPlan.guidance.map(g=><div className="scan-plan-guidance" key={g.label}><strong>{g.label} · guidance</strong><p>{g.text}</p><a className="text-link" href={g.source} target="_blank" rel="noopener noreferrer">Read the evidence ↗</a></div>)}<p><strong>Derived search brief:</strong> {scanPlan.search_brief}</p></details></> : <p className="notice">{demo ? "This demo uses synthetic scans with no verified score interpretation. Sign in and select a real completed YouCam scan to use automatic discovery." : "Choose a completed YouCam scan with supported score interpretation to create your personal product brief."}</p>}</div>}
         {searchScope !== "scan" && <form onSubmit={e=>{e.preventDefault();void searchWithGroq();}}>
           <label className="product-ai-input"><Search size={20}/><textarea disabled={aiBusy} aria-label="Describe products to find with AI" value={aiQuery} onChange={e=>{setAiQuery(e.target.value);setWebConsent(false);setProposal(null);setAiError("");}} placeholder="A fragrance-free moisturizer under ₹500 for dry skin…" minLength={5} maxLength={1000} rows={2} required/><Button disabled={!aiAllowed || searchPaused || aiBusy || aiQuery.trim().length < 5 || (searchScope === "web" && !webConsent)}>{aiBusy ? searchScope === "web" ? "Searching the web…" : "Understanding…" : searchScope === "web" ? "Search across the web" : "Search verified catalog"}<ArrowRight size={16}/></Button></label>
         </form>}
-        {(searchScope === "web" || searchScope === "scan") && <label className="checkbox-row product-web-consent"><input type="checkbox" checked={webConsent} disabled={aiBusy} onChange={e=>setWebConsent(e.target.checked)}/><span>{searchScope === "scan" ? "Use live AI + web search with my derived skin type, cosmetic care targets and the preferences shown below. No photo, raw scores, scan ID, skin-age estimate or account details are shared." : "Use live AI + web search for this request. Only my typed request is shared; no scans or saved profile data."}</span></label>}
-        {searchScope === "scan" && <Button className="scan-find-products" disabled={!aiAllowed || searchPaused || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products for your scan…" : "Find products for my scan"}<ArrowRight size={16}/></Button>}
+        <div className="product-ai-action-row">
+          {(searchScope === "web" || searchScope === "scan") && <label className="checkbox-row product-web-consent"><input type="checkbox" checked={webConsent} disabled={aiBusy} onChange={e=>setWebConsent(e.target.checked)}/><span>{searchScope === "scan" ? "Use live AI + web search with my derived skin type, cosmetic care targets and preferences. No photo, raw scores, scan ID, skin-age estimate or account details are shared." : "Use live AI + web search for this request. Only my typed request is shared; no scans or saved profile data."}</span></label>}
+          {searchScope === "scan" && <Button className="scan-find-products" disabled={!aiAllowed || searchPaused || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products for your scan…" : "Find products for my scan"}<ArrowRight size={16}/></Button>}
+        </div>
         {searchScope !== "scan" && <div className="product-ai-examples">{["A moisturizer under ₹500 for dry skin", "A cleanser under ₹400, without niacinamide", "A vegan sunscreen under ₹700"].map(q=><button disabled={aiBusy} key={q} onClick={()=>{setAiQuery(q);setWebConsent(false);setProposal(null);setAiError("");}}>{q}<ArrowUpRight size={12}/></button>)}</div>}
-        <p className="product-ai-disclosure">{demo ? "Synthetic demo: external AI is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "AI search is not configured on this server. Catalog filters still work." : "Your selected search mode determines the information shared, as shown above. Photos, skin-age estimates and account details are not shared. Free-tier quotas apply."} {searchScope === "scan" ? "Results are checked against retrieved source statements and your selected preferences. Missing facts do not count as satisfied. Ingredient excerpts alone cannot clear an exclusion that requires a complete formula." : searchScope === "web" ? "Web results are source discoveries, not fully verified suitability matches. Catalog preferences are not automatically applied to them. Check the exact pack, ingredients and price with the seller." : "Catalog search does not browse the web or verify live prices."}</p>
+        <p className="product-ai-disclosure">{demo ? "Synthetic demo: external AI is not called. Use the catalog filters below, or sign in to try AI search." : !data.llmConsent ? <>External AI sharing is off. <Link href="/settings#ai-sharing">Enable it in Settings →</Link></> : !aiSearchAvailable ? "AI search is not configured on this server. Catalog filters still work." : "Photos, skin-age estimates and account details are never shared."} {searchScope === "scan" ? "Results are checked against retrieved source statements and your selected preferences." : searchScope === "web" ? "Web results are source discoveries; check exact pack, ingredients and price with the seller." : "Catalog search translates your prompt into local deterministic filters."}</p>
         {searchPaused && <div className="notice" role="status"><strong>Live search is paused. Catalog matching still works.</strong><p>The free search quota has been reached. Your scan priorities, preferences and ingredient filters still apply to the catalog below. No automatic retries are running. The provider has not supplied a confirmed reset time.</p><a className="text-link" href="#product-catalog-results">See catalog matches ↓</a><button className="text-link" style={{marginLeft:"1rem"}} onClick={()=>{setSearchPaused(false);setAiError("");}}>Enable another search attempt</button></div>}
         {aiError && <div className="error" role="alert">{aiError}</div>}
         {aiBusy && (searchScope === "web" || searchScope === "scan") && <div className="product-web-loading" role="status"><span className="loader small-loader"/><div><strong>Looking beyond the catalog.</strong><p>Searching product pages and checking source excerpts. This can take up to a minute.</p></div></div>}
         {proposal && searchScope === "catalog" && <div className="product-ai-review" role="status"><div className="card-heading"><div><span className="section-label">REVIEW BEFORE APPLYING</span><h3>Here’s how we understood your request.</h3></div><button aria-label="Dismiss proposed filters" onClick={()=>setProposal(null)}><X size={17}/></button></div><div className="product-ai-tags">{describeIntent(proposal).map((t,i)=><span key={i}>{t}</span>)}</div>{proposal.unresolved_terms.length > 0 ? <p className="notice">We cannot verify or represent these requirements: {proposal.unresolved_terms.join("; ")}. Edit your request or use the manual filters. These requirements have not been satisfied.</p> : !describeIntent(proposal).length ? <p>No specific filters were recognized. Try adding a category or budget.</p> : <><p>Existing ingredient exclusions, stricter budgets, age confirmation and retinoid choices stay in place. Applying replaces the text, brand and category search, and selects these concerns. Your profile is not saved automatically.</p><Button onClick={applyProposal}>Apply reviewed filters <Check size={15}/></Button></>}</div>}
       </section>
       {searchScope !== "scan" && webResults && <section className="product-web-results" aria-labelledby="web-results-heading"><div className="card-heading"><div><span className="section-label">LIVE WEB DISCOVERY · INDIA</span><h2 id="web-results-heading">A wider shelf to explore.</h2><p>For “{webRequest}” · Searched {new Date(webResults.searched_at).toLocaleString("en-IN")}</p></div><button className="text-link" onClick={()=>setWebResults(null)}>Dismiss results <X size={14}/></button></div><p className="product-web-note">These sources are outside the verified catalog. Titles and links come from search-tool results; detail excerpts are checked against retrieved page text. Search results may include collection pages. Price, availability, full ingredients and suitability require your review. No match percentage or treatment claim is inferred.</p><div className="product-web-grid">{webResults.results.map(r=><article className="card product-web-card" key={r.url}><div className="product-web-source"><Globe size={18}/><span>{r.host}</span><small>{r.page_opened ? "Page opened" : "Search result"}</small></div><h3>{r.title}</h3><dl><div><dt>Price excerpt</dt><dd>{r.price_quote || "Price / exact pack not verified"}</dd></div><div><dt>Ingredients excerpt</dt><dd>{r.ingredients_quote || "Full ingredient information not verified"}</dd></div><div><dt>Suitability excerpt</dt><dd>{r.suitability_quote || "Skin suitability not verified"}</dd></div></dl><p className="subtle">Page statements are seller claims. Read the source and the received pack before choosing.</p><div className="product-web-actions"><Button asChild><a href={r.url} target="_blank" rel="noopener noreferrer">Open source <ArrowUpRight size={14}/></a></Button><Button asChild variant="secondary"><Link href={"/experiments/new?custom_name="+encodeURIComponent(r.title)+"&source="+encodeURIComponent(r.url)}>Track as custom product <FlaskConical size={14}/></Link></Button></div></article>)}</div><p className="product-web-note">Want checked ingredient exclusions and transparent eligibility? Use the verified catalog below. Web discoveries are never silently added to it.</p></section>}
-      <div className="product-catalog-heading"><div><span className="section-label">ONE SET OF FILTERS</span><h2>Your priorities. Your product choices.</h2></div><span>Applies to scan discovery and catalog matches</span></div>
-      <nav className="product-category-rail" aria-label="Shop by category"><button aria-pressed={!category} onClick={()=>{setCategory("");}}>All categories</button>{categories.map(c=><button key={c} aria-pressed={category === c} onClick={()=>{setCategory(c);}}>{categoryNames[c]}</button>)}</nav>
+      <div className="product-catalog-bar">
+        <div className="product-catalog-heading"><div><span className="section-label">ONE SET OF FILTERS</span><h2>Your priorities. Your product choices.</h2></div></div>
+        <nav className="product-category-rail" aria-label="Shop by category"><button aria-pressed={!category} onClick={()=>{setCategory("");}}>All categories</button>{categories.map(c=><button key={c} aria-pressed={category === c} onClick={()=>{setCategory(c);}}>{categoryNames[c]}</button>)}</nav>
+      </div>
       {aiIntent && <div className="product-ai-applied"><div><span className="section-label">AI-INTERPRETED SEARCH</span><div className="product-ai-tags">{describeIntent(aiIntent).map((t,i)=><span key={i}>{t}</span>)}</div><p>Products and explanations below come from catalog facts and rules, not generated recommendations. Any stricter preferences still apply.</p></div><button className="text-link" onClick={()=>setAiIntent(null)}>Remove AI search constraints <X size={13}/></button></div>}
       {compareIds.length > 0 && <section id="product-comparison" className="product-compare card" aria-label="Compare selected products"><div className="card-heading"><div><span className="section-label">SIDE BY SIDE</span><h2>Compare the details that matter.</h2></div><button className="text-link" onClick={()=>setCompareIds([])}>Clear comparison <X size={14}/></button></div><p>Catalog facts only. Comparison does not override your eligibility filters or establish effectiveness.</p><div className="product-compare-scroll"><table><caption className="sr-only">Selected product facts</caption><thead><tr><th scope="col">Published details</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><th scope="col" key={p.id}>{p.name}<button aria-label={"Remove "+p.name+" from comparison"} onClick={()=>setCompareIds(ids=>ids.filter(id=>id!==p.id))}><X size={14}/></button></th>)}</tr></thead><tbody>{["Brand","Pack price","Pack size","Category","Key ingredients","Brand-listed skin types","Ingredient coverage","Last verified","Source"].map((row,i)=><tr key={row}><th scope="row">{row}</th>{products.filter(p=>compareIds.includes(p.id)).map(p=><td key={p.id}>{i===0?p.brand:i===1?money(p.price_inr):i===2?p.pack_size:i===3?categoryNames[p.category]:i===4?p.ingredient_ids.map(label).join(", ")||"Not verified":i===5?p.skin_types.join(", ")||"Not verified":i===6?p.inci_complete?"Full INCI captured":"Key ingredients only":i===7?new Date(p.verified_at).toLocaleDateString("en-IN"):<a className="text-link" href={p.source_url} target="_blank" rel="noopener noreferrer">Official source ↗</a>}</td>)}</tr>)}</tbody></table></div></section>}
       {compareIds.length > 0 && <a className="product-compare-floating" href="#product-comparison"><Columns3 size={16}/>{compareIds.length} of 3 selected · View comparison <ArrowUpRight size={15}/></a>}
@@ -553,220 +564,6 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
               </a>
             </details>
           </section>
-          <section className="card smart-routine-card" aria-labelledby="smart-routine-heading">
-            <div className="card-heading">
-              <div>
-                <span className="section-label">100% DETERMINISTIC · NO AI REQUIRED</span>
-                <h2 id="smart-routine-heading">
-                  {routineTab === "routine"
-                    ? "Smart Routine Builder (AM / PM)"
-                    : "Ingredient Compatibility Checker"}
-                </h2>
-              </div>
-              <div className="shortlist-switch" role="group" aria-label="Deterministic tools">
-                <button
-                  aria-pressed={routineTab === "routine"}
-                  onClick={() => setRoutineTab("routine")}
-                >
-                  Smart Routine Builder
-                </button>
-                <button
-                  aria-pressed={routineTab === "compatibility"}
-                  onClick={() => setRoutineTab("compatibility")}
-                >
-                  Ingredient Compatibility
-                </button>
-              </div>
-            </div>
-            {routineTab === "routine" ? (
-              <div className="smart-routine-body">
-                <p>
-                  Assembled deterministically from verified catalog products and your current preferences ({effective.skin_type === "unknown" ? "unspecified skin type" : `${effective.skin_type} skin`}). Strong actives are spaced between morning and evening as a conservative starting point; actual tolerance depends on formulation, concentration, frequency, and your skin.
-                </p>
-                <div className="routine-columns">
-                  {(
-                    [
-                      ["AM", "Morning Routine · Protect & Hydrate", smartRoutine.am, smartRoutine.totalAmInr],
-                      ["PM", "Evening Routine · Treat & Recover", smartRoutine.pm, smartRoutine.totalPmInr],
-                    ] as const
-                  ).map(([period, heading, steps, sumInr]) => (
-                    <div className="routine-column" key={period}>
-                      <div className="routine-col-header">
-                        <span className="pill lavender">{period}</span>
-                        <h3>{heading}</h3>
-                        <small>{money(sumInr)}</small>
-                      </div>
-                      <ol className="routine-steps-list">
-                        {steps.map((s) => (
-                          <li key={s.timeOfDay + "-" + s.step} className="routine-step-item">
-                            <div className="routine-step-top">
-                              <span className="section-label">
-                                STEP {s.step} · {s.title.toUpperCase()}
-                              </span>
-                              {s.match && (
-                                <strong className="routine-step-price">
-                                  {money(s.match.product.price_inr)}
-                                </strong>
-                              )}
-                            </div>
-                            {s.match ? (
-                              <>
-                                <h4>
-                                  {s.match.product.brand} · {s.match.product.name}
-                                </h4>
-                                <p>{s.rationale}</p>
-                                {s.caution && (
-                                  <p className="routine-step-caution">{s.caution}</p>
-                                )}
-                                <div className="routine-step-actions">
-                                  <a
-                                    className="text-link"
-                                    href={
-                                      s.match.product.official_url +
-                                      `?variant=${s.match.product.variant_id}`
-                                    }
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Official store <ArrowUpRight size={13} />
-                                  </a>
-                                  <Link
-                                    className="text-link"
-                                    href={`/experiments/new?product=${encodeURIComponent(s.match.product.id)}${selected ? `&scan=${selected.id}` : ""}&metric=${encodeURIComponent(s.match.matchedConcerns[0] || "moisture")}`}
-                                  >
-                                    Track in Lab <FlaskConical size={13} />
-                                  </Link>
-                                </div>
-                              </>
-                            ) : (
-                              <p className="subtle">{s.rationale}</p>
-                            )}
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
-                  ))}
-                </div>
-                {smartRoutine.interactions.length > 0 && (
-                  <div className="routine-synergy-box">
-                    <span className="section-label">INGREDIENT-LEVEL LAYERING NOTES</span>
-                    <ul>
-                      {smartRoutine.interactions.slice(0, 4).map((inter) => (
-                        <li key={inter.id}>
-                          <span
-                            className={
-                              "pill " +
-                              (inter.status === "synergy"
-                                ? "sage"
-                                : inter.status === "irritation_risk"
-                                  ? "danger"
-                                  : "lavender")
-                            }
-                          >
-                            {compatibilityLabels[inter.status]}
-                          </span>{" "}
-                          <strong>
-                            {inter.labelA} + {inter.labelB}:
-                          </strong>{" "}
-                          {inter.summary}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-                <div className="routine-footer-meta">
-                  <span>
-                    Unique shelf total:{" "}
-                    <strong>{money(smartRoutine.uniqueProductsInr)}</strong>
-                  </span>
-                  <span>{smartRoutine.notes[0]}</span>
-                </div>
-              </div>
-            ) : (
-              <div className="compatibility-checker-body">
-                <p>
-                  Select two or more cosmetic ingredients to review general ingredient-level layering heuristics. Combining actives is not universally unsafe—tolerance depends on product formulation, concentration, frequency, and individual skin response.
-                </p>
-                <div className="concern-chips compatibility-chips" role="group" aria-label="Select ingredients to check compatibility">
-                  {ingredients
-                    .filter((i) => !["fragrance", "alcohol_denat"].includes(i.id))
-                    .slice(0, 18)
-                    .map((ing) => {
-                      const active = checkerIngredients.includes(ing.id);
-                      return (
-                        <button
-                          key={ing.id}
-                          className={"concern-chip " + (active ? "selected" : "")}
-                          aria-pressed={active}
-                          onClick={() =>
-                            setCheckerIngredients((prev) =>
-                              prev.includes(ing.id)
-                                ? prev.filter((x) => x !== ing.id)
-                                : [...prev, ing.id],
-                            )
-                          }
-                        >
-                          {active && <Check size={13} />} {ing.name}
-                        </button>
-                      );
-                    })}
-                </div>
-                <div className="compatibility-summary-banner">
-                  <span
-                    className={
-                      "pill " +
-                      (compatibilityResult.overall === "irritation_risk"
-                        ? "danger"
-                        : compatibilityResult.overall === "caution"
-                          ? "lavender"
-                          : "sage")
-                    }
-                  >
-                    {compatibilityLabels[compatibilityResult.overall]}
-                  </span>
-                  <p>{compatibilityResult.summary}</p>
-                  {checkerIngredients.length > 0 && (
-                    <button
-                      className="text-link"
-                      onClick={() => setCheckerIngredients([])}
-                    >
-                      Clear selection
-                    </button>
-                  )}
-                </div>
-                {compatibilityResult.interactions.length > 0 && (
-                  <ul className="compatibility-interactions-list">
-                    {compatibilityResult.interactions.map((item) => (
-                      <li key={item.id} className="compatibility-item">
-                        <div className="compatibility-item-head">
-                          <span
-                            className={
-                              "pill " +
-                              (item.status === "irritation_risk"
-                                ? "danger"
-                                : item.status === "caution"
-                                  ? "lavender"
-                                  : "sage")
-                            }
-                          >
-                            {compatibilityLabels[item.status]}
-                          </span>
-                          <strong>
-                            {item.labelA} + {item.labelB}
-                          </strong>
-                          <small>
-                            {item.timing === "alternate_nights"
-                              ? "Often alternated across nights"
-                              : item.timing === "separate_am_pm"
-                                ? "Often split AM & PM"
-                                : item.timing === "avoid_stacking"
-                                  ? "Avoid redundant layering"
-                                  : "Commonly used in same routine"}
-                          </small>
-                        </div>
-                        <p>
-                          <strong>{item.summary}</strong> {item.guidance}
-                        </p>
                         <a
                           className="text-link"
                           href={item.source}
@@ -782,95 +579,99 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
               </div>
             )}
           </section>
-          <div className="product-mode" role="group" aria-label="Product view">
-            <button
-              className={!browse ? "active" : ""}
-              onClick={() => {setBrowse(false);setSearchScope("scan");}}
-            >
-              My product matches
-            </button>
-            <button
-              className={browse ? "active" : ""}
-              onClick={() => {setBrowse(true);setSearchScope("catalog");}}
-            >
-              Browse catalog
-            </button>
-          </div>
-          <div className="product-toolbar">
-            <label className="product-search">
-              <Search size={17} />
-              <input
-                aria-label="Search products or ingredients"
-                placeholder="Search products, brands, ingredients…"
-                maxLength={200}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-              />
-            </label>
-            <select
-              aria-label="Filter brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            >
-              <option value="">All brands</option>
-              {brands.map(([id, name]) => (
-                <option key={id} value={id}>
-                  {name}
-                </option>
-              ))}
-            </select>
-            <select
-              aria-label="Filter category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-            >
-              <option value="">All categories</option>
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {categoryNames[c]}
-                </option>
-              ))}
-            </select>
-            <select
-              aria-label="Sort products"
-              value={sort}
-              onChange={(e) => setSort(e.target.value)}
-            >
-              <option value="matches">Rule-based order</option>
-              <option value="price-low">Price: low to high</option>
-              <option value="price-high">Price: high to low</option>
-            </select>
-          </div>
-          <div className="product-list-controls">
-            <div
-              className="shortlist-switch"
-              role="group"
-              aria-label="List length"
-            >
-              <button
-                aria-pressed={listView === "shortlist" && sort === "matches"}
-                onClick={() => {
-                  setListView("shortlist");
-                  setSort("matches");
-                }}
-              >
-                Starter shortlist
-              </button>
-              <button
-                aria-pressed={listView === "all" || sort !== "matches"}
-                onClick={() => setListView("all")}
-              >
-                All eligible ({searchScope === "scan" && activeScanDiscovery ? activeScanDiscovery.matches.length : matches.length})
-              </button>
+          <div className="product-command-bar card">
+            <div className="product-command-top">
+              <div className="product-mode" role="group" aria-label="Product view">
+                <button
+                  className={!browse ? "active" : ""}
+                  onClick={() => {setBrowse(false);setSearchScope("scan");}}
+                >
+                  My product matches
+                </button>
+                <button
+                  className={browse ? "active" : ""}
+                  onClick={() => {setBrowse(true);setSearchScope("catalog");}}
+                >
+                  Browse catalog
+                </button>
+              </div>
+              <div className="product-list-controls">
+                <div
+                  className="shortlist-switch"
+                  role="group"
+                  aria-label="List length"
+                >
+                  <button
+                    aria-pressed={listView === "shortlist" && sort === "matches"}
+                    onClick={() => {
+                      setListView("shortlist");
+                      setSort("matches");
+                    }}
+                  >
+                    Starter shortlist
+                  </button>
+                  <button
+                    aria-pressed={listView === "all" || sort !== "matches"}
+                    onClick={() => setListView("all")}
+                  >
+                    All eligible ({searchScope === "scan" && activeScanDiscovery ? activeScanDiscovery.matches.length : matches.length})
+                  </button>
+                </div>
+                <label className="checkbox-row">
+                  <input
+                    type="checkbox"
+                    checked={completeOnly}
+                    onChange={(e) => setCompleteOnly(e.target.checked)}
+                  />
+                  Full ingredient lists only
+                </label>
+              </div>
             </div>
-            <label className="checkbox-row">
-              <input
-                type="checkbox"
-                checked={completeOnly}
-                onChange={(e) => setCompleteOnly(e.target.checked)}
-              />
-              Full ingredient lists only
-            </label>
+            <div className="product-toolbar">
+              <label className="product-search">
+                <Search size={17} />
+                <input
+                  aria-label="Search products or ingredients"
+                  placeholder="Search products, brands, ingredients…"
+                  maxLength={200}
+                  value={query}
+                  onChange={(e) => setQuery(e.target.value)}
+                />
+              </label>
+              <select
+                aria-label="Filter brand"
+                value={brand}
+                onChange={(e) => setBrand(e.target.value)}
+              >
+                <option value="">All brands</option>
+                {brands.map(([id, name]) => (
+                  <option key={id} value={id}>
+                    {name}
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Filter category"
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              >
+                <option value="">All categories</option>
+                {categories.map((c) => (
+                  <option key={c} value={c}>
+                    {categoryNames[c]}
+                  </option>
+                ))}
+              </select>
+              <select
+                aria-label="Sort products"
+                value={sort}
+                onChange={(e) => setSort(e.target.value)}
+              >
+                <option value="matches">Rule-based order</option>
+                <option value="price-low">Price: low to high</option>
+                <option value="price-high">Price: high to low</option>
+              </select>
+            </div>
           </div>
           {searchScope === "scan" && <div className="shared-filter-search"><Button disabled={!aiAllowed || searchPaused || !ready || aiBusy || !webConsent || !scanPlan} onClick={()=>void searchWithGroq()}>{aiBusy ? "Finding products…" : "Find products with these filters"}<ArrowRight size={16}/></Button>{!webConsent && <p className="subtle">Review the search brief and sharing checkbox above before searching. Filtering existing results happens locally.</p>}</div>}
           {searchScope === "scan" && activeScanDiscovery && <>{scanResultKey!==currentScanRequestKey && <p className="notice" role="status">Filters updated. These are eligible results from the last search. Use “Find products for my scan” again to discover more sources under these choices.</p>}{activeScanDiscovery.matches.length>0 ? <ScanProductResults discovery={activeScanDiscovery} listView={listView}/> : <p className="notice" role="status">{matches.length>0 ? `${matches.length} catalog products meet your filters below. ` : ""}No additional web products passed every source check. {activeScanDiscovery.evidence_status === "unavailable" ? "The evidence extractor was unavailable; try web discovery later." : "See the web evidence gaps after the catalog results."}</p>}</>}
@@ -910,7 +711,7 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
                   ? "catalog products"
                   : "matches"}
             </strong>
-            <span>Preferences applied · no sponsored ranking</span>
+            <span>Preferences applied · no sponsored ranking · <a className="text-link" href="#smart-routine-section" onClick={() => setRoutineExpanded(true)}>Open AM/PM Routine Builder ↓</a></span>
           </div>
           {ready && matches.length > 0 && (
             <p className="shortlist-explanation">
@@ -1160,13 +961,263 @@ export function ProductExplorer({ products, aiSearchAvailable = false }: { produ
             <div className="load-products">
               <Button
                 variant="secondary"
-                onClick={() => setVisible((n) => n + 12)}
+                onClick={() => setVisible((n) => n + 6)}
               >
-                Show more products
+                Show more products ({displayMatches.length - visible} remaining)
               </Button>
             </div>
           )}
           {searchScope === "scan" && activeScanDiscovery && activeScanDiscovery.matches.length===0 && <ScanProductResults discovery={activeScanDiscovery} listView={listView}/>}
+          <section id="smart-routine-section" className="card smart-routine-card" aria-labelledby="smart-routine-heading">
+            <div className="card-heading">
+              <div>
+                <span className="section-label">100% DETERMINISTIC · NO AI REQUIRED</span>
+                <h2 id="smart-routine-heading">
+                  {routineTab === "routine"
+                    ? "Smart Routine Builder (AM / PM)"
+                    : "Ingredient Compatibility Checker"}
+                </h2>
+              </div>
+              <div className="routine-header-actions">
+                <div className="shortlist-switch" role="group" aria-label="Deterministic tools">
+                  <button
+                    aria-pressed={routineTab === "routine"}
+                    onClick={() => { setRoutineTab("routine"); setRoutineExpanded(true); }}
+                  >
+                    Smart Routine Builder
+                  </button>
+                  <button
+                    aria-pressed={routineTab === "compatibility"}
+                    onClick={() => { setRoutineTab("compatibility"); setRoutineExpanded(true); }}
+                  >
+                    Ingredient Compatibility
+                  </button>
+                </div>
+                <Button
+                  variant="secondary"
+                  onClick={() => setRoutineExpanded((v) => !v)}
+                >
+                  {routineExpanded ? "Collapse Lab ↑" : "Expand Full Lab ↓"}
+                </Button>
+              </div>
+            </div>
+            {!routineExpanded ? (
+              <div className="routine-compact-preview">
+                <p>
+                  Deterministic 5-step AM & PM regimen assembled from verified catalog matches for{" "}
+                  <strong>{effective.skin_type === "unknown" ? "your preferences" : `${effective.skin_type} skin`}</strong>{" "}
+                  · Unique shelf total: <strong>{money(smartRoutine.uniqueProductsInr)}</strong> (AM {money(smartRoutine.totalAmInr)} / PM {money(smartRoutine.totalPmInr)}).
+                </p>
+                <div className="routine-compact-pills">
+                  <span className="pill lavender">AM: {smartRoutine.am.filter((s) => s.match).length} steps matched</span>
+                  <span className="pill lavender">PM: {smartRoutine.pm.filter((s) => s.match).length} steps matched</span>
+                  <span className="pill sage">{smartRoutine.interactions.length} active layering notes</span>
+                </div>
+              </div>
+            ) : routineTab === "routine" ? (
+              <div className="smart-routine-body">
+                <p>
+                  Assembled deterministically from verified catalog products and your current preferences ({effective.skin_type === "unknown" ? "unspecified skin type" : `${effective.skin_type} skin`}). Strong actives are spaced between morning and evening as a conservative starting point; actual tolerance depends on formulation, concentration, frequency, and your skin.
+                </p>
+                <div className="routine-columns">
+                  {(
+                    [
+                      ["AM", "Morning Routine · Protect & Hydrate", smartRoutine.am, smartRoutine.totalAmInr],
+                      ["PM", "Evening Routine · Treat & Recover", smartRoutine.pm, smartRoutine.totalPmInr],
+                    ] as const
+                  ).map(([period, heading, steps, sumInr]) => (
+                    <div className="routine-column" key={period}>
+                      <div className="routine-col-header">
+                        <span className="pill lavender">{period}</span>
+                        <h3>{heading}</h3>
+                        <small>{money(sumInr)}</small>
+                      </div>
+                      <ol className="routine-steps-list">
+                        {steps.map((s) => (
+                          <li key={s.timeOfDay + "-" + s.step} className="routine-step-item">
+                            <div className="routine-step-top">
+                              <span className="section-label">
+                                STEP {s.step} · {s.title.toUpperCase()}
+                              </span>
+                              {s.match && (
+                                <strong className="routine-step-price">
+                                  {money(s.match.product.price_inr)}
+                                </strong>
+                              )}
+                            </div>
+                            {s.match ? (
+                              <>
+                                <h4>
+                                  {s.match.product.brand} · {s.match.product.name}
+                                </h4>
+                                <p>{s.rationale}</p>
+                                {s.caution && (
+                                  <p className="routine-step-caution">{s.caution}</p>
+                                )}
+                                <div className="routine-step-actions">
+                                  <a
+                                    className="text-link"
+                                    href={
+                                      s.match.product.official_url +
+                                      `?variant=${s.match.product.variant_id}`
+                                    }
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                  >
+                                    Official store <ArrowUpRight size={13} />
+                                  </a>
+                                  <Link
+                                    className="text-link"
+                                    href={`/experiments/new?product=${encodeURIComponent(s.match.product.id)}${selected ? `&scan=${selected.id}` : ""}&metric=${encodeURIComponent(s.match.matchedConcerns[0] || "moisture")}`}
+                                  >
+                                    Track in Lab <FlaskConical size={13} />
+                                  </Link>
+                                </div>
+                              </>
+                            ) : (
+                              <p className="subtle">{s.rationale}</p>
+                            )}
+                          </li>
+                        ))}
+                      </ol>
+                    </div>
+                  ))}
+                </div>
+                {smartRoutine.interactions.length > 0 && (
+                  <div className="routine-synergy-box">
+                    <span className="section-label">INGREDIENT-LEVEL LAYERING NOTES</span>
+                    <ul>
+                      {smartRoutine.interactions.slice(0, 4).map((inter) => (
+                        <li key={inter.id}>
+                          <span
+                            className={
+                              "pill " +
+                              (inter.status === "synergy"
+                                ? "sage"
+                                : inter.status === "irritation_risk"
+                                  ? "danger"
+                                  : "lavender")
+                            }
+                          >
+                            {compatibilityLabels[inter.status]}
+                          </span>{" "}
+                          <strong>
+                            {inter.labelA} + {inter.labelB}:
+                          </strong>{" "}
+                          {inter.summary}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                <div className="routine-footer-meta">
+                  <span>
+                    Unique shelf total:{" "}
+                    <strong>{money(smartRoutine.uniqueProductsInr)}</strong>
+                  </span>
+                  <span>{smartRoutine.notes[0]}</span>
+                </div>
+              </div>
+            ) : (
+              <div className="compatibility-checker-body">
+                <p>
+                  Select two or more cosmetic ingredients to review general ingredient-level layering heuristics. Combining actives is not universally unsafe—tolerance depends on product formulation, concentration, frequency, and individual skin response.
+                </p>
+                <div className="concern-chips compatibility-chips" role="group" aria-label="Select ingredients to check compatibility">
+                  {ingredients
+                    .filter((i) => !["fragrance", "alcohol_denat"].includes(i.id))
+                    .slice(0, 18)
+                    .map((ing) => {
+                      const active = checkerIngredients.includes(ing.id);
+                      return (
+                        <button
+                          key={ing.id}
+                          className={"concern-chip " + (active ? "selected" : "")}
+                          aria-pressed={active}
+                          onClick={() =>
+                            setCheckerIngredients((prev) =>
+                              prev.includes(ing.id)
+                                ? prev.filter((x) => x !== ing.id)
+                                : [...prev, ing.id],
+                            )
+                          }
+                        >
+                          {active && <Check size={13} />} {ing.name}
+                        </button>
+                      );
+                    })}
+                </div>
+                <div className="compatibility-summary-banner">
+                  <span
+                    className={
+                      "pill " +
+                      (compatibilityResult.overall === "irritation_risk"
+                        ? "danger"
+                        : compatibilityResult.overall === "caution"
+                          ? "lavender"
+                          : "sage")
+                    }
+                  >
+                    {compatibilityLabels[compatibilityResult.overall]}
+                  </span>
+                  <p>{compatibilityResult.summary}</p>
+                  {checkerIngredients.length > 0 && (
+                    <button
+                      className="text-link"
+                      onClick={() => setCheckerIngredients([])}
+                    >
+                      Clear selection
+                    </button>
+                  )}
+                </div>
+                {compatibilityResult.interactions.length > 0 && (
+                  <ul className="compatibility-interactions-list">
+                    {compatibilityResult.interactions.map((item) => (
+                      <li key={item.id} className="compatibility-item">
+                        <div className="compatibility-item-head">
+                          <span
+                            className={
+                              "pill " +
+                              (item.status === "irritation_risk"
+                                ? "danger"
+                                : item.status === "caution"
+                                  ? "lavender"
+                                  : "sage")
+                            }
+                          >
+                            {compatibilityLabels[item.status]}
+                          </span>
+                          <strong>
+                            {item.labelA} + {item.labelB}
+                          </strong>
+                          <small>
+                            {item.timing === "alternate_nights"
+                              ? "Often alternated across nights"
+                              : item.timing === "separate_am_pm"
+                                ? "Often split AM & PM"
+                                : item.timing === "avoid_stacking"
+                                  ? "Avoid redundant layering"
+                                  : "Commonly used in same routine"}
+                          </small>
+                        </div>
+                        <p>
+                          <strong>{item.summary}</strong> {item.guidance}
+                        </p>
+                        <a
+                          className="text-link"
+                          href={item.source}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          Clinical / dermatology reference <ArrowUpRight size={13} />
+                        </a>
+                      </div>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+          </section>
           <div className="product-footnote">
             <ShieldCheck size={20} />
             <p>
